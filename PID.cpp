@@ -9,7 +9,7 @@ PID::PID(int capableDuty, double Kp, double Ki, double Kd,double current, double
   integral = 0;
 }
 
-int PID::compute_PID(double current, const bool ifPrint){
+int PID::compute_PID(double current, const bool logging){
 
   /* Update dt */
   unsigned long nowMicros = micros();
@@ -40,9 +40,11 @@ int PID::compute_PID(double current, const bool ifPrint){
 
   preDiff = diff;
 
-  if (ifPrint)
+  if (logging)
   {
-    Serial.print("target: ");
+    Serial.print("current: ");
+    Serial.print(current);
+    Serial.print(",target: ");
     Serial.print(target);
     Serial.print(",diff: ");
     Serial.print(diff);
