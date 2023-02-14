@@ -19,7 +19,7 @@ namespace Cubic_controller
             return Abs_enc::get(encoderNo);
         }
     }
-    class DC_motor_PID
+    class Velocity_PID
     {
     private:
         PID::PID *pid;
@@ -29,33 +29,33 @@ namespace Cubic_controller
 
         int capableDuty;
         int duty;
-        int target;
+        double target;
         bool direction;
         bool logging;
 
 
     public:
-        DC_motor_PID(uint8_t motorNo, uint8_t encoderNo,enum class encoderType  encoderType, int capableDuty, double Kp, double Ki, double Kd, double current, double target, bool direction, bool logging=true);
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo,enum class encoderType  encoderType, int capableDuty, double Kp, double Ki, double Kd, double current, double target, bool direction, bool logging=true);
         void compute();
-        void setTarget(int target);
+        void setTarget(double target);
         void setGains(double Kp, double Ki, double Kd);
-        int getTarget() const;
+        double getTarget() const;
         int getDuty() const;
     };
 
-    inline void DC_motor_PID::setTarget(const int target)
+    inline void Velocity_PID::setTarget(const double target)
     {
         this->target = target;
     }
-    inline void DC_motor_PID::setGains(const double Kp, const double Ki, const double Kd)
+    inline void Velocity_PID::setGains(const double Kp, const double Ki, const double Kd)
     {
         this->pid->setGains(Kp, Ki, Kd);
     }
-    inline int DC_motor_PID::getTarget() const
+    inline double Velocity_PID::getTarget() const
     {
         return this->target;
     }
-    inline int DC_motor_PID::getDuty() const
+    inline int Velocity_PID::getDuty() const
     {
         return this->duty;
     }
