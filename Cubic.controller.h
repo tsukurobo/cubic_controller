@@ -6,6 +6,11 @@
 namespace Cubic_controller
 {
     /**
+     * @brief AMT22のPPRです
+    */
+    constexpr uint16_t AMT22_PPR = 16384 / 4
+
+    /**
      * @brief エンコーダの種類を示します
      *
      * @param inc incremental encoder
@@ -128,7 +133,7 @@ namespace Cubic_controller
     /**
      * @brief 目標角度を設定します。
      *
-     * @param target [deg] 0~360
+     * @param target [deg] -180~180
      */
     inline void Position_PID::setTarget(const double target)
     {
@@ -181,16 +186,16 @@ namespace Cubic_controller
      * @brief エンコーダの値を角度に変換します。
      *
      * @param encoder
-     * @return double [deg] 0~360
+     * @return double angle[deg] 180~180
      */
     inline double Position_PID::encoderToAngle(const int32_t encoder) const
     {
         double angle = encoder * 360.0 / (double)CPR;
-        while (angle < 0.0)
+        while (angle < -180.0)
         {
             angle += 360.0;
         }
-        while (angle >= 360.0)
+        while (angle >= 180.0)
         {
             angle -= 360.0;
         }
@@ -199,7 +204,7 @@ namespace Cubic_controller
     /**
      * @brief 角度をエンコーダの値に変換します。
      *
-     * @param angle [deg] 0~360
+     * @param angle [deg]
      * @param currentEncoder 現在のエンコーダ値。
      * @return int32_t 現在のエンコーダ値に最も近い、angleを示す値を返します。
      */

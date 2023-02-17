@@ -40,6 +40,14 @@ namespace Cubic_controller
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         double currentAngle = encoderToAngle(encoder);
+        if (currentAngle - this->targetAngle > 180.0)
+        {
+            pid->setTarget(this->targetAngle + 360.0);
+        }
+        else if (this->targetAngle - currentAngle > 180.0)
+        {
+            pid->setTarget(this->targetAngle - 360.0);
+        }
         if (logging)
         {
             Serial.print("current enc: ");
