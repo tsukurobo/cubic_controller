@@ -38,6 +38,7 @@ namespace Cubic_controller
         uint8_t motorNo;
         enum class encoderType encoderType;
         uint8_t encoderNo;
+        uint16_t CPR;
 
         int capableDuty;
         int duty;
@@ -45,7 +46,7 @@ namespace Cubic_controller
         bool logging;
 
     public:
-        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
         int compute();
         void setTarget(double target);
         void setGains(double Kp, double Ki, double Kd);

@@ -13,7 +13,7 @@ namespace Cubic_controller
             return Abs_enc::get(encoderNo);
         }
     }
-    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDuty(capableDuty), direction(direction), logging(logging)
+    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDuty(capableDuty), direction(direction), logging(logging), CPR(4 * PPR)
     {
         constexpr double current = 0.0;
         pid = new PID::PID(capableDuty, Kp, Ki, Kd, current, target, direction);
