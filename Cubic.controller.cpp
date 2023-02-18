@@ -51,7 +51,7 @@ namespace Cubic_controller
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         double currentAngle = this->encoderToAngle(encoder);
-        pid = new PID::PID(capableDuty, Kp, Ki, Kd, current, targetAngle, direction);
+        pid = new PID::PID(capableDuty, Kp, Ki, Kd, currentAngle, targetAngle, direction);
         if(encoderType==encoderType::inc){
             Serial.println("ERROR!! encoderType is inc");
         }
