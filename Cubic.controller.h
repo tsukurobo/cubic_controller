@@ -7,8 +7,13 @@ namespace Cubic_controller
 {
     /**
      * @brief AMT22のPPRです
-    */
+     */
     constexpr uint16_t AMT22_PPR = 16384 / 4;
+
+    constexpr double degToRad(double deg)
+    {
+        return deg * DEG_TO_RAD;
+    }
 
     /**
      * @brief エンコーダの種類を示します
@@ -75,16 +80,18 @@ namespace Cubic_controller
         enum class encoderType encoderType;
         uint8_t encoderNo;
         uint16_t CPR;
-        int32_t base;
 
         int16_t capableDuty;
         int16_t duty;
         double targetAngle;
         bool direction;
         bool logging;
+        bool is_gear_ratio_two;
+        bool current_cycle;
 
     public:
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
+
         int16_t compute();
         void setTarget(double target);
         void setTargetByRelative(double target);
@@ -92,13 +99,12 @@ namespace Cubic_controller
         double getTarget() const;
         int16_t getDuty() const;
         double encoderToAngle(int32_t encoder) const;
-        // int32_t angleToEncoder(double angle, int32_t currentEncoder) const;
     };
 
     /**
      * @brief 目標速度を設定します。
      *
-     * @param target [deg/s] -360~360
+     * @param target [rad/s] -360~360
      */
     inline void Velocity_PID::setTarget(const double target)
     {
@@ -117,9 +123,9 @@ namespace Cubic_controller
         this->pid->setGains(Kp, Ki, Kd);
     }
     /**
-     * @brief 目標速度を取得します。
+     * @brief 目標角度を取得します。
      *
-     * @return double
+     * @return double [rad]
      */
     inline double Velocity_PID::getTarget() const
     {
@@ -138,7 +144,7 @@ namespace Cubic_controller
     /**
      * @brief 目標角度を設定します。
      *
-     * @param target [deg] -180~180
+     * @param target [rad] -PI~PI
      */
     inline void Position_PID::setTarget(const double target)
     {
@@ -149,7 +155,7 @@ namespace Cubic_controller
     /**
      * @brief 目標角度を現在の角度に対して相対的に設定します。
      *
-     * @param target [deg]
+     * @param target [rad]
      */
     inline void Position_PID::setTargetByRelative(const double target)
     {
@@ -172,7 +178,7 @@ namespace Cubic_controller
     /**
      * @brief 目標角度を取得します。
      *
-     * @return double [deg]
+     * @return double [rad]
      */
     inline double Position_PID::getTarget() const
     {
@@ -191,38 +197,10 @@ namespace Cubic_controller
      * @brief エンコーダの値を角度に変換します。
      *
      * @param encoder
-     * @return double angle[deg] 180~180
+     * @return double angle[rad] -PI~PI
      */
     inline double Position_PID::encoderToAngle(const int32_t encoder) const
     {
         return Cubic_controller::encoderToAngle(encoder, this->CPR);
     }
-    /**
-     * @brief 角度をエンコーダの値に変換します。
-     *
-     * @param angle [deg]
-     * @param currentEncoder 現在のエンコーダ値。
-     * @return int32_t 現在のエンコーダ値に最も近い、angleを示す値を返します。
-     */
-/*     inline int32_t Position_PID::angleToEncoder(const double angle, const int32_t currentEncoder) const
-    {
-        int32_t encoder = base + (angle * CPR) / 360.0;
-        encoder += (currentEncoder - encoder) / CPR;
-        int32_t diff = encoder - currentEncoder;
-        if (diff > 0)
-        {
-            if (diff > CPR / 2)
-            {
-                encoder -= CPR;
-            }
-        }
-        else
-        {
-            if (diff < -CPR / 2)
-            {
-                encoder += CPR;
-            }
-        }
-        return encoder;
-    } */
 }
