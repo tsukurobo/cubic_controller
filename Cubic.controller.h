@@ -8,7 +8,7 @@ namespace Cubic_controller
     /**
      * @brief AMT22のPPRです
     */
-    constexpr uint16_t AMT22_PPR = 16384 / 4
+    constexpr uint16_t AMT22_PPR = 16384 / 4;
 
     /**
      * @brief エンコーダの種類を示します
@@ -31,6 +31,10 @@ namespace Cubic_controller
      * @return int32_t 値
      */
     int32_t readEncoder(int encoderNo, enum encoderType encoderType);
+
+    double encoderToAngle(int32_t encoder, uint16_t CPR);
+
+    int32_t angleToEncoder(double angle, uint16_t CPR);
 
     /**
      * @brief 速度制御を行うためのクラスです。
@@ -88,7 +92,7 @@ namespace Cubic_controller
         double getTarget() const;
         int getDuty() const;
         double encoderToAngle(int32_t encoder) const;
-        int32_t angleToEncoder(double angle, int32_t currentEncoder) const;
+        // int32_t angleToEncoder(double angle, int32_t currentEncoder) const;
     };
 
     /**
@@ -190,16 +194,7 @@ namespace Cubic_controller
      */
     inline double Position_PID::encoderToAngle(const int32_t encoder) const
     {
-        double angle = encoder * 360.0 / (double)CPR;
-        while (angle < -180.0)
-        {
-            angle += 360.0;
-        }
-        while (angle >= 180.0)
-        {
-            angle -= 360.0;
-        }
-        return angle;
+        return Cubic_controller::encoderToAngle(encoder, this->CPR);
     }
     /**
      * @brief 角度をエンコーダの値に変換します。
@@ -208,7 +203,7 @@ namespace Cubic_controller
      * @param currentEncoder 現在のエンコーダ値。
      * @return int32_t 現在のエンコーダ値に最も近い、angleを示す値を返します。
      */
-    inline int32_t Position_PID::angleToEncoder(const double angle, const int32_t currentEncoder) const
+/*     inline int32_t Position_PID::angleToEncoder(const double angle, const int32_t currentEncoder) const
     {
         int32_t encoder = base + (angle * CPR) / 360.0;
         encoder += (currentEncoder - encoder) / CPR;
@@ -228,5 +223,5 @@ namespace Cubic_controller
             }
         }
         return encoder;
-    }
+    } */
 }

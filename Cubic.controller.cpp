@@ -13,6 +13,21 @@ namespace Cubic_controller
             return Abs_enc::get(encoderNo);
         }
     }
+
+    double encoderToAngle(const int32_t encoder, const uint16_t CPR)
+    {
+        double angle = encoder * 360.0 / (double)CPR;
+        while (angle < -180.0)
+        {
+            angle += 360.0;
+        }
+        while (angle >= 180.0)
+        {
+            angle -= 360.0;
+        }
+        return angle;
+    }
+
     Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDuty(capableDuty), direction(direction), logging(logging), CPR(4 * PPR)
     {
         constexpr double current = 0.0;
@@ -39,12 +54,12 @@ namespace Cubic_controller
     int Position_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
-        double currentAngle = encoderToAngle(encoder);
-        if (currentAngle - this->targetAngle > 180.0)
+        double currentAngle = this->encoderToAngle(encoder);
+        while (currentAngle - this->targetAngle > 180.0)
         {
             pid->setTarget(this->targetAngle + 360.0);
         }
-        else if (this->targetAngle - currentAngle > 180.0)
+        while (this->targetAngle - currentAngle > 180.0)
         {
             pid->setTarget(this->targetAngle - 360.0);
         }
