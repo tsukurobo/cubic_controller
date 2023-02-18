@@ -49,7 +49,8 @@ namespace Cubic_controller
 
     Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging, int8_t gear_ratio) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDuty(capableDuty), targetAngle(targetAngle), direction(direction), logging(logging), gear_ratio(gear_ratio)
     {
-        constexpr double current = 0.0;
+        int32_t encoder = readEncoder(encoderNo, encoderType);
+        double currentAngle = this->encoderToAngle(encoder);
         pid = new PID::PID(capableDuty, Kp, Ki, Kd, current, targetAngle, direction);
         if(encoderType==encoderType::inc){
             Serial.println("ERROR!! encoderType is inc");
