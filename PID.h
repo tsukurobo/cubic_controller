@@ -98,6 +98,16 @@ public:
      * @return int duty比
      */
     int compute_PID(double current, bool ifPrint);
+
+    /**
+     * @brief Get the Dt object
+     *
+     * @return double dt
+     */
+    double getDt() const
+    {
+        return dt;
+    }
 };
 
 

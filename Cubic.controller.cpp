@@ -40,19 +40,8 @@ namespace Cubic_controller
 
     int16_t Velocity_PID::compute()
     {
-        static int32_t prevEncoder = readEncoder(encoderNo, encoderType);
-        static double velocity = 0;
         int32_t encoder = readEncoder(encoderNo, encoderType);
-        if (logging)
-        {
-            Serial.print("current enc: ");
-            Serial.print(encoder);
-            Serial.print(",");
-            Serial.print("prev enc: ");
-            Serial.print(prevEncoder);
-            Serial.print(",");
-        }
-        velocity = encoderToAngle(encoder - prevEncoder, CPR);
+        double velocity = encoderToAngle(encoder,this->CPR)/this->pid->getDt();
         duty = pid->compute_PID(velocity, logging);
         DC_motor::put(motorNo, duty);
         return duty;
