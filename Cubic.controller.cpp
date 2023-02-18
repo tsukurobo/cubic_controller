@@ -16,14 +16,14 @@ namespace Cubic_controller
 
     double encoderToAngle(const int32_t encoder, const uint16_t CPR)
     {
-        double angle = encoder * 360.0 / (double)CPR;
-        while (angle < -180.0)
+        double angle = encoder * TWO_PI / (double)CPR;
+        while (angle < -PI)
         {
-            angle += 360.0;
+            angle += TWO_PI;
         }
-        while (angle >= 180.0)
+        while (angle >= PI)
         {
-            angle -= 360.0;
+            angle -= TWO_PI;
         }
         return angle;
     }
@@ -74,14 +74,14 @@ namespace Cubic_controller
             Serial.print(",");
         }
 
-        while (currentAngle - this->targetAngle > 180.0)
+        while (currentAngle - this->targetAngle > PI)
         {
-            this->targetAngle += 360.0;
+            this->targetAngle += TWO_PI;
             pid->setTarget(this->targetAngle);
         }
-        while (this->targetAngle - currentAngle > 180.0)
+        while (this->targetAngle - currentAngle > PI)
         {
-            this->targetAngle -= 360.0;
+            this->targetAngle -= TWO_PI;
             pid->setTarget(this->targetAngle);
         }
         duty = pid->compute_PID(currentAngle, logging);
