@@ -98,10 +98,11 @@ namespace Cubic_controller
     /**
      * @brief 目標速度を設定します。
      *
-     * @param target エンコーダのカウント値/秒
+     * @param target [deg/s] -360~360
      */
     inline void Velocity_PID::setTarget(const double target)
     {
+
         this->pid->setTarget(target);
     }
     /**

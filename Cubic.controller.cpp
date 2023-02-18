@@ -38,7 +38,7 @@ namespace Cubic_controller
     {
         static int32_t prevEncoder = readEncoder(encoderNo, encoderType);
         static double velocity = 0;
-        velocity = readEncoder(encoderNo, encoderType) - prevEncoder;
+        velocity = encoderToAngle(readEncoder(encoderNo, encoderType) - prevEncoder, CPR);
         duty = pid->compute_PID(velocity, logging);
         DC_motor::put(motorNo, duty);
         return duty;
