@@ -12,7 +12,7 @@ void loop()
 {
   using namespace Cubic_controller;
   static Velocity_PID velocityPID(0, 0, encoderType::inc, 180, 0.1, 0.1, 0.1, 100.0, false, true);
-  static Position_PID positionPID(1, 1, encoderType::inc, 2048, 180, 0.1, 0.1, 0.1, 90.0, true, true);
+  static Position_PID positionPID(1, 1, encoderType::abs, AMT22_PPR, 180, 15.0, 0.01, 0.001, 90.0, false, true);
   static bool stopFlag = false;
   if (Serial.available() > 0)
   {
@@ -20,6 +20,7 @@ void loop()
   }
   if (stopFlag)
   {
+    Serial.println("stopping...");
     for (int i = 0; i < 8; i++)
     {
       DC_motor::put(i, 0);
@@ -34,5 +35,6 @@ void loop()
       // Serial.print(Abs_enc::get(i));
     }
   }
+  Cubic::update();
   delay(1);
 }

@@ -30,7 +30,7 @@ namespace Cubic_controller
      * @param encoderType
      * @return int32_t 値
      */
-    int32_t readEncoder(int encoderNo, enum encoderType encoderType);
+    int32_t readEncoder(uint8_t encoderNo, enum encoderType encoderType);
 
     double encoderToAngle(int32_t encoder, uint16_t CPR);
 
@@ -49,18 +49,18 @@ namespace Cubic_controller
         uint8_t encoderNo;
         uint16_t CPR;
 
-        int capableDuty;
-        int duty;
+        int16_t capableDuty;
+        int16_t duty;
         bool direction;
         bool logging;
 
     public:
-        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
-        int compute();
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int16_t capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
+        int16_t compute();
         void setTarget(double target);
         void setGains(double Kp, double Ki, double Kd);
         double getTarget() const;
-        int getDuty() const;
+        int16_t getDuty() const;
     };
 
     /**
@@ -77,20 +77,20 @@ namespace Cubic_controller
         uint16_t CPR;
         int32_t base;
 
-        int capableDuty;
-        int duty;
+        int16_t capableDuty;
+        int16_t duty;
         double targetAngle;
         bool direction;
         bool logging;
 
     public:
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
-        int compute();
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
+        int16_t compute();
         void setTarget(double target);
         void setTargetByRelative(double target);
         void setGains(double Kp, double Ki, double Kd);
         double getTarget() const;
-        int getDuty() const;
+        int16_t getDuty() const;
         double encoderToAngle(int32_t encoder) const;
         // int32_t angleToEncoder(double angle, int32_t currentEncoder) const;
     };
@@ -130,7 +130,7 @@ namespace Cubic_controller
      *
      * @return int
      */
-    inline int Velocity_PID::getDuty() const
+    inline int16_t Velocity_PID::getDuty() const
     {
         return this->duty;
     }
@@ -183,7 +183,7 @@ namespace Cubic_controller
      *
      * @return int
      */
-    inline int Position_PID::getDuty() const
+    inline int16_t Position_PID::getDuty() const
     {
         return this->duty;
     }
