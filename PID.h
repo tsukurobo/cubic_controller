@@ -15,7 +15,6 @@ constexpr int limitInPermitedDutyRange(const int duty)
 constexpr unsigned long MAX_MICROSECONDS = ULONG_MAX;
 
 
-
 class PID
 {
 private:
@@ -91,8 +90,24 @@ public:
      */
     int getDuty() const;
 
-
+    /**
+     * @brief PID制御を行う関数
+     *
+     * @param current 現在値
+     * @param ifPrint ログを出力するかどうか
+     * @return int duty比
+     */
     int compute_PID(double current, bool ifPrint);
+
+    /**
+     * @brief Get the Dt object
+     *
+     * @return double dt
+     */
+    double getDt() const
+    {
+        return dt;
+    }
 };
 
 
