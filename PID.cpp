@@ -42,13 +42,13 @@ int PID::compute_PID(double current, const bool logging){
 
   if (logging)
   {
-    Serial.print("current: ");
+    Serial.print("current:");
     Serial.print(current);
-    Serial.print(",target: ");
+    Serial.print(",target:");
     Serial.print(target);
-    Serial.print(",diff: ");
+    Serial.print(",diff:");
     Serial.print(diff);
-    Serial.print(",duty: ");
+    Serial.print(",duty:");
     Serial.println(duty);
   }
   return duty;

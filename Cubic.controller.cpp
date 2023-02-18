@@ -63,13 +63,13 @@ namespace Cubic_controller
         double currentAngle = this->encoderToAngle(encoder);
         if (logging)
         {
-            Serial.print("current enc: ");
+            Serial.print("current enc:");
             Serial.print(encoder);
             Serial.print(",");
-            Serial.print("current angle: ");
+            Serial.print("current angle:");
             Serial.print(currentAngle);
             Serial.print(",");
-            Serial.print("target angle: ");
+            Serial.print("target angle:");
             Serial.print(this->targetAngle);
             Serial.print(",");
         }
