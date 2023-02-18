@@ -39,8 +39,6 @@ namespace Cubic_controller
 
     double encoderToAngle(int32_t encoder, uint16_t CPR);
 
-    int32_t angleToEncoder(double angle, uint16_t CPR);
-
     /**
      * @brief 速度制御を行うためのクラスです。
      *
