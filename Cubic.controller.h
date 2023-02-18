@@ -7,7 +7,7 @@ namespace Cubic_controller
 {
     /**
      * @brief AMT22のPPRです
-    */
+     */
     constexpr uint16_t AMT22_PPR = 16384 / 4;
 
     constexpr double degToRad(double deg)
@@ -86,10 +86,11 @@ namespace Cubic_controller
         double targetAngle;
         bool direction;
         bool logging;
-        int8_t gear_ratio;
+        bool is_gear_ratio_two;
+        bool current_cycle;
 
     public:
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, int8_t gear_ratio = 1);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
         int16_t compute();
         void setTarget(double target);
         void setTargetByRelative(double target);

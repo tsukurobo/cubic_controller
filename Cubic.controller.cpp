@@ -33,7 +33,8 @@ namespace Cubic_controller
         constexpr double current = 0.0;
         pid = new PID::PID(capableDuty, Kp, Ki, Kd, current, target, direction);
 
-        if(encoderType==encoderType::abs){
+        if (encoderType == encoderType::abs)
+        {
             Serial.println("ERROR!! encoderType is abs");
         }
     }
@@ -41,18 +42,19 @@ namespace Cubic_controller
     int16_t Velocity_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
-        double velocity = encoderToAngle(encoder,this->CPR)/this->pid->getDt();
+        double velocity = encoderToAngle(encoder, this->CPR) / this->pid->getDt();
         duty = pid->compute_PID(velocity, logging);
         DC_motor::put(motorNo, duty);
         return duty;
     }
 
-    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging, int8_t gear_ratio) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDuty(capableDuty), targetAngle(targetAngle), direction(direction), logging(logging), gear_ratio(gear_ratio)
+    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging, bool is_gear_ratio_two) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDuty(capableDuty), targetAngle(targetAngle), direction(direction), logging(logging), is_gear_ratio_two(is_gear_ratio_two)
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         double currentAngle = this->encoderToAngle(encoder);
         pid = new PID::PID(capableDuty, Kp, Ki, Kd, currentAngle, targetAngle, direction);
-        if(encoderType==encoderType::inc){
+        if (encoderType == encoderType::inc)
+        {
             Serial.println("ERROR!! encoderType is inc");
         }
     }
@@ -60,7 +62,27 @@ namespace Cubic_controller
     int16_t Position_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
-        double currentAngle = this->encoderToAngle(encoder);
+        static int32_t prevEncoder = encoder;
+        int32_t actualEncoder = encoder;
+        double currentAngle;
+        if (is_gear_ratio_two == true)
+        {
+            Serial.print("actual enc:");
+            Serial.print(encoder);
+            Serial.print(",");
+            Serial.print("current cycle:");
+            Serial.print(current_cycle);
+            Serial.print(",");
+            if ((prevEncoder > CPR * 5 / 6 && encoder < CPR / 6)||(prevEncoder < CPR / 6 && encoder > CPR * 5 / 6))
+            {
+                current_cycle ^= 1;
+            }
+            if(current_cycle){
+                encoder += CPR;
+            }
+            encoder /= 2;
+        }
+        currentAngle = this->encoderToAngle(encoder);
         if (logging)
         {
             Serial.print("current enc:");
@@ -86,6 +108,7 @@ namespace Cubic_controller
         }
         duty = pid->compute_PID(currentAngle, logging);
         DC_motor::put(motorNo, duty);
+        prevEncoder = actualEncoder;
         return duty;
     }
 }
