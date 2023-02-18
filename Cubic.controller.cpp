@@ -32,6 +32,10 @@ namespace Cubic_controller
     {
         constexpr double current = 0.0;
         pid = new PID::PID(capableDuty, Kp, Ki, Kd, current, target, direction);
+
+        if(encoderType==encoderType::abs){
+            Serial.println("ERROR!! encoderType is abs");
+        }
     }
 
     int16_t Velocity_PID::compute()
@@ -59,6 +63,9 @@ namespace Cubic_controller
         this->base = readEncoder(encoderNo, encoderType);
         constexpr double current = 0.0;
         pid = new PID::PID(capableDuty, Kp, Ki, Kd, current, targetAngle, direction);
+        if(encoderType==encoderType::inc){
+            Serial.println("ERROR!! encoderType is inc");
+        }
     }
 
     int16_t Position_PID::compute()
