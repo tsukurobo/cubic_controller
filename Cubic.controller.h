@@ -80,16 +80,16 @@ namespace Cubic_controller
         enum class encoderType encoderType;
         uint8_t encoderNo;
         uint16_t CPR;
-        int32_t base;
 
         int16_t capableDuty;
         int16_t duty;
         double targetAngle;
         bool direction;
         bool logging;
+        int8_t gear_ratio;
 
     public:
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, int8_t gear_ratio = 1);
         int16_t compute();
         void setTarget(double target);
         void setTargetByRelative(double target);
