@@ -91,6 +91,7 @@ namespace Cubic_controller
 
     public:
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
+
         int16_t compute();
         void setTarget(double target);
         void setTargetByRelative(double target);
@@ -107,6 +108,7 @@ namespace Cubic_controller
      */
     inline void Velocity_PID::setTarget(const double target)
     {
+
         this->pid->setTarget(target);
     }
     /**
