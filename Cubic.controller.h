@@ -104,11 +104,10 @@ namespace Cubic_controller
     /**
      * @brief 目標速度を設定します。
      *
-     * @param target [rad/s] -360~360
+     * @param target [rad/s] -PI~PI
      */
     inline void Velocity_PID::setTarget(const double target)
     {
-
         this->pid->setTarget(target);
     }
     /**
@@ -123,9 +122,9 @@ namespace Cubic_controller
         this->pid->setGains(Kp, Ki, Kd);
     }
     /**
-     * @brief 目標角度を取得します。
+     * @brief 目標速度を取得します。
      *
-     * @return double [rad]
+     * @return double [rad/s]
      */
     inline double Velocity_PID::getTarget() const
     {
