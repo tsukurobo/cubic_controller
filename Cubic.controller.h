@@ -97,7 +97,6 @@ namespace Cubic_controller
         double getTarget() const;
         int16_t getDuty() const;
         double encoderToAngle(int32_t encoder) const;
-        // int32_t angleToEncoder(double angle, int32_t currentEncoder) const;
     };
 
     /**
@@ -201,32 +200,4 @@ namespace Cubic_controller
     {
         return Cubic_controller::encoderToAngle(encoder, this->CPR);
     }
-    /**
-     * @brief 角度をエンコーダの値に変換します。
-     *
-     * @param angle [deg]
-     * @param currentEncoder 現在のエンコーダ値。
-     * @return int32_t 現在のエンコーダ値に最も近い、angleを示す値を返します。
-     */
-/*     inline int32_t Position_PID::angleToEncoder(const double angle, const int32_t currentEncoder) const
-    {
-        int32_t encoder = base + (angle * CPR) / 360.0;
-        encoder += (currentEncoder - encoder) / CPR;
-        int32_t diff = encoder - currentEncoder;
-        if (diff > 0)
-        {
-            if (diff > CPR / 2)
-            {
-                encoder -= CPR;
-            }
-        }
-        else
-        {
-            if (diff < -CPR / 2)
-            {
-                encoder += CPR;
-            }
-        }
-        return encoder;
-    } */
 }
