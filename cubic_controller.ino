@@ -16,7 +16,27 @@ void loop()
   static bool stopFlag = false;
   if (Serial.available() > 0)
   {
-    stopFlag = true;
+    char c = Serial.read();
+    double gain = Serial.readStringUntil('\n').toDouble();
+    if (c == 'p')
+    {
+      velocityPID.setKp(gain);
+      positionPID.setKp(gain);
+    }
+    else if (c == 'i')
+    {
+      velocityPID.setKi(gain);
+      positionPID.setKi(gain);
+    }
+    else if (c == 'd')
+    {
+      velocityPID.setKd(gain);
+      positionPID.setKd(gain);
+    }
+    else
+    {
+      stopFlag = true;
+    }
   }
   if (stopFlag)
   {
