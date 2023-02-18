@@ -68,6 +68,12 @@ public:
      */
     void setGains(double Kp, double Ki, double Kd);
 
+    void setKp(double Kp);
+
+    void setKi(double Ki);
+
+    void setKd(double Kd);
+
     /**
      * @brief 目標を変更する。
      *
@@ -115,6 +121,18 @@ inline void PID::setGains(const double Kp, const double Ki, const double Kd)
 {
     this->Kp = Kp;
     this->Ki = Ki;
+    this->Kd = Kd;
+}
+inline void PID::setKp(const double Kp)
+{
+    this->Kp = Kp;
+}
+inline void PID::setKi(const double Ki)
+{
+    this->Ki = Ki;
+}
+inline void PID::setKd(const double Kd)
+{
     this->Kd = Kd;
 }
 inline void PID::setTarget(const double target)

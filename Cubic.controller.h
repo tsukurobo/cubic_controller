@@ -64,6 +64,9 @@ namespace Cubic_controller
         int16_t compute();
         void setTarget(double target);
         void setGains(double Kp, double Ki, double Kd);
+        void setKp(double Kp);
+        void setKi(double Ki);
+        void setKd(double Kd);
         double getTarget() const;
         int16_t getDuty() const;
     };
@@ -96,6 +99,9 @@ namespace Cubic_controller
         void setTarget(double target);
         void setTargetByRelative(double target);
         void setGains(double Kp, double Ki, double Kd);
+        void setKp(double Kp);
+        void setKi(double Ki);
+        void setKd(double Kd);
         double getTarget() const;
         int16_t getDuty() const;
         double encoderToAngle(int32_t encoder) const;
@@ -104,11 +110,10 @@ namespace Cubic_controller
     /**
      * @brief 目標速度を設定します。
      *
-     * @param target [rad/s] -360~360
+     * @param target [rad/s] -PI~PI
      */
     inline void Velocity_PID::setTarget(const double target)
     {
-
         this->pid->setTarget(target);
     }
     /**
@@ -123,9 +128,9 @@ namespace Cubic_controller
         this->pid->setGains(Kp, Ki, Kd);
     }
     /**
-     * @brief 目標角度を取得します。
+     * @brief 目標速度を取得します。
      *
-     * @return double [rad]
+     * @return double [rad/s]
      */
     inline double Velocity_PID::getTarget() const
     {
@@ -139,6 +144,21 @@ namespace Cubic_controller
     inline int16_t Velocity_PID::getDuty() const
     {
         return this->duty;
+    }
+
+    inline void Velocity_PID::setKp(const double Kp)
+    {
+        this->pid->setKp(Kp);
+    }
+
+    inline void Velocity_PID::setKi(const double Ki)
+    {
+        this->pid->setKi(Ki);
+    }
+
+    inline void Velocity_PID::setKd(const double Kd)
+    {
+        this->pid->setKd(Kd);
     }
 
     /**
@@ -174,6 +194,33 @@ namespace Cubic_controller
     inline void Position_PID::setGains(const double Kp, const double Ki, const double Kd)
     {
         this->pid->setGains(Kp, Ki, Kd);
+    }
+    /**
+     * @brief Kpを設定します。
+     *
+     * @param Kp
+     */
+    inline void Position_PID::setKp(const double Kp)
+    {
+        this->pid->setKp(Kp);
+    }
+    /**
+     * @brief Kiを設定します。
+     *
+     * @param Ki
+     */
+    inline void Position_PID::setKi(const double Ki)
+    {
+        this->pid->setKi(Ki);
+    }
+    /**
+     * @brief Kdを設定します。
+     *
+     * @param Kd
+     */
+    inline void Position_PID::setKd(const double Kd)
+    {
+        this->pid->setKd(Kd);
     }
     /**
      * @brief 目標角度を取得します。
