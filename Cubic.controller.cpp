@@ -67,17 +67,21 @@ namespace Cubic_controller
         double currentAngle;
         if (is_gear_ratio_two == true)
         {
-            Serial.print("actual enc:");
-            Serial.print(encoder);
-            Serial.print(",");
-            Serial.print("current cycle:");
-            Serial.print(current_cycle);
-            Serial.print(",");
-            if ((prevEncoder > CPR * 5 / 6 && encoder < CPR / 6)||(prevEncoder < CPR / 6 && encoder > CPR * 5 / 6))
+            if (logging)
+            {
+                Serial.print("actual enc:");
+                Serial.print(encoder);
+                Serial.print(",");
+                Serial.print("current cycle:");
+                Serial.print(current_cycle);
+                Serial.print(",");
+            }
+            if ((prevEncoder > CPR * 5 / 6 && encoder < CPR / 6) || (prevEncoder < CPR / 6 && encoder > CPR * 5 / 6))
             {
                 current_cycle ^= 1;
             }
-            if(current_cycle){
+            if (current_cycle)
+            {
                 encoder += CPR;
             }
             encoder /= 2;
