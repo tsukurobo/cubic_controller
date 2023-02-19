@@ -10,6 +10,14 @@ void setup()
 
 void loop()
 {
+  static int cnt = 0;
+  cnt++;
+  static unsigned long preTime = micros();
+  if(cnt==10000){
+    Serial.println(micros()-preTime);
+    preTime = micros();
+    cnt = 0;
+  }
   using namespace Cubic_controller;
   static Velocity_PID velocityPID(0, 0, encoderType::inc, 0.2, 900.0, 0.0, 0.0, 0.3, false, true, 2048);
   static Position_PID positionPID(1, 1, encoderType::abs, AMT22_PPR, 0.2, 350.0, 6.0, 8.0, degToRad(90.0), false, true, true);

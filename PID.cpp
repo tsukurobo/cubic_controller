@@ -23,6 +23,7 @@ int PID::compute_PID(double current, const bool logging){
   }
   dt /= 1000000.0;
   preMicros = nowMicros;
+  // dt = 0.001;
 
   this->current = current;
   diff = target - current;
@@ -42,7 +43,9 @@ int PID::compute_PID(double current, const bool logging){
 
   if (logging)
   {
-    Serial.print("current:");
+    Serial.print("dt:");
+    Serial.print(dt, 5);
+    Serial.print(",current:");
     Serial.print(current);
     Serial.print(",target:");
     Serial.print(target);
