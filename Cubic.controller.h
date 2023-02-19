@@ -1,3 +1,7 @@
+/**
+ * @file Cubic.controller.h
+ */
+
 #pragma once
 #include <Arduino.h>
 #include "PID.h"

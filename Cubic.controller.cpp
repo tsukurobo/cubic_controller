@@ -1,3 +1,7 @@
+/**
+ * @file Cubic.controller.cpp
+ */
+
 #include "Cubic.controller.h"
 
 namespace Cubic_controller
