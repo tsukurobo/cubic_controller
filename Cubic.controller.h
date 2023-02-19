@@ -37,7 +37,7 @@ namespace Cubic_controller
      */
     int32_t readEncoder(uint8_t encoderNo, enum encoderType encoderType);
 
-    double encoderToAngle(int32_t encoder, uint16_t CPR);
+    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR);
 
     /**
      * @brief 速度制御を行うためのクラスです。
