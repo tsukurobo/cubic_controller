@@ -4,16 +4,7 @@
 
 namespace PID
 {
-constexpr int MAX_DUTY = 255;
-constexpr int MIN_DUTY = -255;
-constexpr int limitInPermitedDutyRange(const int duty)
-{
-    return duty > MAX_DUTY   ? MAX_DUTY
-           : duty < MIN_DUTY ? MIN_DUTY
-                             : duty;
-}
 constexpr unsigned long MAX_MICROSECONDS = ULONG_MAX;
-
 
 class PID
 {
@@ -28,10 +19,10 @@ private:
     long double integral;
     unsigned long preMicros;
 
-    int duty = 0;
-    int capableDuty;
+    int16_t duty = 0;
+    int16_t capableDuty;
 
-    int dutyLimiter(); /* Limit the duty and reset integral if limited. */
+    int16_t dutyLimiter(); /* Limit the duty and reset integral if limited. */
 
     bool direction;
 
@@ -41,7 +32,7 @@ public:
     /**
      * @brief コントローラのコンストラクタ
      *
-     * @param capableDuty 出力最大Duty比（絶対値）。0~255の範囲で指定する。
+     * @param capableDuty 出力最大Duty比（絶対値）
      * @param Kp 比例ゲイン
      * @param Ki 積分ゲイン
      * @param Kd 微分ゲイン
@@ -49,7 +40,7 @@ public:
      * @param target 目標
      * @param direction 方向。trueで正方向、falseで負方向。
      */
-    PID(int capableDuty, double Kp, double Ki, double Kd,double current, double target, bool direction);
+    PID(int16_t capableDuty, double Kp, double Ki, double Kd,double current, double target, bool direction);
 
     /**
      * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
@@ -94,7 +85,7 @@ public:
      *
      * @return int duty比
      */
-    int getDuty() const;
+    int16_t getDuty() const;
 
     /**
      * @brief PID制御を行う関数
@@ -103,7 +94,7 @@ public:
      * @param ifPrint ログを出力するかどうか
      * @return int duty比
      */
-    int compute_PID(double current, bool ifPrint);
+    int16_t compute_PID(double current, bool ifPrint);
 
     /**
      * @brief Get the Dt object
@@ -143,11 +134,11 @@ inline double PID::getTarget() const
 {
     return this->target;
 }
-inline int PID::getDuty() const
+inline int16_t PID::getDuty() const
 {
     return this->duty;
 }
-inline int PID::dutyLimiter()
+inline int16_t PID::dutyLimiter()
 {
     if(abs(duty)>capableDuty)
         integral = 0; // Anti-windup
