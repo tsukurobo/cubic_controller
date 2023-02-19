@@ -10,6 +10,12 @@ namespace Cubic_controller
      */
     constexpr uint16_t AMT22_PPR = 16384 / 4;
 
+    /**
+     * @brief 度数法から弧度法に変換します
+     *
+     * @param deg
+     * @return constexpr double
+     */
     constexpr double degToRad(double deg)
     {
         return deg * DEG_TO_RAD;
@@ -37,6 +43,13 @@ namespace Cubic_controller
      */
     int32_t readEncoder(uint8_t encoderNo, enum encoderType encoderType);
 
+    /**
+     * @brief 与えられたCPRのもと、エンコーダの値から角度を計算します
+     *
+     * @param encoder エンコーダの値
+     * @param CPR counts per revolution(PPRの4倍)
+     * @return constexpr double angle[rad](-PI<= angle < PI)
+     */
     constexpr double encoderToAngle(int32_t encoder, uint16_t CPR);
 
     /**
@@ -144,16 +157,31 @@ namespace Cubic_controller
         return this->duty;
     }
 
+    /**
+     * @brief Kpを設定します。
+     *
+     * @param Kp
+     */
     inline void Velocity_PID::setKp(const double Kp)
     {
         this->pid->setKp(Kp);
     }
 
+    /**
+     * @brief Kiを設定します。
+     *
+     * @param Ki
+     */
     inline void Velocity_PID::setKi(const double Ki)
     {
         this->pid->setKi(Ki);
     }
 
+    /**
+     * @brief Kdを設定します。
+     *
+     * @param Kd
+     */
     inline void Velocity_PID::setKd(const double Kd)
     {
         this->pid->setKd(Kd);
