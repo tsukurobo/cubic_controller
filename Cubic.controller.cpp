@@ -31,7 +31,7 @@ namespace Cubic_controller
     Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDuty(capableDutyCycle * DUTY_SPI_MAX), direction(direction), logging(logging), CPR(4 * PPR)
     {
         constexpr double current = 0.0;
-        pid = new PID::PID(capableDutyCycle, Kp, Ki, Kd, current, target, direction);
+        pid = new PID::PID(this->capableDuty, Kp, Ki, Kd, current, target, direction);
 
         if (encoderType == encoderType::abs)
         {
@@ -42,6 +42,11 @@ namespace Cubic_controller
     int16_t Velocity_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
+        if(logging){
+            Serial.print("encoder:");
+            Serial.print(encoder);
+            Serial.print(",");
+        }
         double velocity = encoderToAngle(encoder, this->CPR) / this->pid->getDt();
         duty = pid->compute_PID(velocity, logging);
         DC_motor::put(motorNo, duty, DUTY_SPI_MAX);
