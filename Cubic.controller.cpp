@@ -42,12 +42,23 @@ namespace Cubic_controller
     int16_t Velocity_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
-        if(logging){
+        if (logging)
+        {
             Serial.print("encoder:");
             Serial.print(encoder);
             Serial.print(",");
         }
-        double velocity = encoderToAngle(encoder, this->CPR) / this->pid->getDt();
+        double angle = encoderToAngle(encoder, this->CPR);
+        double velocity = angle / this->pid->getDt();
+        if (logging)
+        {
+            Serial.print("angle:");
+            Serial.print(angle,4);
+            Serial.print(",");
+            Serial.print("velocity:");
+            Serial.print(velocity);
+            Serial.print(",");
+        }
         duty = pid->compute_PID(velocity, logging);
         DC_motor::put(motorNo, duty, DUTY_SPI_MAX);
         return duty;

@@ -44,6 +44,9 @@ namespace PID
 
     if (logging)
     {
+      Serial.print("dt:");
+      Serial.print(dt);
+      Serial.print(",");
       Serial.print("current:");
       Serial.print(current);
       Serial.print(",target:");
