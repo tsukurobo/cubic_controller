@@ -75,6 +75,22 @@ namespace Cubic_controller
         bool logging;
 
     public:
+        /**
+         * @brief Construct a new Velocity_PID object
+         *
+         * @param motorNo モータ番号
+         * @param encoderNo エンコーダ番号
+         * @param encoderType エンコーダの種類
+         * @param capableDutyCycle 最大許容デューティ比。0.0~1.0
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param target 目標速度[rad/s]
+         * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         *
+         */
         Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
         int16_t compute();
         void setTarget(double target);
@@ -108,6 +124,22 @@ namespace Cubic_controller
         bool current_cycle;
 
     public:
+        /**
+         * @brief Construct a new Position_PID object
+         *
+         * @param motorNo
+         * @param encoderNo
+         * @param encoderType
+         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         * @param capableDutyCycle モーターに与えられる最大のduty比。0~1の範囲で指定する。
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param targetAngle 目標角度[rad]
+         * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         * @param is_gear_ratio_two ギア比が2:1の場合はtrue。1:1の場合はfalse。省略可能で、デフォルトはfalse。
+         */
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
 
         int16_t compute();

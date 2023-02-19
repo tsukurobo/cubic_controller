@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "acdegiprsv",
   1: "acdipsv",
   2: "c",
-  3: "cdegprs",
+  3: "cdegprsv",
   4: "a",
   5: "e",
   6: "r"

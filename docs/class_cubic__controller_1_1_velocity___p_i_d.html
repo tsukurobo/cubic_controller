@@ -103,8 +103,8 @@ $(document).ready(function(){initNavTree('class_cubic__controller_1_1_velocity__
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="memItemLeft" align="right" valign="top"><a id="ab6cc2f668f63e1a6c9a65665b64e6034" name="ab6cc2f668f63e1a6c9a65665b64e6034"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Velocity_PID</b> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true, uint16_t PPR=1024)</td></tr>
+<tr class="memitem:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6cc2f668f63e1a6c9a65665b64e6034">Velocity_PID</a> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true, uint16_t PPR=1024)</td></tr>
+<tr class="memdesc:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6cc2f668f63e1a6c9a65665b64e6034">More...</a><br /></td></tr>
 <tr class="separator:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a926a70ccc4d2351d3e0a06a656c81536"><td class="memItemLeft" align="right" valign="top"><a id="a926a70ccc4d2351d3e0a06a656c81536" name="a926a70ccc4d2351d3e0a06a656c81536"></a>
 int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> ()</td></tr>
@@ -133,7 +133,108 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> ()</td
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >速度制御を行うためのクラスです。 </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab6cc2f668f63e1a6c9a65665b64e6034" name="ab6cc2f668f63e1a6c9a65665b64e6034"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6cc2f668f63e1a6c9a65665b64e6034">&#9670;&#160;</a></span>Velocity_PID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Cubic_controller::Velocity_PID::Velocity_PID </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>motorNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>encoderNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>capableDutyCycle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ki</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>logging</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>PPR</em> = <code>1024</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。">Velocity_PID</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">motorNo</td><td>モータ番号 </td></tr>
+    <tr><td class="paramname">encoderNo</td><td>エンコーダ番号 </td></tr>
+    <tr><td class="paramname">encoderType</td><td>エンコーダの種類 </td></tr>
+    <tr><td class="paramname">capableDutyCycle</td><td>最大許容デューティ比。0.0~1.0 </td></tr>
+    <tr><td class="paramname">Kp</td><td></td></tr>
+    <tr><td class="paramname">Ki</td><td></td></tr>
+    <tr><td class="paramname">Kd</td><td></td></tr>
+    <tr><td class="paramname">target</td><td>目標速度[rad/s] </td></tr>
+    <tr><td class="paramname">direction</td><td>モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。 </td></tr>
+    <tr><td class="paramname">logging</td><td>ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。 </td></tr>
+    <tr><td class="paramname">PPR</td><td>エンコーダのPPR（CPRでないことに注意） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="aa76537670656f09f9cf98d88b9fb8d45" name="aa76537670656f09f9cf98d88b9fb8d45"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa76537670656f09f9cf98d88b9fb8d45">&#9670;&#160;</a></span>getDuty()</h2>
 
