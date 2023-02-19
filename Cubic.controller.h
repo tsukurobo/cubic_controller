@@ -39,8 +39,6 @@ namespace Cubic_controller
 
     double encoderToAngle(int32_t encoder, uint16_t CPR);
 
-    int32_t angleToEncoder(double angle, uint16_t CPR);
-
     /**
      * @brief 速度制御を行うためのクラスです。
      *
@@ -60,7 +58,7 @@ namespace Cubic_controller
         bool logging;
 
     public:
-        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, int16_t capableDuty, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
         int16_t compute();
         void setTarget(double target);
         void setGains(double Kp, double Ki, double Kd);
@@ -93,7 +91,7 @@ namespace Cubic_controller
         bool current_cycle;
 
     public:
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, int16_t capableDuty, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
 
         int16_t compute();
         void setTarget(double target);
