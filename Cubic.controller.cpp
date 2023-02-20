@@ -99,7 +99,7 @@ namespace Cubic_controller
         {
             Serial.print("current enc:");
             Serial.print(encoder);
-            // Serial.print(",");
+            Serial.print(",");
             // Serial.print("current angle:");
             // Serial.print(currentAngle);
             // Serial.print(",");
