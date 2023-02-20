@@ -48,6 +48,26 @@ namespace Cubic_controller
     int32_t readEncoder(uint8_t encoderNo, enum encoderType encoderType);
 
     /**
+     * @brief 与えられた角度を一定範囲（min<=angle<min+2pi）に収めます
+     *
+     * @param angle 角度[rad]
+     * @param min 最低値[rad]。省略可能で、デフォルトは-PI
+     * @return constexpr double 角度[rad](-PI<= angle < PI)
+     */
+    constexpr double limitAngle(double angle, const double min = -PI)
+    {
+        while (angle < min)
+        {
+            angle += TWO_PI;
+        }
+        while (angle >= min + TWO_PI)
+        {
+            angle -= TWO_PI;
+        }
+        return angle;
+    }
+
+    /**
      * @brief 与えられたCPRのもと、エンコーダの値から角度を計算します
      *
      * @param encoder エンコーダの値
@@ -59,14 +79,7 @@ namespace Cubic_controller
     {
         {
             double angle = offset + encoder * TWO_PI / (double)CPR;
-            while (angle < -PI)
-            {
-                angle += TWO_PI;
-            }
-            while (angle >= PI)
-            {
-                angle -= TWO_PI;
-            }
+            limitAngle(angle);
             return angle;
         }
     }
@@ -242,8 +255,9 @@ namespace Cubic_controller
      *
      * @param targetAngle [rad] -PI~PI
      */
-    inline void Position_PID::setTarget(const double targetAngle)
+    inline void Position_PID::setTarget(double targetAngle)
     {
+        targetAngle = limitAngle(targetAngle);
         this->targetAngle = targetAngle;
         this->pid->setTarget(targetAngle);
         double currentAngle = this->encoderToAngle(readEncoder(encoderNo, encoderType));

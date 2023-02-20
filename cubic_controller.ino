@@ -15,7 +15,7 @@ void loop()
 {
   using namespace Cubic_controller;
   static Velocity_PID velocityPID(6, 5, encoderType::inc, 0.5, 0.04, 0, 0, 15.0, true, true, 512);
-  static Position_PID positionPID(3, 1, encoderType::abs, AMT22_PPR, 0.5, 0.35, 0.0, 0.0, degToRad(90.0), true, true);
+  static Position_PID positionPID(7, 0, encoderType::abs, AMT22_PPR, 0.5, 0.4, 0.1, 0.0, degToRad(90.0), true, true);
   static bool stopFlag = false;
   if (Serial.available() > 0)
   {
