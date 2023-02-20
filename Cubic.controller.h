@@ -136,6 +136,8 @@ namespace Cubic_controller
         bool direction;
         bool logging;
         bool isGoingForward;
+        bool isOverMax = false;
+        bool isOverMin = false;
 
     public:
         /**

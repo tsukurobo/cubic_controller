@@ -95,7 +95,6 @@ namespace Cubic_controller
         double currentAngle = this->encoderToAngle(encoder);
         double actualAngle = currentAngle;
         static double prevAngle = currentAngle;
-        static bool isOver = false;
         if (logging)
         {
             Serial.print("current enc:");
@@ -116,40 +115,41 @@ namespace Cubic_controller
         {
             if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
             {
-                isOver = true;
-            }
-            else if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
-            {
-                isOver = false;
-            }
-            if (isOver)
-            {
-                currentAngle += TWO_PI;
+                isOverMax = true;
             }
         }
         else
         {
             if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
             {
-                isOver = true;
-            }
-            else if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
-            {
-                isOver = false;
-            }
-            if (isOver)
-            {
-                currentAngle -= TWO_PI;
+                isOverMin = true;
             }
         }
         if (logging)
         {
-            Serial.print("isOver:");
-            Serial.print(isOver);
+            Serial.print("isOverMax:");
+            Serial.print(isOverMax);
+            Serial.print(",");
+            Serial.print("isOverMin:");
+            Serial.print(isOverMin);
             Serial.print(",");
         }
 
         dutyCycle = pid->compute_PID(currentAngle, logging);
+        if (isOverMax)
+        {
+            if(currentAngle > 5 * PI / 6){
+                isOverMax = false;
+            }
+            dutyCycle = capableDutyCycle * (direction ? -1.0 : 1.0);
+        }
+        else if (isOverMin)
+        {
+            if(currentAngle < -5 * PI / 6){
+                isOverMin = false;
+            }
+            dutyCycle = capableDutyCycle * (direction ? 1.0 : -1.0);
+        }
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         prevAngle = actualAngle;
         return dutyCycle;
