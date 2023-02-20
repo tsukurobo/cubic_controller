@@ -142,7 +142,6 @@ namespace Cubic_controller
 
         double compute();
         void setTarget(double target);
-        void setTargetByRelative(double target);
         void setGains(double Kp, double Ki, double Kd);
         void setKp(double Kp);
         void setKi(double Ki);
@@ -230,18 +229,6 @@ namespace Cubic_controller
     {
         this->targetAngle = target;
         this->pid->setTarget(target);
-    }
-
-    /**
-     * @brief 目標角度を現在の角度に対して相対的に設定します。
-     *
-     * @param target [rad]
-     */
-    inline void Position_PID::setTargetByRelative(const double target)
-    {
-        // get current angle and add target
-        this->targetAngle = encoderToAngle(readEncoder(this->encoderNo, this->encoderType)) + target;
-        this->pid->setTarget(this->targetAngle);
     }
 
     /**
