@@ -19,10 +19,10 @@ private:
     long double integral;
     unsigned long preMicros;
 
-    int16_t duty = 0;
-    int16_t capableDuty;
+    double dutyCycle = 0;
+    double capableDutyCycle;
 
-    int16_t dutyLimiter(); /* Limit the duty and reset integral if limited. */
+    double dutyCycleLimiter(); /* Limit the dutyCycle and reset integral if limited. */
 
     bool direction;
 
@@ -32,7 +32,7 @@ public:
     /**
      * @brief コントローラのコンストラクタ
      *
-     * @param capableDuty 出力最大Duty比（絶対値）
+     * @param capableDutyCycle 出力最大Duty比（絶対値）
      * @param Kp 比例ゲイン
      * @param Ki 積分ゲイン
      * @param Kd 微分ゲイン
@@ -40,7 +40,7 @@ public:
      * @param target 目標
      * @param direction 方向。trueで正方向、falseで負方向。
      */
-    PID(int16_t capableDuty, double Kp, double Ki, double Kd,double current, double target, bool direction);
+    PID(double capableDutyCycle, double Kp, double Ki, double Kd,double current, double target, bool direction);
 
     /**
      * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
@@ -85,7 +85,7 @@ public:
      *
      * @return int duty比
      */
-    int16_t getDuty() const;
+    double getDuty() const;
 
     /**
      * @brief PID制御を行う関数
@@ -94,7 +94,7 @@ public:
      * @param ifPrint ログを出力するかどうか
      * @return int duty比
      */
-    int16_t compute_PID(double current, bool ifPrint);
+    double compute_PID(double current, bool ifPrint);
 
     /**
      * @brief Get the Dt object
@@ -134,18 +134,18 @@ inline double PID::getTarget() const
 {
     return this->target;
 }
-inline int16_t PID::getDuty() const
+inline double PID::getDuty() const
 {
-    return this->duty;
+    return this->dutyCycle;
 }
-inline int16_t PID::dutyLimiter()
+inline double PID::dutyCycleLimiter()
 {
-    if(abs(duty)>capableDuty)
+    if(abs(dutyCycle)>capableDutyCycle)
         integral = 0; // Anti-windup
-    duty = duty > capableDuty    ? capableDuty
-           : duty < -capableDuty ? -capableDuty
-                                 : duty;
-    return duty;
+    dutyCycle = dutyCycle > capableDutyCycle    ? capableDutyCycle
+           : dutyCycle < -capableDutyCycle ? -capableDutyCycle
+                                 : dutyCycle;
+    return dutyCycle;
 }
 
 }

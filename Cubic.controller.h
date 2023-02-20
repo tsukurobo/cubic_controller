@@ -69,8 +69,8 @@ namespace Cubic_controller
         uint8_t encoderNo;
         uint16_t CPR;
 
-        int16_t capableDuty;
-        int16_t duty;
+        double capableDutyCycle;
+        double dutyCycle;
         bool direction;
         bool logging;
 
@@ -92,14 +92,14 @@ namespace Cubic_controller
          *
          */
         Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
-        int16_t compute();
+        double compute();
         void setTarget(double target);
         void setGains(double Kp, double Ki, double Kd);
         void setKp(double Kp);
         void setKi(double Ki);
         void setKd(double Kd);
         double getTarget() const;
-        int16_t getDuty() const;
+        double getDuty() const;
     };
 
     /**
@@ -115,8 +115,8 @@ namespace Cubic_controller
         uint8_t encoderNo;
         uint16_t CPR;
 
-        int16_t capableDuty;
-        int16_t duty;
+        double capableDutyCycle;
+        double dutyCycle;
         double targetAngle;
         bool direction;
         bool logging;
@@ -142,7 +142,7 @@ namespace Cubic_controller
          */
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
 
-        int16_t compute();
+        double compute();
         void setTarget(double target);
         void setTargetByRelative(double target);
         void setGains(double Kp, double Ki, double Kd);
@@ -150,7 +150,7 @@ namespace Cubic_controller
         void setKi(double Ki);
         void setKd(double Kd);
         double getTarget() const;
-        int16_t getDuty() const;
+        double getDuty() const;
         double encoderToAngle(int32_t encoder) const;
     };
 
@@ -188,9 +188,9 @@ namespace Cubic_controller
      *
      * @return int
      */
-    inline int16_t Velocity_PID::getDuty() const
+    inline double Velocity_PID::getDuty() const
     {
-        return this->duty;
+        return this->dutyCycle;
     }
 
     /**
@@ -298,9 +298,9 @@ namespace Cubic_controller
      *
      * @return int
      */
-    inline int16_t Position_PID::getDuty() const
+    inline double Position_PID::getDuty() const
     {
-        return this->duty;
+        return this->dutyCycle;
     }
     /**
      * @brief エンコーダの値を角度に変換します。

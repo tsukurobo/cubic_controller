@@ -32,10 +32,10 @@ namespace Cubic_controller
         return angle;
     }
 
-    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDuty(capableDutyCycle * DUTY_SPI_MAX), direction(direction), logging(logging), CPR(4 * PPR)
+    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), CPR(4 * PPR)
     {
         constexpr double current = 0.0;
-        pid = new PID::PID(this->capableDuty, Kp, Ki, Kd, current, target, direction);
+        pid = new PID::PID(this->capableDutyCycle, Kp, Ki, Kd, current, target, direction);
 
         if (encoderType == encoderType::abs)
         {
@@ -43,7 +43,7 @@ namespace Cubic_controller
         }
     }
 
-    int16_t Velocity_PID::compute()
+    double Velocity_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         if (logging)
@@ -63,23 +63,23 @@ namespace Cubic_controller
             Serial.print(velocity);
             Serial.print(",");
         }
-        duty = pid->compute_PID(velocity, logging);
-        DC_motor::put(motorNo, duty, DUTY_SPI_MAX);
-        return duty;
+        dutyCycle = pid->compute_PID(velocity, logging);
+        DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
+        return dutyCycle;
     }
 
-    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging, bool is_gear_ratio_two) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDuty(capableDutyCycle * DUTY_SPI_MAX), targetAngle(targetAngle), direction(direction), logging(logging), is_gear_ratio_two(is_gear_ratio_two)
+    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging, bool is_gear_ratio_two) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging), is_gear_ratio_two(is_gear_ratio_two)
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         double currentAngle = this->encoderToAngle(encoder);
-        pid = new PID::PID(capableDuty, Kp, Ki, Kd, currentAngle, targetAngle, direction);
+        pid = new PID::PID(capableDutyCycle, Kp, Ki, Kd, currentAngle, targetAngle, direction);
         if (encoderType == encoderType::inc)
         {
             Serial.println("ERROR!! encoderType is inc");
         }
     }
 
-    int16_t Position_PID::compute()
+    double Position_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         static int32_t prevEncoder = encoder;
@@ -130,9 +130,9 @@ namespace Cubic_controller
             this->targetAngle -= TWO_PI;
             pid->setTarget(this->targetAngle);
         }
-        duty = pid->compute_PID(currentAngle, logging);
-        DC_motor::put(motorNo, duty, DUTY_SPI_MAX);
+        dutyCycle = pid->compute_PID(currentAngle, logging);
+        DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         prevEncoder = actualEncoder;
-        return duty;
+        return dutyCycle;
     }
 }
