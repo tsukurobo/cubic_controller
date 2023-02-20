@@ -55,7 +55,21 @@ namespace Cubic_controller
      * @param offset オフセット[rad]。省略可能で、デフォルトは0.0
      * @return constexpr double angle[rad](-PI<= angle < PI)
      */
-    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0);
+    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0)
+    {
+        {
+            double angle = offset + encoder * TWO_PI / (double)CPR;
+            while (angle < -PI)
+            {
+                angle += TWO_PI;
+            }
+            while (angle >= PI)
+            {
+                angle -= TWO_PI;
+            }
+            return angle;
+        }
+    }
 
     /**
      * @brief 速度制御を行うためのクラスです。
@@ -121,6 +135,7 @@ namespace Cubic_controller
         double targetAngle;
         bool direction;
         bool logging;
+        bool isGoingForward;
 
     public:
         /**
@@ -141,7 +156,7 @@ namespace Cubic_controller
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
 
         double compute();
-        void setTarget(double target);
+        void setTarget(double targetAngle);
         void setGains(double Kp, double Ki, double Kd);
         void setKp(double Kp);
         void setKi(double Ki);
@@ -223,12 +238,21 @@ namespace Cubic_controller
     /**
      * @brief 目標角度を設定します。
      *
-     * @param target [rad] -PI~PI
+     * @param targetAngle [rad] -PI~PI
      */
-    inline void Position_PID::setTarget(const double target)
+    inline void Position_PID::setTarget(const double targetAngle)
     {
-        this->targetAngle = target;
-        this->pid->setTarget(target);
+        this->targetAngle = targetAngle;
+        this->pid->setTarget(targetAngle);
+        double currentAngle = this->encoderToAngle(readEncoder(encoderNo, encoderType));
+        if (targetAngle - currentAngle >= 0)
+        {
+            isGoingForward = true;
+        }
+        else
+        {
+            isGoingForward = false;
+        }
     }
 
     /**
@@ -295,6 +319,6 @@ namespace Cubic_controller
      */
     inline double Position_PID::encoderToAngle(const int32_t encoder) const
     {
-        return Cubic_controller::encoderToAngle(encoder, this->CPR, -PI);
+        return Cubic_controller::encoderToAngle(encoder, CPR, -PI);
     }
 }
