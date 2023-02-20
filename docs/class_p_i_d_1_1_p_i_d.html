@@ -99,9 +99,9 @@ $(document).ready(function(){initNavTree('class_p_i_d_1_1_p_i_d.html',''); initR
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aae92ea945a680aade5bcde4f7af7717e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#aae92ea945a680aade5bcde4f7af7717e">PID</a> (int16_t capableDuty, double Kp, double Ki, double Kd, double current, double target, bool direction)</td></tr>
-<tr class="memdesc:aae92ea945a680aade5bcde4f7af7717e"><td class="mdescLeft">&#160;</td><td class="mdescRight">コントローラのコンストラクタ  <a href="class_p_i_d_1_1_p_i_d.html#aae92ea945a680aade5bcde4f7af7717e">More...</a><br /></td></tr>
-<tr class="separator:aae92ea945a680aade5bcde4f7af7717e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef4ef504e138a964242fc62be3eabcc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a4ef4ef504e138a964242fc62be3eabcc">PID</a> (double capableDutyCycle, double Kp, double Ki, double Kd, double current, double target, bool direction)</td></tr>
+<tr class="memdesc:a4ef4ef504e138a964242fc62be3eabcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">コントローラのコンストラクタ  <a href="class_p_i_d_1_1_p_i_d.html#a4ef4ef504e138a964242fc62be3eabcc">More...</a><br /></td></tr>
+<tr class="separator:a4ef4ef504e138a964242fc62be3eabcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10fcff99e2dfb44054a013ac525797f5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a10fcff99e2dfb44054a013ac525797f5">compute</a> (double current, bool ifPrint=false)</td></tr>
 <tr class="memdesc:a10fcff99e2dfb44054a013ac525797f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。  <a href="class_p_i_d_1_1_p_i_d.html#a10fcff99e2dfb44054a013ac525797f5">More...</a><br /></td></tr>
 <tr class="separator:a10fcff99e2dfb44054a013ac525797f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,12 +123,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setKd</b> (double Kd)
 <tr class="memitem:a885661b37b26c26f87475a8c4f65b20a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a885661b37b26c26f87475a8c4f65b20a">getTarget</a> () const</td></tr>
 <tr class="memdesc:a885661b37b26c26f87475a8c4f65b20a"><td class="mdescLeft">&#160;</td><td class="mdescRight">目標を取得する。  <a href="class_p_i_d_1_1_p_i_d.html#a885661b37b26c26f87475a8c4f65b20a">More...</a><br /></td></tr>
 <tr class="separator:a885661b37b26c26f87475a8c4f65b20a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ea022ea6533bfc1f0d8c00038d71dbf"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a5ea022ea6533bfc1f0d8c00038d71dbf">getDuty</a> () const</td></tr>
-<tr class="memdesc:a5ea022ea6533bfc1f0d8c00038d71dbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duty比の取得  <a href="class_p_i_d_1_1_p_i_d.html#a5ea022ea6533bfc1f0d8c00038d71dbf">More...</a><br /></td></tr>
-<tr class="separator:a5ea022ea6533bfc1f0d8c00038d71dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4be26ceda1b38844bdb8bc69e1553871"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a4be26ceda1b38844bdb8bc69e1553871">compute_PID</a> (double current, bool ifPrint)</td></tr>
-<tr class="memdesc:a4be26ceda1b38844bdb8bc69e1553871"><td class="mdescLeft">&#160;</td><td class="mdescRight">PID制御を行う関数  <a href="class_p_i_d_1_1_p_i_d.html#a4be26ceda1b38844bdb8bc69e1553871">More...</a><br /></td></tr>
-<tr class="separator:a4be26ceda1b38844bdb8bc69e1553871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8d04e1b2c93616f86c6afb575a77ca0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#ad8d04e1b2c93616f86c6afb575a77ca0">getDuty</a> () const</td></tr>
+<tr class="memdesc:ad8d04e1b2c93616f86c6afb575a77ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duty比の取得  <a href="class_p_i_d_1_1_p_i_d.html#ad8d04e1b2c93616f86c6afb575a77ca0">More...</a><br /></td></tr>
+<tr class="separator:ad8d04e1b2c93616f86c6afb575a77ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2408f1ccc1cc1795c31645a6a87222b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#ae2408f1ccc1cc1795c31645a6a87222b">compute_PID</a> (double current, bool ifPrint)</td></tr>
+<tr class="memdesc:ae2408f1ccc1cc1795c31645a6a87222b"><td class="mdescLeft">&#160;</td><td class="mdescRight">PID制御を行う関数  <a href="class_p_i_d_1_1_p_i_d.html#ae2408f1ccc1cc1795c31645a6a87222b">More...</a><br /></td></tr>
+<tr class="separator:ae2408f1ccc1cc1795c31645a6a87222b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19503e945e078d0d6b6f973a9018a59b"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a19503e945e078d0d6b6f973a9018a59b">getDt</a> () const</td></tr>
 <tr class="memdesc:a19503e945e078d0d6b6f973a9018a59b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the Dt object.  <a href="class_p_i_d_1_1_p_i_d.html#a19503e945e078d0d6b6f973a9018a59b">More...</a><br /></td></tr>
 <tr class="separator:a19503e945e078d0d6b6f973a9018a59b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,8 +140,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
 <tr class="separator:a474789423d2e2dbc20d6c9f1ac9519ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aae92ea945a680aade5bcde4f7af7717e" name="aae92ea945a680aade5bcde4f7af7717e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae92ea945a680aade5bcde4f7af7717e">&#9670;&#160;</a></span>PID()</h2>
+<a id="a4ef4ef504e138a964242fc62be3eabcc" name="a4ef4ef504e138a964242fc62be3eabcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ef4ef504e138a964242fc62be3eabcc">&#9670;&#160;</a></span>PID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,8 +149,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
         <tr>
           <td class="memname">PID::PID::PID </td>
           <td>(</td>
-          <td class="paramtype">int16_t&#160;</td>
-          <td class="paramname"><em>capableDuty</em>, </td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>capableDutyCycle</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -199,7 +199,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
 <p>コントローラのコンストラクタ </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">capableDuty</td><td>出力最大Duty比（絶対値） </td></tr>
+    <tr><td class="paramname">capableDutyCycle</td><td>出力最大Duty比（絶対値） </td></tr>
     <tr><td class="paramname">Kp</td><td>比例ゲイン </td></tr>
     <tr><td class="paramname">Ki</td><td>積分ゲイン </td></tr>
     <tr><td class="paramname">Kd</td><td>微分ゲイン </td></tr>
@@ -258,14 +258,14 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
 
 </div>
 </div>
-<a id="a4be26ceda1b38844bdb8bc69e1553871" name="a4be26ceda1b38844bdb8bc69e1553871"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4be26ceda1b38844bdb8bc69e1553871">&#9670;&#160;</a></span>compute_PID()</h2>
+<a id="ae2408f1ccc1cc1795c31645a6a87222b" name="ae2408f1ccc1cc1795c31645a6a87222b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2408f1ccc1cc1795c31645a6a87222b">&#9670;&#160;</a></span>compute_PID()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t PID::PID::compute_PID </td>
+          <td class="memname">double PID::PID::compute_PID </td>
           <td>(</td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>current</em>, </td>
@@ -324,8 +324,8 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
 
 </div>
 </div>
-<a id="a5ea022ea6533bfc1f0d8c00038d71dbf" name="a5ea022ea6533bfc1f0d8c00038d71dbf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ea022ea6533bfc1f0d8c00038d71dbf">&#9670;&#160;</a></span>getDuty()</h2>
+<a id="ad8d04e1b2c93616f86c6afb575a77ca0" name="ad8d04e1b2c93616f86c6afb575a77ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8d04e1b2c93616f86c6afb575a77ca0">&#9670;&#160;</a></span>getDuty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -334,7 +334,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t PID::PID::getDuty </td>
+          <td class="memname">double PID::PID::getDuty </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
