@@ -1,8 +1,8 @@
 #include "Cubic_arduino_ver2.3.h"
 
-SPISettings DC_motor_SPISettings = SPISettings(4000000, MSBFIRST, SPI_MODE0);
-SPISettings Inc_enc_SPISettings = SPISettings(4000000, MSBFIRST, SPI_MODE0);
-SPISettings Abs_enc_SPISettings = SPISettings(4000000, MSBFIRST, SPI_MODE0);
+SPISettings DC_motor_SPISettings = SPISettings(400000, MSBFIRST, SPI_MODE0);
+SPISettings Inc_enc_SPISettings = SPISettings(400000, MSBFIRST, SPI_MODE0);
+SPISettings Abs_enc_SPISettings = SPISettings(400000, MSBFIRST, SPI_MODE0);
 int16_t DC_motor::buf[DC_MOTOR_NUM+SOL_SUB_NUM];
 uint8_t Inc_enc::buf[INC_ENC_NUM*INC_ENC_BYTES];
 uint8_t Abs_enc::buf[ABS_ENC_NUM*ABS_ENC_BYTES];
@@ -16,7 +16,7 @@ void DC_motor::begin(){
 void DC_motor::put(uint8_t num, int16_t duty, uint16_t duty_max){
     // 想定外の入力が来たら何もしない
     if(duty_max > DUTY_SPI_MAX) return;
-    if(abs(duty) > duty_max) return; 
+    if(abs(duty) > duty_max) return;
     if(num >= DC_MOTOR_NUM) return;
 
     // duty値を代入
@@ -95,7 +95,7 @@ void Solenoid::print(bool new_line) {
 
 
 void Inc_enc::begin(void){
-    pinMode(SS_INC_ENC, OUTPUT); 
+    pinMode(SS_INC_ENC, OUTPUT);
     digitalWrite(SS_INC_ENC, HIGH);
 }
 
@@ -137,13 +137,13 @@ void Inc_enc::print(bool new_line) {
 
 
 void Abs_enc::begin(void){
-    pinMode(SS_ABS_ENC, OUTPUT); 
+    pinMode(SS_ABS_ENC, OUTPUT);
     digitalWrite(SS_ABS_ENC, HIGH);
 }
 
 uint16_t Abs_enc::get(uint8_t num){
     if(num >= ABS_ENC_NUM) return 1;
-    
+
     uint16_t ret = 0;
     ret |= buf[num*ABS_ENC_BYTES];
     ret |= buf[num*ABS_ENC_BYTES+1] << 8;
