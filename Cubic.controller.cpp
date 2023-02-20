@@ -1,3 +1,7 @@
+/**
+ * @file Cubic.controller.cpp
+ */
+
 #include "Cubic.controller.h"
 
 namespace Cubic_controller
@@ -14,7 +18,7 @@ namespace Cubic_controller
         }
     }
 
-    double encoderToAngle(const int32_t encoder, const uint16_t CPR)
+    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR)
     {
         double angle = encoder * TWO_PI / (double)CPR;
         while (angle < -PI)

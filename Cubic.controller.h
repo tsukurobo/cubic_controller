@@ -1,3 +1,7 @@
+/**
+ * @file Cubic.controller.h
+ */
+
 #pragma once
 #include <Arduino.h>
 #include "PID.h"
@@ -10,6 +14,12 @@ namespace Cubic_controller
      */
     constexpr uint16_t AMT22_PPR = 16384 / 4;
 
+    /**
+     * @brief 度数法から弧度法に変換します
+     *
+     * @param deg
+     * @return constexpr double
+     */
     constexpr double degToRad(double deg)
     {
         return deg * DEG_TO_RAD;
@@ -37,7 +47,14 @@ namespace Cubic_controller
      */
     int32_t readEncoder(uint8_t encoderNo, enum encoderType encoderType);
 
-    double encoderToAngle(int32_t encoder, uint16_t CPR);
+    /**
+     * @brief 与えられたCPRのもと、エンコーダの値から角度を計算します
+     *
+     * @param encoder エンコーダの値
+     * @param CPR counts per revolution(PPRの4倍)
+     * @return constexpr double angle[rad](-PI<= angle < PI)
+     */
+    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR);
 
     /**
      * @brief 速度制御を行うためのクラスです。
@@ -58,6 +75,22 @@ namespace Cubic_controller
         bool logging;
 
     public:
+        /**
+         * @brief Construct a new Velocity_PID object
+         *
+         * @param motorNo モータ番号
+         * @param encoderNo エンコーダ番号
+         * @param encoderType エンコーダの種類
+         * @param capableDutyCycle 最大許容デューティ比。0.0~1.0
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param target 目標速度[rad/s]
+         * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         *
+         */
         Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
         int16_t compute();
         void setTarget(double target);
@@ -91,6 +124,22 @@ namespace Cubic_controller
         bool current_cycle;
 
     public:
+        /**
+         * @brief Construct a new Position_PID object
+         *
+         * @param motorNo
+         * @param encoderNo
+         * @param encoderType
+         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         * @param capableDutyCycle モーターに与えられる最大のduty比。0~1の範囲で指定する。
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param targetAngle 目標角度[rad]
+         * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         * @param is_gear_ratio_two ギア比が2:1の場合はtrue。1:1の場合はfalse。省略可能で、デフォルトはfalse。
+         */
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
 
         int16_t compute();
@@ -144,16 +193,31 @@ namespace Cubic_controller
         return this->duty;
     }
 
+    /**
+     * @brief Kpを設定します。
+     *
+     * @param Kp
+     */
     inline void Velocity_PID::setKp(const double Kp)
     {
         this->pid->setKp(Kp);
     }
 
+    /**
+     * @brief Kiを設定します。
+     *
+     * @param Ki
+     */
     inline void Velocity_PID::setKi(const double Ki)
     {
         this->pid->setKi(Ki);
     }
 
+    /**
+     * @brief Kdを設定します。
+     *
+     * @param Kd
+     */
     inline void Velocity_PID::setKd(const double Kd)
     {
         this->pid->setKd(Kd);
