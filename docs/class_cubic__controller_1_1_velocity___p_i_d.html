@@ -106,9 +106,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6cc2f668f63e1a6c9a65665b64e6034">Velocity_PID</a> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true, uint16_t PPR=1024)</td></tr>
 <tr class="memdesc:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6cc2f668f63e1a6c9a65665b64e6034">More...</a><br /></td></tr>
 <tr class="separator:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a926a70ccc4d2351d3e0a06a656c81536"><td class="memItemLeft" align="right" valign="top"><a id="a926a70ccc4d2351d3e0a06a656c81536" name="a926a70ccc4d2351d3e0a06a656c81536"></a>
-int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> ()</td></tr>
-<tr class="separator:a926a70ccc4d2351d3e0a06a656c81536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfd6cb01d7974a5ca34784ed3d569c02"><td class="memItemLeft" align="right" valign="top"><a id="acfd6cb01d7974a5ca34784ed3d569c02" name="acfd6cb01d7974a5ca34784ed3d569c02"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> ()</td></tr>
+<tr class="separator:acfd6cb01d7974a5ca34784ed3d569c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11fa2e2b477428182226e2d40fc4c46a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#a11fa2e2b477428182226e2d40fc4c46a">setTarget</a> (double target)</td></tr>
 <tr class="memdesc:a11fa2e2b477428182226e2d40fc4c46a"><td class="mdescLeft">&#160;</td><td class="mdescRight">目標速度を設定します。  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#a11fa2e2b477428182226e2d40fc4c46a">More...</a><br /></td></tr>
 <tr class="separator:a11fa2e2b477428182226e2d40fc4c46a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,9 +127,9 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> ()</td
 <tr class="memitem:aa52fd289b302b51efdc6b7c6a9790dfc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#aa52fd289b302b51efdc6b7c6a9790dfc">getTarget</a> () const</td></tr>
 <tr class="memdesc:aa52fd289b302b51efdc6b7c6a9790dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">目標速度を取得します。  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#aa52fd289b302b51efdc6b7c6a9790dfc">More...</a><br /></td></tr>
 <tr class="separator:aa52fd289b302b51efdc6b7c6a9790dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa76537670656f09f9cf98d88b9fb8d45"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#aa76537670656f09f9cf98d88b9fb8d45">getDuty</a> () const</td></tr>
-<tr class="memdesc:aa76537670656f09f9cf98d88b9fb8d45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duty比を取得します。内部で計算は行われないので、マルチスレッドでもない限り使用は想定していません。  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#aa76537670656f09f9cf98d88b9fb8d45">More...</a><br /></td></tr>
-<tr class="separator:aa76537670656f09f9cf98d88b9fb8d45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78693de722a02613cff4c95d2f0cbcc"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ac78693de722a02613cff4c95d2f0cbcc">getDuty</a> () const</td></tr>
+<tr class="memdesc:ac78693de722a02613cff4c95d2f0cbcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duty比を取得します。内部で計算は行われないので、マルチスレッドでもない限り使用は想定していません。  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ac78693de722a02613cff4c95d2f0cbcc">More...</a><br /></td></tr>
+<tr class="separator:ac78693de722a02613cff4c95d2f0cbcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >速度制御を行うためのクラスです。 </p>
@@ -235,8 +235,8 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> ()</td
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa76537670656f09f9cf98d88b9fb8d45" name="aa76537670656f09f9cf98d88b9fb8d45"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa76537670656f09f9cf98d88b9fb8d45">&#9670;&#160;</a></span>getDuty()</h2>
+<a id="ac78693de722a02613cff4c95d2f0cbcc" name="ac78693de722a02613cff4c95d2f0cbcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78693de722a02613cff4c95d2f0cbcc">&#9670;&#160;</a></span>getDuty()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -245,7 +245,7 @@ int16_t&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> ()</td
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t Cubic_controller::Velocity_PID::getDuty </td>
+          <td class="memname">double Cubic_controller::Velocity_PID::getDuty </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
