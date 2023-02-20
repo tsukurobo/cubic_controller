@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pid_0',['PID',['../class_p_i_d_1_1_p_i_d.html#a4ef4ef504e138a964242fc62be3eabcc',1,'PID::PID']]],
-  ['position_5fpid_1',['Position_PID',['../class_cubic__controller_1_1_position___p_i_d.html#a1fef265a641360c33c183d655ce0884d',1,'Cubic_controller::Position_PID']]]
+  ['limitangle_0',['limitAngle',['../_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37',1,'Cubic_controller']]]
 ];

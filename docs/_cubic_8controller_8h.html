@@ -128,9 +128,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ad1b8bfe548ce76ba061757a597e5046e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#ad1b8bfe548ce76ba061757a597e5046e">Cubic_controller::readEncoder</a> (uint8_t encoderNo, enum encoderType encoderType)</td></tr>
 <tr class="memdesc:ad1b8bfe548ce76ba061757a597e5046e"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダを読みます  <a href="_cubic_8controller_8h.html#ad1b8bfe548ce76ba061757a597e5046e">More...</a><br /></td></tr>
 <tr class="separator:ad1b8bfe548ce76ba061757a597e5046e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94f9ed17a688815040b24bd0a7889a5c"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8cpp.html#a94f9ed17a688815040b24bd0a7889a5c">Cubic_controller::encoderToAngle</a> (int32_t encoder, uint16_t CPR)</td></tr>
-<tr class="memdesc:a94f9ed17a688815040b24bd0a7889a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8cpp.html#a94f9ed17a688815040b24bd0a7889a5c">More...</a><br /></td></tr>
-<tr class="separator:a94f9ed17a688815040b24bd0a7889a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94b555c07c797cfc359d2897237e2e37"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">Cubic_controller::limitAngle</a> (double angle, const double min=-PI)</td></tr>
+<tr class="memdesc:a94b555c07c797cfc359d2897237e2e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます  <a href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">More...</a><br /></td></tr>
+<tr class="separator:a94b555c07c797cfc359d2897237e2e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612fdd92321a6b5dde0d8b92039f9510"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a612fdd92321a6b5dde0d8b92039f9510">Cubic_controller::encoderToAngle</a> (int32_t encoder, uint16_t CPR, double offset=0.0)</td></tr>
+<tr class="memdesc:a612fdd92321a6b5dde0d8b92039f9510"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8h.html#a612fdd92321a6b5dde0d8b92039f9510">More...</a><br /></td></tr>
+<tr class="separator:a612fdd92321a6b5dde0d8b92039f9510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -207,8 +210,8 @@ constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_c
 
 </div>
 </div>
-<a id="a94f9ed17a688815040b24bd0a7889a5c" name="a94f9ed17a688815040b24bd0a7889a5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94f9ed17a688815040b24bd0a7889a5c">&#9670;&#160;</a></span>encoderToAngle()</h2>
+<a id="a612fdd92321a6b5dde0d8b92039f9510" name="a612fdd92321a6b5dde0d8b92039f9510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a612fdd92321a6b5dde0d8b92039f9510">&#9670;&#160;</a></span>encoderToAngle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -226,7 +229,13 @@ constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_c
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>CPR</em>&#160;</td>
+          <td class="paramname"><em>CPR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>0.0</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -246,10 +255,57 @@ constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_c
   <table class="params">
     <tr><td class="paramname">encoder</td><td>エンコーダの値 </td></tr>
     <tr><td class="paramname">CPR</td><td>counts per revolution(PPRの4倍) </td></tr>
+    <tr><td class="paramname">offset</td><td>オフセット[rad]。省略可能で、デフォルトは0.0 </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>constexpr double angle[rad](-PI&lt;= angle &lt; PI) </dd></dl>
+
+</div>
+</div>
+<a id="a94b555c07c797cfc359d2897237e2e37" name="a94b555c07c797cfc359d2897237e2e37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94b555c07c797cfc359d2897237e2e37">&#9670;&#160;</a></span>limitAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double Cubic_controller::limitAngle </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>min</em> = <code>-PI</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>角度[rad] </td></tr>
+    <tr><td class="paramname">min</td><td>最低値[rad]。省略可能で、デフォルトは-PI </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>constexpr double 角度[rad](-PI&lt;= angle &lt; PI) </dd></dl>
 
 </div>
 </div>

@@ -101,57 +101,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a134724d8c8b9b727892c68036b77009f"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8cpp.html#a134724d8c8b9b727892c68036b77009f">Cubic_controller::readEncoder</a> (const uint8_t encoderNo, const enum encoderType encoderType)</td></tr>
 <tr class="memdesc:a134724d8c8b9b727892c68036b77009f"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダを読みます  <a href="_cubic_8controller_8cpp.html#a134724d8c8b9b727892c68036b77009f">More...</a><br /></td></tr>
 <tr class="separator:a134724d8c8b9b727892c68036b77009f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94f9ed17a688815040b24bd0a7889a5c"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8cpp.html#a94f9ed17a688815040b24bd0a7889a5c">Cubic_controller::encoderToAngle</a> (int32_t encoder, uint16_t CPR)</td></tr>
-<tr class="memdesc:a94f9ed17a688815040b24bd0a7889a5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8cpp.html#a94f9ed17a688815040b24bd0a7889a5c">More...</a><br /></td></tr>
-<tr class="separator:a94f9ed17a688815040b24bd0a7889a5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a94f9ed17a688815040b24bd0a7889a5c" name="a94f9ed17a688815040b24bd0a7889a5c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94f9ed17a688815040b24bd0a7889a5c">&#9670;&#160;</a></span>encoderToAngle()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr double Cubic_controller::encoderToAngle </td>
-          <td>(</td>
-          <td class="paramtype">int32_t&#160;</td>
-          <td class="paramname"><em>encoder</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>CPR</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>与えられたCPRのもと、エンコーダの値から角度を計算します </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">encoder</td><td>エンコーダの値 </td></tr>
-    <tr><td class="paramname">CPR</td><td>counts per revolution(PPRの4倍) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>constexpr double angle[rad](-PI&lt;= angle &lt; PI) </dd></dl>
-
-</div>
-</div>
 <a id="a134724d8c8b9b727892c68036b77009f" name="a134724d8c8b9b727892c68036b77009f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a134724d8c8b9b727892c68036b77009f">&#9670;&#160;</a></span>readEncoder()</h2>
 
