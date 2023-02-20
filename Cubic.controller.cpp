@@ -18,20 +18,6 @@ namespace Cubic_controller
         }
     }
 
-    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR)
-    {
-        double angle = encoder * TWO_PI / (double)CPR;
-        while (angle < -PI)
-        {
-            angle += TWO_PI;
-        }
-        while (angle >= PI)
-        {
-            angle -= TWO_PI;
-        }
-        return angle;
-    }
-
     Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), CPR(4 * PPR)
     {
         constexpr double current = 0.0;
@@ -57,7 +43,7 @@ namespace Cubic_controller
         if (logging)
         {
             Serial.print("angle:");
-            Serial.print(angle,4);
+            Serial.print(angle, 4);
             Serial.print(",");
             Serial.print("velocity:");
             Serial.print(velocity);
@@ -68,11 +54,35 @@ namespace Cubic_controller
         return dutyCycle;
     }
 
-    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging, bool is_gear_ratio_two) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging), is_gear_ratio_two(is_gear_ratio_two)
+    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging)
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         double currentAngle = this->encoderToAngle(encoder);
         pid = new PID::PID(capableDutyCycle, Kp, Ki, Kd, currentAngle, targetAngle, direction);
+        if (logging)
+        {
+            Serial.print("current angle:");
+            Serial.print(currentAngle);
+            Serial.print(",");
+        }
+        if (targetAngle - currentAngle >= 0)
+        {
+            if (logging)
+            {
+                Serial.print("isGoingForward:");
+                Serial.println("true");
+            }
+            isGoingForward = true;
+        }
+        else
+        {
+            if (logging)
+            {
+                Serial.print("isGoingForward:");
+                Serial.println("false");
+            }
+            isGoingForward = false;
+        }
         if (encoderType == encoderType::inc)
         {
             Serial.println("ERROR!! encoderType is inc");
@@ -82,57 +92,66 @@ namespace Cubic_controller
     double Position_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
-        static int32_t prevEncoder = encoder;
-        int32_t actualEncoder = encoder;
-        double currentAngle;
-        if (is_gear_ratio_two == true)
-        {
-            if (logging)
-            {
-                Serial.print("actual enc:");
-                Serial.print(encoder);
-                Serial.print(",");
-                Serial.print("current cycle:");
-                Serial.print(current_cycle);
-                Serial.print(",");
-            }
-            if ((prevEncoder > CPR * 5 / 6 && encoder < CPR / 6) || (prevEncoder < CPR / 6 && encoder > CPR * 5 / 6))
-            {
-                current_cycle ^= 1;
-            }
-            if (current_cycle)
-            {
-                encoder += CPR;
-            }
-            encoder /= 2;
-        }
-        currentAngle = this->encoderToAngle(encoder);
+        double currentAngle = this->encoderToAngle(encoder);
+        double actualAngle = currentAngle;
+        static double prevAngle = currentAngle;
         if (logging)
         {
             Serial.print("current enc:");
             Serial.print(encoder);
             Serial.print(",");
-            Serial.print("current angle:");
-            Serial.print(currentAngle);
+            // Serial.print("current angle:");
+            // Serial.print(currentAngle);
+            // Serial.print(",");
+            // Serial.print("target angle:");
+            // Serial.print(this->targetAngle);
+            // Serial.print(",");
+            // Serial.print("isGoingForward:");
+            // Serial.print(isGoingForward);
+            // Serial.print(",");
+        }
+
+        if (isGoingForward)
+        {
+            if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
+            {
+                isOverMax = true;
+            }
+        }
+        else
+        {
+            if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
+            {
+                isOverMin = true;
+            }
+        }
+        if (logging)
+        {
+            Serial.print("isOverMax:");
+            Serial.print(isOverMax);
             Serial.print(",");
-            Serial.print("target angle:");
-            Serial.print(this->targetAngle);
+            Serial.print("isOverMin:");
+            Serial.print(isOverMin);
             Serial.print(",");
         }
 
-        while (currentAngle - this->targetAngle > PI)
-        {
-            this->targetAngle += TWO_PI;
-            pid->setTarget(this->targetAngle);
-        }
-        while (this->targetAngle - currentAngle > PI)
-        {
-            this->targetAngle -= TWO_PI;
-            pid->setTarget(this->targetAngle);
-        }
         dutyCycle = pid->compute_PID(currentAngle, logging);
+        if (isOverMax)
+        {
+            if(currentAngle > 5 * PI / 6){
+                isOverMax = false;
+            }
+            dutyCycle = capableDutyCycle * (direction ? -1.0 : 1.0);
+        }
+        else if (isOverMin)
+        {
+            if(currentAngle < -5 * PI / 6){
+                isOverMin = false;
+            }
+            dutyCycle = capableDutyCycle * (direction ? 1.0 : -1.0);
+        }
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
-        prevEncoder = actualEncoder;
+        prevAngle = actualAngle;
         return dutyCycle;
     }
 }

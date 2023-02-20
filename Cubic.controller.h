@@ -48,13 +48,41 @@ namespace Cubic_controller
     int32_t readEncoder(uint8_t encoderNo, enum encoderType encoderType);
 
     /**
+     * @brief 与えられた角度を一定範囲（min<=angle<min+2pi）に収めます
+     *
+     * @param angle 角度[rad]
+     * @param min 最低値[rad]。省略可能で、デフォルトは-PI
+     * @return constexpr double 角度[rad](-PI<= angle < PI)
+     */
+    constexpr double limitAngle(double angle, const double min = -PI)
+    {
+        while (angle < min)
+        {
+            angle += TWO_PI;
+        }
+        while (angle >= min + TWO_PI)
+        {
+            angle -= TWO_PI;
+        }
+        return angle;
+    }
+
+    /**
      * @brief 与えられたCPRのもと、エンコーダの値から角度を計算します
      *
      * @param encoder エンコーダの値
      * @param CPR counts per revolution(PPRの4倍)
+     * @param offset オフセット[rad]。省略可能で、デフォルトは0.0
      * @return constexpr double angle[rad](-PI<= angle < PI)
      */
-    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR);
+    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0)
+    {
+        {
+            double angle = offset + encoder * TWO_PI / (double)CPR;
+            limitAngle(angle);
+            return angle;
+        }
+    }
 
     /**
      * @brief 速度制御を行うためのクラスです。
@@ -120,8 +148,9 @@ namespace Cubic_controller
         double targetAngle;
         bool direction;
         bool logging;
-        bool is_gear_ratio_two;
-        bool current_cycle;
+        bool isGoingForward;
+        bool isOverMax = false;
+        bool isOverMin = false;
 
     public:
         /**
@@ -138,13 +167,11 @@ namespace Cubic_controller
          * @param targetAngle 目標角度[rad]
          * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
          * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
-         * @param is_gear_ratio_two ギア比が2:1の場合はtrue。1:1の場合はfalse。省略可能で、デフォルトはfalse。
          */
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
 
         double compute();
-        void setTarget(double target);
-        void setTargetByRelative(double target);
+        void setTarget(double targetAngle);
         void setGains(double Kp, double Ki, double Kd);
         void setKp(double Kp);
         void setKi(double Ki);
@@ -226,24 +253,22 @@ namespace Cubic_controller
     /**
      * @brief 目標角度を設定します。
      *
-     * @param target [rad] -PI~PI
+     * @param targetAngle [rad] -PI~PI
      */
-    inline void Position_PID::setTarget(const double target)
+    inline void Position_PID::setTarget(double targetAngle)
     {
-        this->targetAngle = target;
-        this->pid->setTarget(target);
-    }
-
-    /**
-     * @brief 目標角度を現在の角度に対して相対的に設定します。
-     *
-     * @param target [rad]
-     */
-    inline void Position_PID::setTargetByRelative(const double target)
-    {
-        // get current angle and add target
-        this->targetAngle = encoderToAngle(readEncoder(this->encoderNo, this->encoderType)) + target;
-        this->pid->setTarget(this->targetAngle);
+        targetAngle = limitAngle(targetAngle);
+        this->targetAngle = targetAngle;
+        this->pid->setTarget(targetAngle);
+        double currentAngle = this->encoderToAngle(readEncoder(encoderNo, encoderType));
+        if (targetAngle - currentAngle >= 0)
+        {
+            isGoingForward = true;
+        }
+        else
+        {
+            isGoingForward = false;
+        }
     }
 
     /**
@@ -310,6 +335,6 @@ namespace Cubic_controller
      */
     inline double Position_PID::encoderToAngle(const int32_t encoder) const
     {
-        return Cubic_controller::encoderToAngle(encoder, this->CPR);
+        return Cubic_controller::encoderToAngle(encoder, CPR, -PI);
     }
 }
