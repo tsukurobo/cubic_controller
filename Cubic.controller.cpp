@@ -18,7 +18,6 @@ namespace Cubic_controller
         }
     }
 
-
     Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), CPR(4 * PPR)
     {
         constexpr double current = 0.0;
@@ -57,14 +56,31 @@ namespace Cubic_controller
 
     Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging)
     {
-        double currentAngle = this->encoderToAngle(readEncoder(encoderNo, encoderType));
+        int32_t encoder = readEncoder(encoderNo, encoderType);
+        double currentAngle = this->encoderToAngle(encoder);
         pid = new PID::PID(capableDutyCycle, Kp, Ki, Kd, currentAngle, targetAngle, direction);
+        if (logging)
+        {
+            Serial.print("current angle:");
+            Serial.print(currentAngle);
+            Serial.print(",");
+        }
         if (targetAngle - currentAngle >= 0)
         {
+            if (logging)
+            {
+                Serial.print("isGoingForward:");
+                Serial.println("true");
+            }
             isGoingForward = true;
         }
         else
         {
+            if (logging)
+            {
+                Serial.print("isGoingForward:");
+                Serial.println("false");
+            }
             isGoingForward = false;
         }
         if (encoderType == encoderType::inc)
@@ -84,16 +100,16 @@ namespace Cubic_controller
         {
             Serial.print("current enc:");
             Serial.print(encoder);
-            Serial.print(",");
-            Serial.print("current angle:");
-            Serial.print(currentAngle);
-            Serial.print(",");
-            Serial.print("target angle:");
-            Serial.print(this->targetAngle);
-            Serial.print(",");
-            Serial.print("isGoingForward:");
-            Serial.print(isGoingForward);
-            Serial.print(",");
+            // Serial.print(",");
+            // Serial.print("current angle:");
+            // Serial.print(currentAngle);
+            // Serial.print(",");
+            // Serial.print("target angle:");
+            // Serial.print(this->targetAngle);
+            // Serial.print(",");
+            // Serial.print("isGoingForward:");
+            // Serial.print(isGoingForward);
+            // Serial.print(",");
         }
 
         if (isGoingForward)
@@ -101,10 +117,13 @@ namespace Cubic_controller
             if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
             {
                 isOver = true;
-            }else if(currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6){
+            }
+            else if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
+            {
                 isOver = false;
             }
-            if(isOver){
+            if (isOver)
+            {
                 currentAngle += TWO_PI;
             }
         }
@@ -113,14 +132,18 @@ namespace Cubic_controller
             if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
             {
                 isOver = true;
-            }else if(currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6){
+            }
+            else if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
+            {
                 isOver = false;
             }
-            if(isOver){
+            if (isOver)
+            {
                 currentAngle -= TWO_PI;
             }
         }
-        if(logging){
+        if (logging)
+        {
             Serial.print("isOver:");
             Serial.print(isOver);
             Serial.print(",");
