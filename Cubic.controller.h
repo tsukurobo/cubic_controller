@@ -52,9 +52,10 @@ namespace Cubic_controller
      *
      * @param encoder エンコーダの値
      * @param CPR counts per revolution(PPRの4倍)
+     * @param offset オフセット[rad]。省略可能で、デフォルトは0.0
      * @return constexpr double angle[rad](-PI<= angle < PI)
      */
-    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR);
+    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0);
 
     /**
      * @brief 速度制御を行うためのクラスです。
@@ -120,8 +121,6 @@ namespace Cubic_controller
         double targetAngle;
         bool direction;
         bool logging;
-        bool is_gear_ratio_two;
-        bool current_cycle;
 
     public:
         /**
@@ -138,9 +137,8 @@ namespace Cubic_controller
          * @param targetAngle 目標角度[rad]
          * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
          * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
-         * @param is_gear_ratio_two ギア比が2:1の場合はtrue。1:1の場合はfalse。省略可能で、デフォルトはfalse。
          */
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true, bool is_gear_ratio_two = false);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
 
         double compute();
         void setTarget(double target);
@@ -310,6 +308,6 @@ namespace Cubic_controller
      */
     inline double Position_PID::encoderToAngle(const int32_t encoder) const
     {
-        return Cubic_controller::encoderToAngle(encoder, this->CPR);
+        return Cubic_controller::encoderToAngle(encoder, this->CPR, -PI);
     }
 }

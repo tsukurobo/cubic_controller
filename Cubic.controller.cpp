@@ -18,9 +18,9 @@ namespace Cubic_controller
         }
     }
 
-    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR)
+    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR, const double offset)
     {
-        double angle = encoder * TWO_PI / (double)CPR;
+        double angle = offset + encoder * TWO_PI / (double)CPR;
         while (angle < -PI)
         {
             angle += TWO_PI;
@@ -57,7 +57,7 @@ namespace Cubic_controller
         if (logging)
         {
             Serial.print("angle:");
-            Serial.print(angle,4);
+            Serial.print(angle, 4);
             Serial.print(",");
             Serial.print("velocity:");
             Serial.print(velocity);
@@ -68,7 +68,7 @@ namespace Cubic_controller
         return dutyCycle;
     }
 
-    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging, bool is_gear_ratio_two) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging), is_gear_ratio_two(is_gear_ratio_two)
+    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging)
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
         double currentAngle = this->encoderToAngle(encoder);
@@ -82,31 +82,7 @@ namespace Cubic_controller
     double Position_PID::compute()
     {
         int32_t encoder = readEncoder(encoderNo, encoderType);
-        static int32_t prevEncoder = encoder;
-        int32_t actualEncoder = encoder;
-        double currentAngle;
-        if (is_gear_ratio_two == true)
-        {
-            if (logging)
-            {
-                Serial.print("actual enc:");
-                Serial.print(encoder);
-                Serial.print(",");
-                Serial.print("current cycle:");
-                Serial.print(current_cycle);
-                Serial.print(",");
-            }
-            if ((prevEncoder > CPR * 5 / 6 && encoder < CPR / 6) || (prevEncoder < CPR / 6 && encoder > CPR * 5 / 6))
-            {
-                current_cycle ^= 1;
-            }
-            if (current_cycle)
-            {
-                encoder += CPR;
-            }
-            encoder /= 2;
-        }
-        currentAngle = this->encoderToAngle(encoder);
+        double currentAngle = this->encoderToAngle(encoder);
         if (logging)
         {
             Serial.print("current enc:");
@@ -120,19 +96,8 @@ namespace Cubic_controller
             Serial.print(",");
         }
 
-        while (currentAngle - this->targetAngle > PI)
-        {
-            this->targetAngle += TWO_PI;
-            pid->setTarget(this->targetAngle);
-        }
-        while (this->targetAngle - currentAngle > PI)
-        {
-            this->targetAngle -= TWO_PI;
-            pid->setTarget(this->targetAngle);
-        }
         dutyCycle = pid->compute_PID(currentAngle, logging);
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
-        prevEncoder = actualEncoder;
         return dutyCycle;
     }
 }
