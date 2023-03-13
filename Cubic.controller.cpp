@@ -18,9 +18,9 @@ namespace Cubic_controller
         }
     }
 
-    Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging)
+    Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), pid(pid)
     {
-        pid = new PID::PID(this->capableDutyCycle, Kp, Ki, Kd, current, target, direction);
+        PID::PID *pid = new PID::PID(this->capableDutyCycle, Kp, Ki, Kd, current, target, direction);
     }
 
 
