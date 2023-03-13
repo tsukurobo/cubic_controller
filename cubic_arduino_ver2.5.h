@@ -17,6 +17,7 @@
 
 // スレーブ側で割り込み処理を開始するためのSSの変化におけるディレイ(us)
 #define SPI_DELAY 1
+#define SPI_FREQ 400000
 
 // モータ，エンコーダの数
 #define DC_MOTOR_NUM 8
@@ -31,6 +32,13 @@
 
 // SPI通信におけるDCモータのDutyの最大値
 #define DUTY_SPI_MAX 32766
+
+// アブソリュートエンコーダの取り得る最大値
+#define ABS_ENC_MAX 16383
+// RP2040でアブソリュートエンコーダが正しく読めなかったときに返す値
+#define ABS_ENC_ERR_RP2040 0x7fff
+// Arduinoでアブソリュートエンコーダが正しく読めなかったときに返す値
+#define ABS_ENC_ERR 0xffff
 
 // ソレノイドの出力を切り替える最小時間(ms)
 #define SOL_TIME_MIN 10
@@ -98,6 +106,10 @@ class Abs_enc{
     private:
         // RP2040からの受信データを格納する配列
         static uint8_t buf[ABS_ENC_NUM*ABS_ENC_BYTES];
+        // RP2040からの受信データのパリティチェックをする関数
+        static bool parity_check(uint16_t);
+        // RP2040からの受信データのパリティビットを取り除く関数
+        static uint16_t remove_parity_bit(uint16_t);
 };
 
 class Cubic{

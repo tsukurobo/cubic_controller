@@ -5,12 +5,13 @@
 #pragma once
 #include <Arduino.h>
 #include "PID.h"
-#include "cubic_arduino_ver2.3.h"
+#include "cubic_arduino_ver2.5.h"
 
 namespace Cubic_controller
 {
     /**
      * @brief AMT22のPPRです
+     * @details PPR: Pulse Per Revolution
      */
     constexpr uint16_t AMT22_PPR = 16384 / 4;
 

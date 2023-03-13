@@ -1,12 +1,12 @@
-#include "Cubic_arduino_ver2.3.h"
+#include "cubic_arduino_ver2.5.h"
 
-SPISettings DC_motor_SPISettings = SPISettings(400000, MSBFIRST, SPI_MODE0);
-SPISettings Inc_enc_SPISettings = SPISettings(400000, MSBFIRST, SPI_MODE0);
-SPISettings Abs_enc_SPISettings = SPISettings(400000, MSBFIRST, SPI_MODE0);
+SPISettings Cubic_SPISettings = SPISettings(SPI_FREQ, MSBFIRST, SPI_MODE0);
 int16_t DC_motor::buf[DC_MOTOR_NUM+SOL_SUB_NUM];
 uint8_t Inc_enc::buf[INC_ENC_NUM*INC_ENC_BYTES];
 uint8_t Abs_enc::buf[ABS_ENC_NUM*ABS_ENC_BYTES];
+
 unsigned long Solenoid::time_prev[SOL_SUB_NUM];
+
 
 void DC_motor::begin(){
     pinMode(SS_DC_MOTOR,OUTPUT);
@@ -16,7 +16,7 @@ void DC_motor::begin(){
 void DC_motor::put(uint8_t num, int16_t duty, uint16_t duty_max){
     // 想定外の入力が来たら何もしない
     if(duty_max > DUTY_SPI_MAX) return;
-    if(abs(duty) > duty_max) return;
+    if(abs(duty) > duty_max) return; 
     if(num >= DC_MOTOR_NUM) return;
 
     // duty値を代入
@@ -26,7 +26,7 @@ void DC_motor::put(uint8_t num, int16_t duty, uint16_t duty_max){
 void DC_motor::send(void){
     uint8_t *l_buf = (uint8_t*)buf;
 
-    SPI.beginTransaction(DC_motor_SPISettings);
+    SPI.beginTransaction(Cubic_SPISettings);
     // スレーブ側で割り込み処理を検知させる
     digitalWrite(SS_DC_MOTOR,LOW);
     delayMicroseconds(SPI_DELAY);
@@ -95,7 +95,7 @@ void Solenoid::print(bool new_line) {
 
 
 void Inc_enc::begin(void){
-    pinMode(SS_INC_ENC, OUTPUT);
+    pinMode(SS_INC_ENC, OUTPUT); 
     digitalWrite(SS_INC_ENC, HIGH);
 }
 
@@ -109,7 +109,7 @@ int16_t Inc_enc::get(uint8_t num){
 }
 
 void Inc_enc::receive(void){
-    SPI.beginTransaction(Inc_enc_SPISettings);
+    SPI.beginTransaction(Cubic_SPISettings);
     // スレーブ側で割り込み処理を検知させる
     digitalWrite(SS_INC_ENC,LOW);
     delayMicroseconds(SPI_DELAY);
@@ -137,21 +137,49 @@ void Inc_enc::print(bool new_line) {
 
 
 void Abs_enc::begin(void){
-    pinMode(SS_ABS_ENC, OUTPUT);
+    pinMode(SS_ABS_ENC, OUTPUT); 
     digitalWrite(SS_ABS_ENC, HIGH);
 }
 
 uint16_t Abs_enc::get(uint8_t num){
-    if(num >= ABS_ENC_NUM) return 1;
-
+    if(num >= ABS_ENC_NUM) return ABS_ENC_ERR;    
+    
     uint16_t ret = 0;
     ret |= buf[num*ABS_ENC_BYTES];
     ret |= buf[num*ABS_ENC_BYTES+1] << 8;
-    return ret;
+
+    // RP2040で正しく読めてない場合
+    if(ret == ABS_ENC_ERR_RP2040) return ret;
+    
+    if(!(parity_check(ret))) {
+        // Arduinoで正しく読めてない場合
+        return ABS_ENC_ERR;
+    }
+    else {
+        // 正しく読めた場合
+        return remove_parity_bit(ret);
+    }
+}
+
+bool Abs_enc::parity_check(uint16_t enc_val) {
+    bool bit[16];
+    for (int i = 0; i < 16; i++) {
+        bit[i] = (enc_val >> i) & 1;
+    }
+    
+    if (bit[15] == !(bit[13] ^ bit[11] ^ bit[9] ^ bit[7] ^ bit[5] ^ bit[3] ^ bit[1]) &&
+        bit[14] == !(bit[12] ^ bit[10] ^ bit[8] ^ bit[6] ^ bit[4] ^ bit[2] ^ bit[0])) {
+        return true;
+    }
+    return false;
+}
+
+uint16_t Abs_enc::remove_parity_bit(uint16_t enc_val) {
+    return enc_val & 0x3fff;
 }
 
 void Abs_enc::receive(void){
-    SPI.beginTransaction(Abs_enc_SPISettings);
+    SPI.beginTransaction(Cubic_SPISettings);
     // スレーブ側で割り込み処理を検知させる
     digitalWrite(SS_ABS_ENC,LOW);
     delayMicroseconds(SPI_DELAY);
@@ -163,7 +191,6 @@ void Abs_enc::receive(void){
         buf[i] = SPI.transfer(0x88);
         digitalWrite(SS_ABS_ENC,HIGH);
     }
-
     SPI.endTransaction();
 }
 
@@ -197,6 +224,10 @@ void Cubic::begin(){
     // ADCのSSの初期化
     pinMode(SS_ADC,OUTPUT);
     digitalWrite(SS_ADC,HIGH);
+
+    Cubic::update();
+    Cubic::update();
+    Cubic::update();
 }
 
 void Cubic::update() {
