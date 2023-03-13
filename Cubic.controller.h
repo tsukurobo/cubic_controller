@@ -11,6 +11,7 @@ namespace Cubic_controller
 {
     /**
      * @brief AMT22のPPRです
+     * @details PPR: Pulse Per Revolution
      */
     constexpr uint16_t AMT22_PPR = 16384 / 4;
 
