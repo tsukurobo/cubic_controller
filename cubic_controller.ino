@@ -1,11 +1,14 @@
+/* This is a sample program for Cubic Control Library. */
 #include <Arduino.h>
 #include "cubic_arduino_ver2.5.h"
 #include "PID.h"
 #include "Cubic.controller.h"
+
 void setup()
 {
   Cubic::begin();
   Serial.begin(115200);
+  /* ↓魔術（消すと最初の数回エンコーダの値が読めないので消すな！！） */
   Cubic::update();
   Cubic::update();
   Cubic::update();
@@ -20,26 +23,26 @@ void loop()
   if (Serial.available() > 0)
   {
     char c = Serial.read();
-    double gain = Serial.readStringUntil('\n').toDouble();
+    double value = Serial.readStringUntil('\n').toDouble();
     if (c == 'p')
     {
-      velocityPID.setKp(gain);
-      positionPID.setKp(gain);
+      velocityPID.setKp(value);
+      positionPID.setKp(value);
     }
     else if (c == 'i')
     {
-      velocityPID.setKi(gain);
-      positionPID.setKi(gain);
+      velocityPID.setKi(value);
+      positionPID.setKi(value);
     }
     else if (c == 'd')
     {
-      velocityPID.setKd(gain);
-      positionPID.setKd(gain);
+      velocityPID.setKd(value);
+      positionPID.setKd(value);
     }
     else if (c == 's')
     {
-      velocityPID.setTarget(gain);
-      positionPID.setTarget(degToRad(gain));
+      velocityPID.setTarget(value);
+      positionPID.setTarget(degToRad(value));
     }
     else
     {
