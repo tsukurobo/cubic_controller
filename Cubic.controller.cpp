@@ -18,11 +18,11 @@ namespace Cubic_controller
         }
     }
 
+
     Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), pid(pid)
     {
         PID::PID *pid = new PID::PID(this->capableDutyCycle, Kp, Ki, Kd, current, target, direction);
     }
-
 
 
     Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : Controller(motorNo, encoderNo, encoderType, PPR, capableDutyCycle, Kp, Ki, Kd, target, 0.0, direction, logging)
@@ -51,6 +51,7 @@ namespace Cubic_controller
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
     }
+
 
     Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging)
     {

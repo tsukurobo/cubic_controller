@@ -27,21 +27,6 @@ namespace Cubic_controller
     }
 
     /**
-     * @brief 制御器の種類を示します
-     *
-     * @param velocity 速度制御
-     * @param position 位置制御
-     * @param current 電流制御
-     *
-     */
-    enum class controllerType
-    {
-        velocity,
-        position,
-        current
-    };
-
-    /**
      * @brief エンコーダの種類を示します
      *
      * @param inc incremental encoder
@@ -93,11 +78,9 @@ namespace Cubic_controller
      */
     constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0)
     {
-        {
-            double angle = offset + encoder * TWO_PI / (double)CPR;
-            limitAngle(angle);
-            return angle;
-        }
+        double angle = offset + encoder * TWO_PI / (double)CPR;
+        limitAngle(angle);
+        return angle;
     }
 
     class Controller
@@ -189,7 +172,6 @@ namespace Cubic_controller
      */
     class Velocity_PID : public Controller
     {
-    private:
     public:
         /**
          * @brief Construct a new Velocity_PID object
