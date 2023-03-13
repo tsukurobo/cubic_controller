@@ -27,6 +27,21 @@ namespace Cubic_controller
     }
 
     /**
+     * @brief 制御器の種類を示します
+     *
+     * @param velocity 速度制御
+     * @param position 位置制御
+     * @param current 電流制御
+     *
+     */
+    enum class controllerType
+    {
+        velocity,
+        position,
+        current
+    };
+
+    /**
      * @brief エンコーダの種類を示します
      *
      * @param inc incremental encoder
@@ -85,24 +100,76 @@ namespace Cubic_controller
         }
     }
 
+    class Controller
+    {
+    private:
+        PID::PID *pid;
+
+        double capableDutyCycle;
+        double dutyCycle;
+
+    public:
+        /**
+         * @brief Construct a new Position_PID object
+         *
+         * @param motorNo
+         * @param encoderNo
+         * @param encoderType
+         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         * @param capableDutyCycle モーターに与えられる最大のduty比。0~1の範囲で指定する。
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param target 目標
+         * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         */
+        Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging = true);
+
+        const uint8_t motorNo;
+        const enum class encoderType encoderType;
+        const uint8_t encoderNo;
+        const uint16_t CPR;
+        const bool direction;
+        const bool logging;
+
+        virtual double compute() = 0;
+        double compute_PID(double current);
+        void setTarget(double target);
+        void setGains(double Kp, double Ki, double Kd);
+        void setKp(double Kp);
+        void setKi(double Ki);
+        void setKd(double Kd);
+        int32_t readEncoder() const;
+        double getTarget() const;
+        double getDutyCycle() const;
+        double getDt() const;
+        uint16_t getCPR() const;
+        double encoderToAngle(int32_t encoder) const;
+    };
+    inline double Controller::compute_PID(double current)
+    {
+        return dutyCycle = this->pid->compute(current, logging);
+    }
+    inline int32_t Controller::readEncoder() const
+    {
+        int32_t value = encoderType == encoderType::inc ? Inc_enc::get(encoderNo) : Abs_enc::get(encoderNo);
+        if (logging)
+        {
+            Serial.print("encoder:");
+            Serial.print(value);
+            Serial.print(",");
+        }
+        return value;
+    }
+
     /**
      * @brief 速度制御を行うためのクラスです。
      *
      */
-    class Velocity_PID
+    class Velocity_PID : public Controller
     {
     private:
-        PID::PID *pid;
-        uint8_t motorNo;
-        enum class encoderType encoderType;
-        uint8_t encoderNo;
-        uint16_t CPR;
-
-        double capableDutyCycle;
-        double dutyCycle;
-        bool direction;
-        bool logging;
-
     public:
         /**
          * @brief Construct a new Velocity_PID object
@@ -121,14 +188,7 @@ namespace Cubic_controller
          *
          */
         Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
-        double compute();
-        void setTarget(double target);
-        void setGains(double Kp, double Ki, double Kd);
-        void setKp(double Kp);
-        void setKi(double Ki);
-        void setKd(double Kd);
-        double getTarget() const;
-        double getDuty() const;
+        double compute() override;
     };
 
     /**
@@ -148,6 +208,7 @@ namespace Cubic_controller
         double dutyCycle;
         double targetAngle;
         bool direction;
+
         bool logging;
         bool isGoingForward;
         bool isOverMax = false;
@@ -181,75 +242,6 @@ namespace Cubic_controller
         double getDuty() const;
         double encoderToAngle(int32_t encoder) const;
     };
-
-    /**
-     * @brief 目標速度を設定します。
-     *
-     * @param target [rad/s] -PI~PI
-     */
-    inline void Velocity_PID::setTarget(const double target)
-    {
-        this->pid->setTarget(target);
-    }
-    /**
-     * @brief PIDゲインを（再）設定します。
-     *
-     * @param Kp
-     * @param Ki
-     * @param Kd
-     */
-    inline void Velocity_PID::setGains(const double Kp, const double Ki, const double Kd)
-    {
-        this->pid->setGains(Kp, Ki, Kd);
-    }
-    /**
-     * @brief 目標速度を取得します。
-     *
-     * @return double [rad/s]
-     */
-    inline double Velocity_PID::getTarget() const
-    {
-        return this->pid->getTarget();
-    }
-    /**
-     * @brief Duty比を取得します。内部で計算は行われないので、マルチスレッドでもない限り使用は想定していません。
-     *
-     * @return int
-     */
-    inline double Velocity_PID::getDuty() const
-    {
-        return this->dutyCycle;
-    }
-
-    /**
-     * @brief Kpを設定します。
-     *
-     * @param Kp
-     */
-    inline void Velocity_PID::setKp(const double Kp)
-    {
-        this->pid->setKp(Kp);
-    }
-
-    /**
-     * @brief Kiを設定します。
-     *
-     * @param Ki
-     */
-    inline void Velocity_PID::setKi(const double Ki)
-    {
-        this->pid->setKi(Ki);
-    }
-
-    /**
-     * @brief Kdを設定します。
-     *
-     * @param Kd
-     */
-    inline void Velocity_PID::setKd(const double Kd)
-    {
-        this->pid->setKd(Kd);
-    }
 
     /**
      * @brief 目標角度を設定します。

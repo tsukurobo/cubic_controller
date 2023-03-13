@@ -18,28 +18,26 @@ namespace Cubic_controller
         }
     }
 
-    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), CPR(4 * PPR)
+    Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging)
     {
-        constexpr double current = 0.0;
         pid = new PID::PID(this->capableDutyCycle, Kp, Ki, Kd, current, target, direction);
+    }
 
+
+
+    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : Controller(motorNo, encoderNo, encoderType, PPR, capableDutyCycle, Kp, Ki, Kd, target, 0.0, direction, logging)
+    {
         if (encoderType == encoderType::abs)
         {
-            Serial.println("ERROR!! encoderType is abs");
+            Serial.println("ERROR!! Absolute encoder can't be used for velocity PID.");
         }
     }
 
     double Velocity_PID::compute()
     {
-        int32_t encoder = readEncoder(encoderNo, encoderType);
-        if (logging)
-        {
-            Serial.print("encoder:");
-            Serial.print(encoder);
-            Serial.print(",");
-        }
-        double angle = encoderToAngle(encoder, this->CPR);
-        double velocity = angle / this->pid->getDt();
+        int32_t encoder = this->readEncoder();
+        double angle = this->encoderToAngle(encoder);
+        double velocity = angle / this->getDt();
         if (logging)
         {
             Serial.print("angle:");
@@ -49,7 +47,7 @@ namespace Cubic_controller
             Serial.print(velocity);
             Serial.print(",");
         }
-        dutyCycle = pid->compute_PID(velocity, logging);
+        double dutyCycle = this->compute_PID(velocity);
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
     }
