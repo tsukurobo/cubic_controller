@@ -5,7 +5,7 @@
 #pragma once
 #include <Arduino.h>
 #include "PID.h"
-#include "cubic_arduino_ver2.3.h"
+#include "cubic_arduino_ver2.5.h"
 
 namespace Cubic_controller
 {
