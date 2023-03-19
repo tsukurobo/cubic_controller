@@ -9,7 +9,7 @@ var _cubic_8controller_8h =
     ] ],
     [ "degToRad", "_cubic_8controller_8h.html#aef74915c7d518a5603726b9af441cb8f", null ],
     [ "encoderToAngle", "_cubic_8controller_8h.html#a612fdd92321a6b5dde0d8b92039f9510", null ],
-    [ "limitAngle", "_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37", null ],
-    [ "readEncoder", "_cubic_8controller_8h.html#ad1b8bfe548ce76ba061757a597e5046e", null ],
+    [ "limitAngle", "_cubic_8controller_8h.html#aacff23dd194b2907fd9e6bac9c3b83d2", null ],
+    [ "readEncoder", "_cubic_8controller_8h.html#a42397c414435fe73457f7a4b7454d466", null ],
     [ "AMT22_PPR", "_cubic_8controller_8h.html#a73e0b36f48edd36b710cac5af48a5717", null ]
 ];

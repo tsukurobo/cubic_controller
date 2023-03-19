@@ -46,7 +46,7 @@ namespace Cubic_controller
      * @param encoderType
      * @return int32_t 値
      */
-    int32_t readEncoder(uint8_t encoderNo, enum encoderType encoderType);
+    int32_t readEncoder(uint8_t encoderNo, const enum class encoderType encoderType);
 
     /**
      * @brief 与えられた角度を一定範囲（min<=angle<min+2pi）に収めます
@@ -55,18 +55,7 @@ namespace Cubic_controller
      * @param min 最低値[rad]。省略可能で、デフォルトは-PI
      * @return constexpr double 角度[rad](-PI<= angle < PI)
      */
-    constexpr double limitAngle(double angle, const double min = -PI)
-    {
-        while (angle < min)
-        {
-            angle += TWO_PI;
-        }
-        while (angle >= min + TWO_PI)
-        {
-            angle -= TWO_PI;
-        }
-        return angle;
-    }
+    constexpr double limitAngle(double angle, double min = -PI);
 
     /**
      * @brief 与えられたCPRのもと、エンコーダの値から角度を計算します
@@ -76,13 +65,12 @@ namespace Cubic_controller
      * @param offset オフセット[rad]。省略可能で、デフォルトは0.0
      * @return constexpr double angle[rad](-PI<= angle < PI)
      */
-    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0)
-    {
-        double angle = offset + encoder * TWO_PI / (double)CPR;
-        limitAngle(angle);
-        return angle;
-    }
+    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0);
 
+    /**
+     * @brief Cubic制御器の抽象クラス
+     *
+     */
     class Controller
     {
     private:
@@ -117,7 +105,7 @@ namespace Cubic_controller
     };
 
     /**
-     * @brief 速度制御を行うためのクラスです。
+     * @brief インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス
      *
      */
     class Velocity_PID : public Controller
@@ -129,6 +117,7 @@ namespace Cubic_controller
          * @param motorNo モータ番号
          * @param encoderNo エンコーダ番号
          * @param encoderType エンコーダの種類
+         * @param PPR エンコーダのPPR（CPRでないことに注意）
          * @param capableDutyCycle 最大許容デューティ比。0.0~1.0
          * @param Kp
          * @param Ki
@@ -136,14 +125,16 @@ namespace Cubic_controller
          * @param target 目標速度[rad/s]
          * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
          * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
-         * @param PPR エンコーダのPPR（CPRでないことに注意）
          *
          */
         Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
         double compute() override;
     };
 
-
+    /**
+     * @brief アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス
+     *
+     */
     class Position_PID : public Controller
     {
     private:
@@ -151,12 +142,26 @@ namespace Cubic_controller
         int8_t loopCount = 0;
 
     public:
+        /**
+         * @brief Construct a new Position_PID object
+         *
+         * @param motorNo モータ番号
+         * @param encoderNo エンコーダ番号
+         * @param encoderType エンコーダの種類
+         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         * @param capableDutyCycle 最大許容デューティ比。0.0~1.0
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param target 目標角度[rad] (-PI<= target < PI)
+         * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         */
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
 
         void setTarget(double target) override;
         double compute() override;
     };
-
 
     // Definition
 

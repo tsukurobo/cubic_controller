@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['readencoder_47',['readEncoder',['../_cubic_8controller_8h.html#ad1b8bfe548ce76ba061757a597e5046e',1,'Cubic_controller']]]
+  ['readencoder_48',['readEncoder',['../_cubic_8controller_8h.html#a42397c414435fe73457f7a4b7454d466',1,'Cubic_controller']]]
 ];

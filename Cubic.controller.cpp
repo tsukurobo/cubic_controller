@@ -6,7 +6,7 @@
 
 namespace Cubic_controller
 {
-    int32_t readEncoder(const uint8_t encoderNo, const enum encoderType encoderType)
+    int32_t readEncoder(const uint8_t encoderNo, const enum class encoderType encoderType)
     {
         if (encoderType == encoderType::inc)
         {
@@ -16,6 +16,24 @@ namespace Cubic_controller
         {
             return Abs_enc::get(encoderNo);
         }
+    }
+
+    constexpr double limitAngle(double angle, const double min)
+    {
+        while (angle < min)
+        {
+            angle += TWO_PI;
+        }
+        while (angle >= min + TWO_PI)
+        {
+            angle -= TWO_PI;
+        }
+        return angle;
+    }
+
+    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR, const double offset)
+    {
+        return limitAngle(offset + encoder * (TWO_PI / (double)CPR));
     }
 
     Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), pid(*(new PID::PID(capableDutyCycle, Kp, Ki, Kd, current, target, direction)))

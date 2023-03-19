@@ -90,7 +90,7 @@ $(document).ready(function(){initNavTree('class_cubic__controller_1_1_velocity__
 </div><!--header-->
 <div class="contents">
 
-<p>速度制御を行うためのクラスです。  
+<p>インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス  
  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_cubic_8controller_8h_source.html">Cubic.controller.h</a>&gt;</code></p>
@@ -100,14 +100,14 @@ Inheritance diagram for Cubic_controller::Velocity_PID:</div>
  <div class="center">
   <img src="class_cubic__controller_1_1_velocity___p_i_d.png" usemap="#Cubic_5Fcontroller::Velocity_5FPID_map" alt=""/>
   <map id="Cubic_5Fcontroller::Velocity_5FPID_map" name="Cubic_5Fcontroller::Velocity_5FPID_map">
-<area href="class_cubic__controller_1_1_controller.html" alt="Cubic_controller::Controller" shape="rect" coords="0,0,185,24"/>
+<area href="class_cubic__controller_1_1_controller.html" title="Cubic制御器の抽象クラス" alt="Cubic_controller::Controller" shape="rect" coords="0,0,185,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad1af9aa765f11ba8ea1cf735c83bceae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ad1af9aa765f11ba8ea1cf735c83bceae">Velocity_PID</a> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true)</td></tr>
-<tr class="memdesc:ad1af9aa765f11ba8ea1cf735c83bceae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ad1af9aa765f11ba8ea1cf735c83bceae">More...</a><br /></td></tr>
+<tr class="memdesc:ad1af9aa765f11ba8ea1cf735c83bceae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ad1af9aa765f11ba8ea1cf735c83bceae">More...</a><br /></td></tr>
 <tr class="separator:ad1af9aa765f11ba8ea1cf735c83bceae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d6ffa210e350522c03a30411ab7c566"><td class="memItemLeft" align="right" valign="top"><a id="a4d6ffa210e350522c03a30411ab7c566"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> () override</td></tr>
@@ -120,7 +120,7 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> () over
 double&#160;</td><td class="memItemRight" valign="bottom"><b>compute_PID</b> (double current)</td></tr>
 <tr class="separator:a1ab41f329fe115a608a49acf7f6c6364 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0b3b8435f4fe9a05a897e33c7700970 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="aa0b3b8435f4fe9a05a897e33c7700970"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (double target)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (double target)</td></tr>
 <tr class="separator:aa0b3b8435f4fe9a05a897e33c7700970 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0461f922e81c92669e3153745dc8c08 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="ad0461f922e81c92669e3153745dc8c08"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setGains</b> (double Kp, double Ki, double Kd)</td></tr>
@@ -176,7 +176,7 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
 <tr class="separator:a1e8c4d2f85c09ff4241e8230b4df4dd1 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>速度制御を行うためのクラスです。 </p>
+<div class="textblock"><p>インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad1af9aa765f11ba8ea1cf735c83bceae"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad1af9aa765f11ba8ea1cf735c83bceae">&#9670;&nbsp;</a></span>Velocity_PID()</h2>
@@ -258,12 +258,13 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
       </table>
 </div><div class="memdoc">
 
-<p>Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。">Velocity_PID</a> object. </p>
+<p>Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス">Velocity_PID</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">motorNo</td><td>モータ番号 </td></tr>
     <tr><td class="paramname">encoderNo</td><td>エンコーダ番号 </td></tr>
     <tr><td class="paramname">encoderType</td><td>エンコーダの種類 </td></tr>
+    <tr><td class="paramname">PPR</td><td>エンコーダのPPR（CPRでないことに注意） </td></tr>
     <tr><td class="paramname">capableDutyCycle</td><td>最大許容デューティ比。0.0~1.0 </td></tr>
     <tr><td class="paramname">Kp</td><td></td></tr>
     <tr><td class="paramname">Ki</td><td></td></tr>
@@ -271,7 +272,6 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
     <tr><td class="paramname">target</td><td>目標速度[rad/s] </td></tr>
     <tr><td class="paramname">direction</td><td>モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。 </td></tr>
     <tr><td class="paramname">logging</td><td>ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。 </td></tr>
-    <tr><td class="paramname">PPR</td><td>エンコーダのPPR（CPRでないことに注意） </td></tr>
   </table>
   </dd>
 </dl>

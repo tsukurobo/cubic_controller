@@ -100,11 +100,13 @@ $(document).ready(function(){initNavTree('_cubic_8controller_8h.html',''); initR
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html">Cubic_controller::Controller</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cubic制御器の抽象クラス  <a href="class_cubic__controller_1_1_controller.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html">Cubic_controller::Velocity_PID</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">速度制御を行うためのクラスです。  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html">Cubic_controller::Position_PID</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス  <a href="class_cubic__controller_1_1_position___p_i_d.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
@@ -120,14 +122,14 @@ Functions</h2></td></tr>
 <tr class="memitem:aef74915c7d518a5603726b9af441cb8f"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#aef74915c7d518a5603726b9af441cb8f">Cubic_controller::degToRad</a> (double deg)</td></tr>
 <tr class="memdesc:aef74915c7d518a5603726b9af441cb8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">度数法から弧度法に変換します  <a href="_cubic_8controller_8h.html#aef74915c7d518a5603726b9af441cb8f">More...</a><br /></td></tr>
 <tr class="separator:aef74915c7d518a5603726b9af441cb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1b8bfe548ce76ba061757a597e5046e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#ad1b8bfe548ce76ba061757a597e5046e">Cubic_controller::readEncoder</a> (uint8_t encoderNo, enum encoderType encoderType)</td></tr>
-<tr class="memdesc:ad1b8bfe548ce76ba061757a597e5046e"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダを読みます  <a href="_cubic_8controller_8h.html#ad1b8bfe548ce76ba061757a597e5046e">More...</a><br /></td></tr>
-<tr class="separator:ad1b8bfe548ce76ba061757a597e5046e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a94b555c07c797cfc359d2897237e2e37"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">Cubic_controller::limitAngle</a> (double angle, const double min=-PI)</td></tr>
-<tr class="memdesc:a94b555c07c797cfc359d2897237e2e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます  <a href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">More...</a><br /></td></tr>
-<tr class="separator:a94b555c07c797cfc359d2897237e2e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612fdd92321a6b5dde0d8b92039f9510"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a612fdd92321a6b5dde0d8b92039f9510">Cubic_controller::encoderToAngle</a> (int32_t encoder, uint16_t CPR, double offset=0.0)</td></tr>
-<tr class="memdesc:a612fdd92321a6b5dde0d8b92039f9510"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8h.html#a612fdd92321a6b5dde0d8b92039f9510">More...</a><br /></td></tr>
+<tr class="memitem:a42397c414435fe73457f7a4b7454d466"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a42397c414435fe73457f7a4b7454d466">Cubic_controller::readEncoder</a> (uint8_t encoderNo, const enum class encoderType encoderType)</td></tr>
+<tr class="memdesc:a42397c414435fe73457f7a4b7454d466"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダを読みます  <a href="_cubic_8controller_8h.html#a42397c414435fe73457f7a4b7454d466">More...</a><br /></td></tr>
+<tr class="separator:a42397c414435fe73457f7a4b7454d466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacff23dd194b2907fd9e6bac9c3b83d2"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8cpp.html#aacff23dd194b2907fd9e6bac9c3b83d2">Cubic_controller::limitAngle</a> (double angle, double min=-PI)</td></tr>
+<tr class="memdesc:aacff23dd194b2907fd9e6bac9c3b83d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます  <a href="_cubic_8controller_8cpp.html#aacff23dd194b2907fd9e6bac9c3b83d2">More...</a><br /></td></tr>
+<tr class="separator:aacff23dd194b2907fd9e6bac9c3b83d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612fdd92321a6b5dde0d8b92039f9510"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8cpp.html#a612fdd92321a6b5dde0d8b92039f9510">Cubic_controller::encoderToAngle</a> (int32_t encoder, uint16_t CPR, double offset=0.0)</td></tr>
+<tr class="memdesc:a612fdd92321a6b5dde0d8b92039f9510"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8cpp.html#a612fdd92321a6b5dde0d8b92039f9510">More...</a><br /></td></tr>
 <tr class="separator:a612fdd92321a6b5dde0d8b92039f9510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -257,8 +259,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a94b555c07c797cfc359d2897237e2e37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a94b555c07c797cfc359d2897237e2e37">&#9670;&nbsp;</a></span>limitAngle()</h2>
+<a id="aacff23dd194b2907fd9e6bac9c3b83d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacff23dd194b2907fd9e6bac9c3b83d2">&#9670;&nbsp;</a></span>limitAngle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -275,7 +277,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double&#160;</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>min</em> = <code>-PI</code>&#160;</td>
         </tr>
         <tr>
@@ -303,8 +305,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ad1b8bfe548ce76ba061757a597e5046e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad1b8bfe548ce76ba061757a597e5046e">&#9670;&nbsp;</a></span>readEncoder()</h2>
+<a id="a42397c414435fe73457f7a4b7454d466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42397c414435fe73457f7a4b7454d466">&#9670;&nbsp;</a></span>readEncoder()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -318,7 +320,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">enum <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>&#160;</td>
+          <td class="paramtype">const enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>&#160;</td>
           <td class="paramname"><em>encoderType</em>&#160;</td>
         </tr>
         <tr>

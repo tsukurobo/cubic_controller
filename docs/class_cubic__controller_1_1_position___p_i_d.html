@@ -89,21 +89,29 @@ $(document).ready(function(){initNavTree('class_cubic__controller_1_1_position__
 <div class="title">Cubic_controller::Position_PID Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス  
+ <a href="class_cubic__controller_1_1_position___p_i_d.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_cubic_8controller_8h_source.html">Cubic.controller.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Cubic_controller::Position_PID:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_cubic__controller_1_1_position___p_i_d.png" usemap="#Cubic_5Fcontroller::Position_5FPID_map" alt=""/>
   <map id="Cubic_5Fcontroller::Position_5FPID_map" name="Cubic_5Fcontroller::Position_5FPID_map">
-<area href="class_cubic__controller_1_1_controller.html" alt="Cubic_controller::Controller" shape="rect" coords="0,0,183,24"/>
+<area href="class_cubic__controller_1_1_controller.html" title="Cubic制御器の抽象クラス" alt="Cubic_controller::Controller" shape="rect" coords="0,0,183,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab28bc8b81d3c7ada95f5181500668d9e"><td class="memItemLeft" align="right" valign="top"><a id="ab28bc8b81d3c7ada95f5181500668d9e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Position_PID</b> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true)</td></tr>
+<tr class="memitem:ab28bc8b81d3c7ada95f5181500668d9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html#ab28bc8b81d3c7ada95f5181500668d9e">Position_PID</a> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true)</td></tr>
+<tr class="memdesc:ab28bc8b81d3c7ada95f5181500668d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_position___p_i_d.html" title="アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス">Position_PID</a> object.  <a href="class_cubic__controller_1_1_position___p_i_d.html#ab28bc8b81d3c7ada95f5181500668d9e">More...</a><br /></td></tr>
 <tr class="separator:ab28bc8b81d3c7ada95f5181500668d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b5fc12239906fba1c81e535c1fc0b2"><td class="memItemLeft" align="right" valign="top"><a id="a45b5fc12239906fba1c81e535c1fc0b2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (double target) override</td></tr>
+<tr class="separator:a45b5fc12239906fba1c81e535c1fc0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96fe7aab61f7bfe4ed64bb364098cd05"><td class="memItemLeft" align="right" valign="top"><a id="a96fe7aab61f7bfe4ed64bb364098cd05"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> () override</td></tr>
 <tr class="separator:a96fe7aab61f7bfe4ed64bb364098cd05"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,9 +122,6 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> () over
 <tr class="memitem:a1ab41f329fe115a608a49acf7f6c6364 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a1ab41f329fe115a608a49acf7f6c6364"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>compute_PID</b> (double current)</td></tr>
 <tr class="separator:a1ab41f329fe115a608a49acf7f6c6364 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0b3b8435f4fe9a05a897e33c7700970 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="aa0b3b8435f4fe9a05a897e33c7700970"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (double target)</td></tr>
-<tr class="separator:aa0b3b8435f4fe9a05a897e33c7700970 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0461f922e81c92669e3153745dc8c08 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="ad0461f922e81c92669e3153745dc8c08"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setGains</b> (double Kp, double Ki, double Kd)</td></tr>
 <tr class="separator:ad0461f922e81c92669e3153745dc8c08 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +175,109 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b></
 const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td></tr>
 <tr class="separator:a1e8c4d2f85c09ff4241e8230b4df4dd1 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ab28bc8b81d3c7ada95f5181500668d9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab28bc8b81d3c7ada95f5181500668d9e">&#9670;&nbsp;</a></span>Position_PID()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Cubic_controller::Position_PID::Position_PID </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>motorNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>encoderNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>&#160;</td>
+          <td class="paramname"><em>encoderType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>PPR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>capableDutyCycle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ki</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>direction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>logging</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Construct a new <a class="el" href="class_cubic__controller_1_1_position___p_i_d.html" title="アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス">Position_PID</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">motorNo</td><td>モータ番号 </td></tr>
+    <tr><td class="paramname">encoderNo</td><td>エンコーダ番号 </td></tr>
+    <tr><td class="paramname">encoderType</td><td>エンコーダの種類 </td></tr>
+    <tr><td class="paramname">PPR</td><td>エンコーダのPPR（CPRでないことに注意） </td></tr>
+    <tr><td class="paramname">capableDutyCycle</td><td>最大許容デューティ比。0.0~1.0 </td></tr>
+    <tr><td class="paramname">Kp</td><td></td></tr>
+    <tr><td class="paramname">Ki</td><td></td></tr>
+    <tr><td class="paramname">Kd</td><td></td></tr>
+    <tr><td class="paramname">target</td><td>目標角度[rad] (-PI&lt;= target &lt; PI) </td></tr>
+    <tr><td class="paramname">direction</td><td>モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。 </td></tr>
+    <tr><td class="paramname">logging</td><td>ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_cubic_8controller_8h_source.html">Cubic.controller.h</a></li>
 <li><a class="el" href="_cubic_8controller_8cpp.html">Cubic.controller.cpp</a></li>

@@ -90,14 +90,19 @@ $(document).ready(function(){initNavTree('class_cubic__controller_1_1_controller
 <div class="title">Cubic_controller::Controller Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Cubic制御器の抽象クラス  
+ <a href="class_cubic__controller_1_1_controller.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_cubic_8controller_8h_source.html">Cubic.controller.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Cubic_controller::Controller:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="class_cubic__controller_1_1_controller.png" usemap="#Cubic_5Fcontroller::Controller_map" alt=""/>
   <map id="Cubic_5Fcontroller::Controller_map" name="Cubic_5Fcontroller::Controller_map">
-<area href="class_cubic__controller_1_1_position___p_i_d.html" alt="Cubic_controller::Position_PID" shape="rect" coords="0,56,185,80"/>
-<area href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。" alt="Cubic_controller::Velocity_PID" shape="rect" coords="195,56,380,80"/>
+<area href="class_cubic__controller_1_1_position___p_i_d.html" title="アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス" alt="Cubic_controller::Position_PID" shape="rect" coords="0,56,185,80"/>
+<area href="class_cubic__controller_1_1_velocity___p_i_d.html" title="インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス" alt="Cubic_controller::Velocity_PID" shape="rect" coords="195,56,380,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -113,7 +118,7 @@ virtual double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>compute_PID</b> (double current)</td></tr>
 <tr class="separator:a1ab41f329fe115a608a49acf7f6c6364"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0b3b8435f4fe9a05a897e33c7700970"><td class="memItemLeft" align="right" valign="top"><a id="aa0b3b8435f4fe9a05a897e33c7700970"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (double target)</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (double target)</td></tr>
 <tr class="separator:aa0b3b8435f4fe9a05a897e33c7700970"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0461f922e81c92669e3153745dc8c08"><td class="memItemLeft" align="right" valign="top"><a id="ad0461f922e81c92669e3153745dc8c08"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setGains</b> (double Kp, double Ki, double Kd)</td></tr>
@@ -167,7 +172,9 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b></
 const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td></tr>
 <tr class="separator:a1e8c4d2f85c09ff4241e8230b4df4dd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Cubic制御器の抽象クラス </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_cubic_8controller_8h_source.html">Cubic.controller.h</a></li>
 <li><a class="el" href="_cubic_8controller_8cpp.html">Cubic.controller.cpp</a></li>
 </ul>

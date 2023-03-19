@@ -92,10 +92,116 @@ $(document).ready(function(){initNavTree('_cubic_8controller_8cpp.html',''); ini
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a134724d8c8b9b727892c68036b77009f"><td class="memItemLeft" align="right" valign="top"><a id="a134724d8c8b9b727892c68036b77009f"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_controller::readEncoder</b> (const uint8_t encoderNo, const enum encoderType encoderType)</td></tr>
-<tr class="separator:a134724d8c8b9b727892c68036b77009f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeadc046c6c5942fc24739204b072501"><td class="memItemLeft" align="right" valign="top"><a id="adeadc046c6c5942fc24739204b072501"></a>
+int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_controller::readEncoder</b> (const uint8_t encoderNo, const enum class encoderType encoderType)</td></tr>
+<tr class="separator:adeadc046c6c5942fc24739204b072501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacff23dd194b2907fd9e6bac9c3b83d2"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8cpp.html#aacff23dd194b2907fd9e6bac9c3b83d2">Cubic_controller::limitAngle</a> (double angle, double min=-PI)</td></tr>
+<tr class="memdesc:aacff23dd194b2907fd9e6bac9c3b83d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます  <a href="_cubic_8controller_8cpp.html#aacff23dd194b2907fd9e6bac9c3b83d2">More...</a><br /></td></tr>
+<tr class="separator:aacff23dd194b2907fd9e6bac9c3b83d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a612fdd92321a6b5dde0d8b92039f9510"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8cpp.html#a612fdd92321a6b5dde0d8b92039f9510">Cubic_controller::encoderToAngle</a> (int32_t encoder, uint16_t CPR, double offset=0.0)</td></tr>
+<tr class="memdesc:a612fdd92321a6b5dde0d8b92039f9510"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8cpp.html#a612fdd92321a6b5dde0d8b92039f9510">More...</a><br /></td></tr>
+<tr class="separator:a612fdd92321a6b5dde0d8b92039f9510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a612fdd92321a6b5dde0d8b92039f9510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a612fdd92321a6b5dde0d8b92039f9510">&#9670;&nbsp;</a></span>encoderToAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double Cubic_controller::encoderToAngle </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>encoder</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>CPR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>0.0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>与えられたCPRのもと、エンコーダの値から角度を計算します </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">encoder</td><td>エンコーダの値 </td></tr>
+    <tr><td class="paramname">CPR</td><td>counts per revolution(PPRの4倍) </td></tr>
+    <tr><td class="paramname">offset</td><td>オフセット[rad]。省略可能で、デフォルトは0.0 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>constexpr double angle[rad](-PI&lt;= angle &lt; PI) </dd></dl>
+
+</div>
+</div>
+<a id="aacff23dd194b2907fd9e6bac9c3b83d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacff23dd194b2907fd9e6bac9c3b83d2">&#9670;&nbsp;</a></span>limitAngle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double Cubic_controller::limitAngle </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>angle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>min</em> = <code>-PI</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>角度[rad] </td></tr>
+    <tr><td class="paramname">min</td><td>最低値[rad]。省略可能で、デフォルトは-PI </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>constexpr double 角度[rad](-PI&lt;= angle &lt; PI) </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
