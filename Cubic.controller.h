@@ -103,7 +103,7 @@ namespace Cubic_controller
 
         virtual double compute() = 0;
         double compute_PID(double current);
-        void setTarget(double target);
+        virtual void setTarget(double target);
         void setGains(double Kp, double Ki, double Kd);
         void setKp(double Kp);
         void setKi(double Ki);
@@ -148,13 +148,12 @@ namespace Cubic_controller
     {
     private:
         bool isGoingForward;
-        bool isOverMax = false;
-        bool isOverMin = false;
         int8_t loopCount = 0;
 
     public:
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
 
+        void setTarget(double target) override;
         double compute() override;
     };
 
@@ -168,6 +167,11 @@ namespace Cubic_controller
     inline void Controller::setTarget(const double target)
     {
         this->pid.setTarget(target);
+    }
+    inline void Position_PID::setTarget(const double target)
+    {
+        this->isGoingForward = (target - this->getCurrent()) >= 0;
+        Controller::setTarget(target);
     }
     inline void Controller::setGains(const double Kp, const double Ki, const double Kd)
     {
