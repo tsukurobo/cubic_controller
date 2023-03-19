@@ -1,6 +1,6 @@
 var class_cubic__controller_1_1_controller =
 [
-    [ "Controller", "class_cubic__controller_1_1_controller.html#aa18ca473f0a193645da6caa36f5ba2cd", null ],
+    [ "Controller", "class_cubic__controller_1_1_controller.html#ae47e8c69798cd33f4162d922775e5173", null ],
     [ "compute", "class_cubic__controller_1_1_controller.html#a3bb16c0221017a29aba820deb0bc0413", null ],
     [ "compute_PID", "class_cubic__controller_1_1_controller.html#a1ab41f329fe115a608a49acf7f6c6364", null ],
     [ "encoderToAngle", "class_cubic__controller_1_1_controller.html#a832aa55747b1d59fba432f840c1d494d", null ],

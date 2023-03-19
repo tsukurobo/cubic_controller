@@ -127,7 +127,7 @@ namespace Cubic_controller
          * @param direction
          * @param logging
          */
-        Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging = true);
+        Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging = false);
 
         /**
          * @brief duty比を計算します。各ループで一回呼び出してください。このduty比は、DUTY_SPI_MAXに対する比です。計算された値は、この関数内部で、DC_motor::put()されます。
@@ -220,10 +220,10 @@ namespace Cubic_controller
          * @param Kd
          * @param target 目標速度[rad/s]
          * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
-         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはfalse。
          *
          */
-        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
         double compute() override;
     };
 
@@ -251,9 +251,9 @@ namespace Cubic_controller
          * @param Kd
          * @param target 目標角度[rad] (-PI<= target < PI)
          * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
-         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
+         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはfalse。
          */
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
 
         void setTarget(double target) override;
         double compute() override;

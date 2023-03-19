@@ -109,9 +109,9 @@ Inheritance diagram for Cubic_controller::Controller:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa18ca473f0a193645da6caa36f5ba2cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#aa18ca473f0a193645da6caa36f5ba2cd">Controller</a> (uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#a434b71b0de5ca29d6701377bb8e6b292">motorNo</a>, uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32">encoderNo</a>, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a3f1ebb7ca05a63f853c0ba05dfa5d014">direction</a>, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a1e8c4d2f85c09ff4241e8230b4df4dd1">logging</a>=true)</td></tr>
-<tr class="memdesc:aa18ca473f0a193645da6caa36f5ba2cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_controller.html" title="Cubic制御器の抽象クラス">Controller</a> object.  <a href="class_cubic__controller_1_1_controller.html#aa18ca473f0a193645da6caa36f5ba2cd">More...</a><br /></td></tr>
-<tr class="separator:aa18ca473f0a193645da6caa36f5ba2cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae47e8c69798cd33f4162d922775e5173"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#ae47e8c69798cd33f4162d922775e5173">Controller</a> (uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#a434b71b0de5ca29d6701377bb8e6b292">motorNo</a>, uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32">encoderNo</a>, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a3f1ebb7ca05a63f853c0ba05dfa5d014">direction</a>, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a1e8c4d2f85c09ff4241e8230b4df4dd1">logging</a>=false)</td></tr>
+<tr class="memdesc:ae47e8c69798cd33f4162d922775e5173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_controller.html" title="Cubic制御器の抽象クラス">Controller</a> object.  <a href="class_cubic__controller_1_1_controller.html#ae47e8c69798cd33f4162d922775e5173">More...</a><br /></td></tr>
+<tr class="separator:ae47e8c69798cd33f4162d922775e5173"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bb16c0221017a29aba820deb0bc0413"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a3bb16c0221017a29aba820deb0bc0413">compute</a> ()=0</td></tr>
 <tr class="memdesc:a3bb16c0221017a29aba820deb0bc0413"><td class="mdescLeft">&#160;</td><td class="mdescRight">duty比を計算します。各ループで一回呼び出してください。このduty比は、DUTY_SPI_MAXに対する比です。計算された値は、この関数内部で、DC_motor::put()されます。  <a href="class_cubic__controller_1_1_controller.html#a3bb16c0221017a29aba820deb0bc0413">More...</a><br /></td></tr>
 <tr class="separator:a3bb16c0221017a29aba820deb0bc0413"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -184,8 +184,8 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Cubic制御器の抽象クラス </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa18ca473f0a193645da6caa36f5ba2cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa18ca473f0a193645da6caa36f5ba2cd">&#9670;&nbsp;</a></span>Controller()</h2>
+<a id="ae47e8c69798cd33f4162d922775e5173"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae47e8c69798cd33f4162d922775e5173">&#9670;&nbsp;</a></span>Controller()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -260,7 +260,7 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>logging</em> = <code>true</code>&#160;</td>
+          <td class="paramname"><em>logging</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
