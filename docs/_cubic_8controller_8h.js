@@ -1,7 +1,8 @@
 var _cubic_8controller_8h =
 [
-    [ "Cubic_controller::Velocity_PID", "class_cubic__controller_1_1_velocity___p_i_d.html", "class_cubic__controller_1_1_velocity___p_i_d" ],
-    [ "Cubic_controller::Position_PID", "class_cubic__controller_1_1_position___p_i_d.html", "class_cubic__controller_1_1_position___p_i_d" ],
+    [ "Controller", "class_cubic__controller_1_1_controller.html", "class_cubic__controller_1_1_controller" ],
+    [ "Velocity_PID", "class_cubic__controller_1_1_velocity___p_i_d.html", "class_cubic__controller_1_1_velocity___p_i_d" ],
+    [ "Position_PID", "class_cubic__controller_1_1_position___p_i_d.html", "class_cubic__controller_1_1_position___p_i_d" ],
     [ "encoderType", "_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e", [
       [ "inc", "_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4eacf9f3fde7326f1d8e64205f0e07a3695", null ],
       [ "abs", "_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4eaf9ac6b05beccb0fc5837b6a7fef4c1d3", null ]

@@ -114,57 +114,6 @@ namespace Cubic_controller
         double getDt() const;
         double encoderToAngle(int32_t encoder) const;
     };
-    inline double Controller::compute_PID(const double current)
-    {
-        return dutyCycle = this->pid.compute(current, logging);
-    }
-    inline void Controller::setTarget(const double target)
-    {
-        this->pid.setTarget(target);
-    }
-    inline void Controller::setGains(const double Kp, const double Ki, const double Kd)
-    {
-        this->pid.setGains(Kp, Ki, Kd);
-    }
-    inline void Controller::setKp(const double Kp)
-    {
-        this->pid.setKp(Kp);
-    }
-    inline void Controller::setKi(const double Ki)
-    {
-        this->pid.setKi(Ki);
-    }
-    inline void Controller::setKd(const double Kd)
-    {
-        this->pid.setKd(Kd);
-    }
-    inline double Controller::getTarget() const
-    {
-        return this->pid.getTarget();
-    }
-    inline double Controller::getDutyCycle() const
-    {
-        return this->dutyCycle;
-    }
-    inline double Controller::getDt() const
-    {
-        return this->pid.getDt();
-    }
-    inline double Controller::encoderToAngle(const int32_t encoder) const
-    {
-        return Cubic_controller::encoderToAngle(encoder, this->CPR);
-    }
-    inline int32_t Controller::readEncoder() const
-    {
-        int32_t value = encoderType == encoderType::inc ? Inc_enc::get(encoderNo) : Abs_enc::get(encoderNo);
-        if (logging)
-        {
-            Serial.print("encoder:");
-            Serial.print(value);
-            Serial.print(",");
-        }
-        return value;
-    }
 
     /**
      * @brief 速度制御を行うためのクラスです。
@@ -331,5 +280,60 @@ namespace Cubic_controller
     inline double Position_PID::encoderToAngle(const int32_t encoder) const
     {
         return Cubic_controller::encoderToAngle(encoder, CPR, -PI);
+    }
+
+
+    // Definition
+
+    inline double Controller::compute_PID(const double current)
+    {
+        return dutyCycle = this->pid.compute(current, logging);
+    }
+    inline void Controller::setTarget(const double target)
+    {
+        this->pid.setTarget(target);
+    }
+    inline void Controller::setGains(const double Kp, const double Ki, const double Kd)
+    {
+        this->pid.setGains(Kp, Ki, Kd);
+    }
+    inline void Controller::setKp(const double Kp)
+    {
+        this->pid.setKp(Kp);
+    }
+    inline void Controller::setKi(const double Ki)
+    {
+        this->pid.setKi(Ki);
+    }
+    inline void Controller::setKd(const double Kd)
+    {
+        this->pid.setKd(Kd);
+    }
+    inline double Controller::getTarget() const
+    {
+        return this->pid.getTarget();
+    }
+    inline double Controller::getDutyCycle() const
+    {
+        return this->dutyCycle;
+    }
+    inline double Controller::getDt() const
+    {
+        return this->pid.getDt();
+    }
+    inline double Controller::encoderToAngle(const int32_t encoder) const
+    {
+        return Cubic_controller::encoderToAngle(encoder, this->CPR);
+    }
+    inline int32_t Controller::readEncoder() const
+    {
+        int32_t value = encoderType == encoderType::inc ? Inc_enc::get(encoderNo) : Abs_enc::get(encoderNo);
+        if (logging)
+        {
+            Serial.print("encoder:");
+            Serial.print(value);
+            Serial.print(",");
+        }
+        return value;
     }
 }

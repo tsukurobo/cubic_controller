@@ -1,6 +1,7 @@
 var class_cubic__controller_1_1_position___p_i_d =
 [
     [ "Position_PID", "class_cubic__controller_1_1_position___p_i_d.html#ad86f4ae2fa531a422d3c777c87fc9347", null ],
+    [ "compute", "class_cubic__controller_1_1_position___p_i_d.html#a18aa8cf1aa3fad9e3ca152bd26c3bb30", null ],
     [ "encoderToAngle", "class_cubic__controller_1_1_position___p_i_d.html#a1e011dbd19dacf636cd97259f1d69b4d", null ],
     [ "getDuty", "class_cubic__controller_1_1_position___p_i_d.html#aa09a8e9889ec611ab028a8420d18ceaa", null ],
     [ "getTarget", "class_cubic__controller_1_1_position___p_i_d.html#a421e0fe90368f21e7d9384e7a63572a7", null ],

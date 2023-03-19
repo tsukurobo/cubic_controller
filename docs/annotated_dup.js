@@ -1,6 +1,7 @@
 var annotated_dup =
 [
     [ "Cubic_controller", null, [
+      [ "Controller", "class_cubic__controller_1_1_controller.html", "class_cubic__controller_1_1_controller" ],
       [ "Position_PID", "class_cubic__controller_1_1_position___p_i_d.html", "class_cubic__controller_1_1_position___p_i_d" ],
       [ "Velocity_PID", "class_cubic__controller_1_1_velocity___p_i_d.html", "class_cubic__controller_1_1_velocity___p_i_d" ]
     ] ],
