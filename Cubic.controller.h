@@ -79,34 +79,130 @@ namespace Cubic_controller
         double capableDutyCycle;
         double dutyCycle;
 
-    public:
-        Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging = true);
-
+    protected:
+        /// @brief モータ番号
         const uint8_t motorNo;
+        /// @brief エンコーダの種類
         const enum class encoderType encoderType;
+        /// @brief エンコーダ番号
         const uint8_t encoderNo;
+        /**
+         * @brief CPR(Counts Per Revolution)
+         * @details CPR = PPR * 4
+         */
         const uint16_t CPR;
+        /// @brief モータをプラスの方向に回したとき、エンコーダが増加するかどうか
         const bool direction;
+        /// @brief ログを出力するかどうか
         const bool logging;
 
-        virtual double compute() = 0;
+        /**
+         * @brief pid.compute()を呼ぶだけの関数です。
+         *
+         * @param current
+         * @return double
+         */
         double compute_PID(double current);
-        virtual void setTarget(double target);
-        void setGains(double Kp, double Ki, double Kd);
-        void setKp(double Kp);
-        void setKi(double Ki);
-        void setKd(double Kd);
-        int32_t readEncoder() const;
-        double getTarget() const;
+        /**
+         * @brief 直前に読んだ制御量を返します。
+         *
+         * @return double
+         */
         double getCurrent() const;
+
+    public:
+        /**
+         * @brief Construct a new Controller object
+         *
+         * @param motorNo
+         * @param encoderNo
+         * @param encoderType
+         * @param PPR
+         * @param capableDutyCycle
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param target
+         * @param current
+         * @param direction
+         * @param logging
+         */
+        Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging = true);
+
+        /**
+         * @brief duty比を計算します。各ループで一回呼び出してください。このduty比は、DUTY_SPI_MAXに対する比です。計算された値は、この関数内部で、DC_motor::put()されます。
+         *
+         * @return double dutyCycle
+         */
+        virtual double compute() = 0;
+        /**
+         * @brief 制御量の目標値を設定します。
+         *
+         * @param target
+         */
+        virtual void setTarget(double target);
+        /**
+         * @brief PIDゲインを設定します。
+         *
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         */
+        void setGains(double Kp, double Ki, double Kd);
+        /**
+         * @brief Pゲインを設定します。
+         *
+         * @param Kp
+         */
+        void setKp(double Kp);
+        /**
+         * @brief Iゲインを設定します。
+         *
+         * @param Ki
+         */
+        void setKi(double Ki);
+        /**
+         * @brief Dゲインを設定します。
+         *
+         * @param Kd
+         */
+        void setKd(double Kd);
+        /**
+         * @brief エンコーダを読みだします。
+         *
+         * @return int32_t encoder
+         */
+        int32_t readEncoder() const;
+        /**
+         * @brief 目標値を返します。
+         *
+         * @return double target
+         */
+        double getTarget() const;
+        /**
+         * @brief 直前に計算したデューティ比を返します。
+         *
+         * @return double dutyCycle
+         */
         double getDutyCycle() const;
+        /**
+         * @brief 直前のループにおける経過時間dtを返します
+         *
+         * @return double dt[s]
+         */
         double getDt() const;
+        /**
+         * @brief エンコーダの値から角度を計算します。設定したCPR(Count Per Revolution)に依存します。
+         *
+         * @param encoder
+         * @return double angle[rad](-PI<= angle < PI)
+         */
         double encoderToAngle(int32_t encoder) const;
     };
 
     /**
      * @brief インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス
-     *
+     * @details このクラスでは、エンコーダの角速度[rad/s]を制御量とします。
      */
     class Velocity_PID : public Controller
     {

@@ -24,8 +24,7 @@ var NAVTREE =
 [
   [ "Easy Control Library for Cubic", "index.html", [
     [ "Readme", "index.html", [
-      [ "Usage", "index.html#autotoc_md1", null ],
-      [ "Update history", "index.html#autotoc_md2", null ]
+      [ "Usage", "index.html#autotoc_md1", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -33,7 +32,8 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ]
+        [ "Functions", "functions_func.html", null ],
+        [ "Variables", "functions_vars.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [

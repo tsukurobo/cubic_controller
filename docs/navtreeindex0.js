@@ -70,10 +70,10 @@ var NAVTREEINDEX0 =
 "files.html":[2,0],
 "functions.html":[1,3,0],
 "functions_func.html":[1,3,1],
+"functions_vars.html":[1,3,2],
 "hierarchy.html":[1,2],
-"index.html":[],
 "index.html":[0],
+"index.html":[],
 "index.html#autotoc_md1":[0,0],
-"index.html#autotoc_md2":[0,1],
 "pages.html":[]
 };

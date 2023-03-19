@@ -27,6 +27,7 @@ namespace PID
         bool direction;
 
     public:
+        /// @brief dt[s]
         double dt;
 
         /**
@@ -45,6 +46,7 @@ namespace PID
         /**
          * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
          *
+         * @param current 制御量の現在値
          * @param ifPrint 関数中で情報をSerial.print()するかどうか。省略可能（デフォルトはfalse）主にデバッグ時の使用を想定している。
          * @return int 計算されたduty比を返す。
          */
@@ -59,10 +61,25 @@ namespace PID
          */
         void setGains(double Kp, double Ki, double Kd);
 
+        /**
+         * @brief Set the Kp object
+         *
+         * @param Kp
+         */
         void setKp(double Kp);
 
+        /**
+         * @brief Set the Ki object
+         *
+         * @param Ki
+         */
         void setKi(double Ki);
 
+        /**
+         * @brief Set the Kd object
+         *
+         * @param Kd
+         */
         void setKd(double Kd);
 
         /**
@@ -106,7 +123,7 @@ namespace PID
         /**
          * @brief Get the Dt object
          *
-         * @return double dt
+         * @return double dt[s]
          */
         double getDt() const
         {

@@ -106,74 +106,80 @@ Inheritance diagram for Cubic_controller::Position_PID:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab28bc8b81d3c7ada95f5181500668d9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html#ab28bc8b81d3c7ada95f5181500668d9e">Position_PID</a> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true)</td></tr>
+<tr class="memitem:ab28bc8b81d3c7ada95f5181500668d9e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html#ab28bc8b81d3c7ada95f5181500668d9e">Position_PID</a> (uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#a434b71b0de5ca29d6701377bb8e6b292">motorNo</a>, uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32">encoderNo</a>, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a3f1ebb7ca05a63f853c0ba05dfa5d014">direction</a>, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a1e8c4d2f85c09ff4241e8230b4df4dd1">logging</a>=true)</td></tr>
 <tr class="memdesc:ab28bc8b81d3c7ada95f5181500668d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_position___p_i_d.html" title="アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス">Position_PID</a> object.  <a href="class_cubic__controller_1_1_position___p_i_d.html#ab28bc8b81d3c7ada95f5181500668d9e">More...</a><br /></td></tr>
 <tr class="separator:ab28bc8b81d3c7ada95f5181500668d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45b5fc12239906fba1c81e535c1fc0b2"><td class="memItemLeft" align="right" valign="top"><a id="a45b5fc12239906fba1c81e535c1fc0b2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setTarget</b> (double target) override</td></tr>
+<tr class="memitem:a45b5fc12239906fba1c81e535c1fc0b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html#a45b5fc12239906fba1c81e535c1fc0b2">setTarget</a> (double target) override</td></tr>
+<tr class="memdesc:a45b5fc12239906fba1c81e535c1fc0b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御量の目標値を設定します。  <a href="class_cubic__controller_1_1_position___p_i_d.html#a45b5fc12239906fba1c81e535c1fc0b2">More...</a><br /></td></tr>
 <tr class="separator:a45b5fc12239906fba1c81e535c1fc0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96fe7aab61f7bfe4ed64bb364098cd05"><td class="memItemLeft" align="right" valign="top"><a id="a96fe7aab61f7bfe4ed64bb364098cd05"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> () override</td></tr>
+<tr class="memitem:a96fe7aab61f7bfe4ed64bb364098cd05"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html#a96fe7aab61f7bfe4ed64bb364098cd05">compute</a> () override</td></tr>
+<tr class="memdesc:a96fe7aab61f7bfe4ed64bb364098cd05"><td class="mdescLeft">&#160;</td><td class="mdescRight">duty比を計算します。各ループで一回呼び出してください。このduty比は、DUTY_SPI_MAXに対する比です。計算された値は、この関数内部で、DC_motor::put()されます。  <a href="class_cubic__controller_1_1_position___p_i_d.html#a96fe7aab61f7bfe4ed64bb364098cd05">More...</a><br /></td></tr>
 <tr class="separator:a96fe7aab61f7bfe4ed64bb364098cd05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_cubic__controller_1_1_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_cubic__controller_1_1_controller')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_cubic__controller_1_1_controller.html">Cubic_controller::Controller</a></td></tr>
-<tr class="memitem:aa18ca473f0a193645da6caa36f5ba2cd inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="aa18ca473f0a193645da6caa36f5ba2cd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Controller</b> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging=true)</td></tr>
+<tr class="memitem:aa18ca473f0a193645da6caa36f5ba2cd inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#aa18ca473f0a193645da6caa36f5ba2cd">Controller</a> (uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#a434b71b0de5ca29d6701377bb8e6b292">motorNo</a>, uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32">encoderNo</a>, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a3f1ebb7ca05a63f853c0ba05dfa5d014">direction</a>, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a1e8c4d2f85c09ff4241e8230b4df4dd1">logging</a>=true)</td></tr>
+<tr class="memdesc:aa18ca473f0a193645da6caa36f5ba2cd inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_controller.html" title="Cubic制御器の抽象クラス">Controller</a> object.  <a href="class_cubic__controller_1_1_controller.html#aa18ca473f0a193645da6caa36f5ba2cd">More...</a><br /></td></tr>
 <tr class="separator:aa18ca473f0a193645da6caa36f5ba2cd inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ab41f329fe115a608a49acf7f6c6364 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a1ab41f329fe115a608a49acf7f6c6364"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>compute_PID</b> (double current)</td></tr>
-<tr class="separator:a1ab41f329fe115a608a49acf7f6c6364 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0461f922e81c92669e3153745dc8c08 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="ad0461f922e81c92669e3153745dc8c08"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setGains</b> (double Kp, double Ki, double Kd)</td></tr>
+<tr class="memitem:ad0461f922e81c92669e3153745dc8c08 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#ad0461f922e81c92669e3153745dc8c08">setGains</a> (double Kp, double Ki, double Kd)</td></tr>
+<tr class="memdesc:ad0461f922e81c92669e3153745dc8c08 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">PIDゲインを設定します。  <a href="class_cubic__controller_1_1_controller.html#ad0461f922e81c92669e3153745dc8c08">More...</a><br /></td></tr>
 <tr class="separator:ad0461f922e81c92669e3153745dc8c08 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef50a09395568c22d081362ec9de12e8 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="aef50a09395568c22d081362ec9de12e8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setKp</b> (double Kp)</td></tr>
+<tr class="memitem:aef50a09395568c22d081362ec9de12e8 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#aef50a09395568c22d081362ec9de12e8">setKp</a> (double Kp)</td></tr>
+<tr class="memdesc:aef50a09395568c22d081362ec9de12e8 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pゲインを設定します。  <a href="class_cubic__controller_1_1_controller.html#aef50a09395568c22d081362ec9de12e8">More...</a><br /></td></tr>
 <tr class="separator:aef50a09395568c22d081362ec9de12e8 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba988700f645147d95149765bcfb1e76 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="aba988700f645147d95149765bcfb1e76"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setKi</b> (double Ki)</td></tr>
+<tr class="memitem:aba988700f645147d95149765bcfb1e76 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#aba988700f645147d95149765bcfb1e76">setKi</a> (double Ki)</td></tr>
+<tr class="memdesc:aba988700f645147d95149765bcfb1e76 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iゲインを設定します。  <a href="class_cubic__controller_1_1_controller.html#aba988700f645147d95149765bcfb1e76">More...</a><br /></td></tr>
 <tr class="separator:aba988700f645147d95149765bcfb1e76 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60cf692e49d1768ccc29496cd76b6c86 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a60cf692e49d1768ccc29496cd76b6c86"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setKd</b> (double Kd)</td></tr>
+<tr class="memitem:a60cf692e49d1768ccc29496cd76b6c86 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a60cf692e49d1768ccc29496cd76b6c86">setKd</a> (double Kd)</td></tr>
+<tr class="memdesc:a60cf692e49d1768ccc29496cd76b6c86 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dゲインを設定します。  <a href="class_cubic__controller_1_1_controller.html#a60cf692e49d1768ccc29496cd76b6c86">More...</a><br /></td></tr>
 <tr class="separator:a60cf692e49d1768ccc29496cd76b6c86 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9988536c919b9cd165667893f3763915 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a9988536c919b9cd165667893f3763915"></a>
-int32_t&#160;</td><td class="memItemRight" valign="bottom"><b>readEncoder</b> () const</td></tr>
+<tr class="memitem:a9988536c919b9cd165667893f3763915 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a9988536c919b9cd165667893f3763915">readEncoder</a> () const</td></tr>
+<tr class="memdesc:a9988536c919b9cd165667893f3763915 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダを読みだします。  <a href="class_cubic__controller_1_1_controller.html#a9988536c919b9cd165667893f3763915">More...</a><br /></td></tr>
 <tr class="separator:a9988536c919b9cd165667893f3763915 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb2e415eff27ba19476981487e8a7576 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="abb2e415eff27ba19476981487e8a7576"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getTarget</b> () const</td></tr>
+<tr class="memitem:abb2e415eff27ba19476981487e8a7576 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#abb2e415eff27ba19476981487e8a7576">getTarget</a> () const</td></tr>
+<tr class="memdesc:abb2e415eff27ba19476981487e8a7576 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">目標値を返します。  <a href="class_cubic__controller_1_1_controller.html#abb2e415eff27ba19476981487e8a7576">More...</a><br /></td></tr>
 <tr class="separator:abb2e415eff27ba19476981487e8a7576 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44f49cb671fc6c23d940f55800630802 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a44f49cb671fc6c23d940f55800630802"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrent</b> () const</td></tr>
-<tr class="separator:a44f49cb671fc6c23d940f55800630802 inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2374603afcb31f62cd2449ec3bdd4bb inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="ae2374603afcb31f62cd2449ec3bdd4bb"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getDutyCycle</b> () const</td></tr>
+<tr class="memitem:ae2374603afcb31f62cd2449ec3bdd4bb inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#ae2374603afcb31f62cd2449ec3bdd4bb">getDutyCycle</a> () const</td></tr>
+<tr class="memdesc:ae2374603afcb31f62cd2449ec3bdd4bb inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">直前に計算したデューティ比を返します。  <a href="class_cubic__controller_1_1_controller.html#ae2374603afcb31f62cd2449ec3bdd4bb">More...</a><br /></td></tr>
 <tr class="separator:ae2374603afcb31f62cd2449ec3bdd4bb inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdb490dd8450f56a07d2481f9b5a691b inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="afdb490dd8450f56a07d2481f9b5a691b"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getDt</b> () const</td></tr>
+<tr class="memitem:afdb490dd8450f56a07d2481f9b5a691b inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#afdb490dd8450f56a07d2481f9b5a691b">getDt</a> () const</td></tr>
+<tr class="memdesc:afdb490dd8450f56a07d2481f9b5a691b inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">直前のループにおける経過時間dtを返します  <a href="class_cubic__controller_1_1_controller.html#afdb490dd8450f56a07d2481f9b5a691b">More...</a><br /></td></tr>
 <tr class="separator:afdb490dd8450f56a07d2481f9b5a691b inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a832aa55747b1d59fba432f840c1d494d inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a832aa55747b1d59fba432f840c1d494d"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>encoderToAngle</b> (int32_t encoder) const</td></tr>
+<tr class="memitem:a832aa55747b1d59fba432f840c1d494d inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a832aa55747b1d59fba432f840c1d494d">encoderToAngle</a> (int32_t encoder) const</td></tr>
+<tr class="memdesc:a832aa55747b1d59fba432f840c1d494d inherit pub_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダの値から角度を計算します。設定したCPR(Count Per Revolution)に依存します。  <a href="class_cubic__controller_1_1_controller.html#a832aa55747b1d59fba432f840c1d494d">More...</a><br /></td></tr>
 <tr class="separator:a832aa55747b1d59fba432f840c1d494d inherit pub_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_attribs_class_cubic__controller_1_1_controller"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_cubic__controller_1_1_controller')"><img src="closed.png" alt="-"/>&#160;Public Attributes inherited from <a class="el" href="class_cubic__controller_1_1_controller.html">Cubic_controller::Controller</a></td></tr>
-<tr class="memitem:a434b71b0de5ca29d6701377bb8e6b292 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a434b71b0de5ca29d6701377bb8e6b292"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>motorNo</b></td></tr>
-<tr class="separator:a434b71b0de5ca29d6701377bb8e6b292 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a56d3b30c9d89f6a42c6cfa7d3a119735 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a56d3b30c9d89f6a42c6cfa7d3a119735"></a>
-enum <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>&#160;</td><td class="memItemRight" valign="bottom"><b>encoderType</b></td></tr>
-<tr class="separator:a56d3b30c9d89f6a42c6cfa7d3a119735 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab95a325face8b012a325a5aced52db32 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="ab95a325face8b012a325a5aced52db32"></a>
-const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>encoderNo</b></td></tr>
-<tr class="separator:ab95a325face8b012a325a5aced52db32 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bea1f631b239f7639ef2822a8e2935b inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a8bea1f631b239f7639ef2822a8e2935b"></a>
-const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>CPR</b></td></tr>
-<tr class="separator:a8bea1f631b239f7639ef2822a8e2935b inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f1ebb7ca05a63f853c0ba05dfa5d014 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a3f1ebb7ca05a63f853c0ba05dfa5d014"></a>
-const bool&#160;</td><td class="memItemRight" valign="bottom"><b>direction</b></td></tr>
-<tr class="separator:a3f1ebb7ca05a63f853c0ba05dfa5d014 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e8c4d2f85c09ff4241e8230b4df4dd1 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a1e8c4d2f85c09ff4241e8230b4df4dd1"></a>
-const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td></tr>
-<tr class="separator:a1e8c4d2f85c09ff4241e8230b4df4dd1 inherit pub_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_class_cubic__controller_1_1_controller"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_cubic__controller_1_1_controller')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_cubic__controller_1_1_controller.html">Cubic_controller::Controller</a></td></tr>
+<tr class="memitem:a1ab41f329fe115a608a49acf7f6c6364 inherit pro_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a1ab41f329fe115a608a49acf7f6c6364">compute_PID</a> (double current)</td></tr>
+<tr class="memdesc:a1ab41f329fe115a608a49acf7f6c6364 inherit pro_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">pid.compute()を呼ぶだけの関数です。  <a href="class_cubic__controller_1_1_controller.html#a1ab41f329fe115a608a49acf7f6c6364">More...</a><br /></td></tr>
+<tr class="separator:a1ab41f329fe115a608a49acf7f6c6364 inherit pro_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44f49cb671fc6c23d940f55800630802 inherit pro_methods_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a44f49cb671fc6c23d940f55800630802">getCurrent</a> () const</td></tr>
+<tr class="memdesc:a44f49cb671fc6c23d940f55800630802 inherit pro_methods_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">直前に読んだ制御量を返します。  <a href="class_cubic__controller_1_1_controller.html#a44f49cb671fc6c23d940f55800630802">More...</a><br /></td></tr>
+<tr class="separator:a44f49cb671fc6c23d940f55800630802 inherit pro_methods_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_cubic__controller_1_1_controller"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_cubic__controller_1_1_controller')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="class_cubic__controller_1_1_controller.html">Cubic_controller::Controller</a></td></tr>
+<tr class="memitem:a434b71b0de5ca29d6701377bb8e6b292 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a434b71b0de5ca29d6701377bb8e6b292"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a434b71b0de5ca29d6701377bb8e6b292">motorNo</a></td></tr>
+<tr class="memdesc:a434b71b0de5ca29d6701377bb8e6b292 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">モータ番号 <br /></td></tr>
+<tr class="separator:a434b71b0de5ca29d6701377bb8e6b292 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56d3b30c9d89f6a42c6cfa7d3a119735 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a56d3b30c9d89f6a42c6cfa7d3a119735"></a>
+enum <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a56d3b30c9d89f6a42c6cfa7d3a119735">encoderType</a></td></tr>
+<tr class="memdesc:a56d3b30c9d89f6a42c6cfa7d3a119735 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダの種類 <br /></td></tr>
+<tr class="separator:a56d3b30c9d89f6a42c6cfa7d3a119735 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab95a325face8b012a325a5aced52db32 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="ab95a325face8b012a325a5aced52db32"></a>
+const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32">encoderNo</a></td></tr>
+<tr class="memdesc:ab95a325face8b012a325a5aced52db32 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダ番号 <br /></td></tr>
+<tr class="separator:ab95a325face8b012a325a5aced52db32 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bea1f631b239f7639ef2822a8e2935b inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top">const uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a8bea1f631b239f7639ef2822a8e2935b">CPR</a></td></tr>
+<tr class="memdesc:a8bea1f631b239f7639ef2822a8e2935b inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">CPR(Counts Per Revolution)  <a href="class_cubic__controller_1_1_controller.html#a8bea1f631b239f7639ef2822a8e2935b">More...</a><br /></td></tr>
+<tr class="separator:a8bea1f631b239f7639ef2822a8e2935b inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f1ebb7ca05a63f853c0ba05dfa5d014 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a3f1ebb7ca05a63f853c0ba05dfa5d014"></a>
+const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a3f1ebb7ca05a63f853c0ba05dfa5d014">direction</a></td></tr>
+<tr class="memdesc:a3f1ebb7ca05a63f853c0ba05dfa5d014 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">モータをプラスの方向に回したとき、エンコーダが増加するかどうか <br /></td></tr>
+<tr class="separator:a3f1ebb7ca05a63f853c0ba05dfa5d014 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e8c4d2f85c09ff4241e8230b4df4dd1 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memItemLeft" align="right" valign="top"><a id="a1e8c4d2f85c09ff4241e8230b4df4dd1"></a>
+const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a1e8c4d2f85c09ff4241e8230b4df4dd1">logging</a></td></tr>
+<tr class="memdesc:a1e8c4d2f85c09ff4241e8230b4df4dd1 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログを出力するかどうか <br /></td></tr>
+<tr class="separator:a1e8c4d2f85c09ff4241e8230b4df4dd1 inherit pro_attribs_class_cubic__controller_1_1_controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス </p>
@@ -275,6 +281,73 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a96fe7aab61f7bfe4ed64bb364098cd05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96fe7aab61f7bfe4ed64bb364098cd05">&#9670;&nbsp;</a></span>compute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Cubic_controller::Position_PID::compute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>duty比を計算します。各ループで一回呼び出してください。このduty比は、DUTY_SPI_MAXに対する比です。計算された値は、この関数内部で、DC_motor::put()されます。 </p>
+<dl class="section return"><dt>Returns</dt><dd>double dutyCycle </dd></dl>
+
+<p>Implements <a class="el" href="class_cubic__controller_1_1_controller.html#a3bb16c0221017a29aba820deb0bc0413">Cubic_controller::Controller</a>.</p>
+
+</div>
+</div>
+<a id="a45b5fc12239906fba1c81e535c1fc0b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45b5fc12239906fba1c81e535c1fc0b2">&#9670;&nbsp;</a></span>setTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Cubic_controller::Position_PID::setTarget </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御量の目標値を設定します。 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="class_cubic__controller_1_1_controller.html#aa0b3b8435f4fe9a05a897e33c7700970">Cubic_controller::Controller</a>.</p>
 
 </div>
 </div>
