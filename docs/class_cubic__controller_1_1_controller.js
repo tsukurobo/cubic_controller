@@ -4,6 +4,7 @@ var class_cubic__controller_1_1_controller =
     [ "compute", "class_cubic__controller_1_1_controller.html#a3bb16c0221017a29aba820deb0bc0413", null ],
     [ "compute_PID", "class_cubic__controller_1_1_controller.html#a1ab41f329fe115a608a49acf7f6c6364", null ],
     [ "encoderToAngle", "class_cubic__controller_1_1_controller.html#a832aa55747b1d59fba432f840c1d494d", null ],
+    [ "getCurrent", "class_cubic__controller_1_1_controller.html#a44f49cb671fc6c23d940f55800630802", null ],
     [ "getDt", "class_cubic__controller_1_1_controller.html#afdb490dd8450f56a07d2481f9b5a691b", null ],
     [ "getDutyCycle", "class_cubic__controller_1_1_controller.html#ae2374603afcb31f62cd2449ec3bdd4bb", null ],
     [ "getTarget", "class_cubic__controller_1_1_controller.html#abb2e415eff27ba19476981487e8a7576", null ],

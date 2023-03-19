@@ -110,6 +110,7 @@ namespace Cubic_controller
         void setKd(double Kd);
         int32_t readEncoder() const;
         double getTarget() const;
+        double getCurrent() const;
         double getDutyCycle() const;
         double getDt() const;
         double encoderToAngle(int32_t encoder) const;
@@ -142,145 +143,21 @@ namespace Cubic_controller
         double compute() override;
     };
 
-    /**
-     * @brief 位置制御を行うためのクラスです。
-     *
-     */
-    class Position_PID
+
+    class Position_PID : public Controller
     {
     private:
-        PID::PID *pid;
-        uint8_t motorNo;
-        enum class encoderType encoderType;
-        uint8_t encoderNo;
-        uint16_t CPR;
-
-        double capableDutyCycle;
-        double dutyCycle;
-        double targetAngle;
-        bool direction;
-
-        bool logging;
         bool isGoingForward;
         bool isOverMax = false;
         bool isOverMin = false;
+        int8_t loopCount = 0;
 
     public:
-        /**
-         * @brief Construct a new Position_PID object
-         *
-         * @param motorNo
-         * @param encoderNo
-         * @param encoderType
-         * @param PPR エンコーダのPPR（CPRでないことに注意）
-         * @param capableDutyCycle モーターに与えられる最大のduty比。0~1の範囲で指定する。
-         * @param Kp
-         * @param Ki
-         * @param Kd
-         * @param targetAngle 目標角度[rad]
-         * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
-         * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはtrue。
-         */
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging = true);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
 
-        double compute();
-        void setTarget(double targetAngle);
-        void setGains(double Kp, double Ki, double Kd);
-        void setKp(double Kp);
-        void setKi(double Ki);
-        void setKd(double Kd);
-        double getTarget() const;
-        double getDuty() const;
-        double encoderToAngle(int32_t encoder) const;
+        double compute() override;
     };
 
-    /**
-     * @brief 目標角度を設定します。
-     *
-     * @param targetAngle [rad] -PI~PI
-     */
-    inline void Position_PID::setTarget(double targetAngle)
-    {
-        targetAngle = limitAngle(targetAngle);
-        this->targetAngle = targetAngle;
-        this->pid->setTarget(targetAngle);
-        double currentAngle = this->encoderToAngle(readEncoder(encoderNo, encoderType));
-        if (targetAngle - currentAngle >= 0)
-        {
-            isGoingForward = true;
-        }
-        else
-        {
-            isGoingForward = false;
-        }
-    }
-
-    /**
-     * @brief PIDゲインを（再）設定します。
-     *
-     * @param Kp
-     * @param Ki
-     * @param Kd
-     */
-    inline void Position_PID::setGains(const double Kp, const double Ki, const double Kd)
-    {
-        this->pid->setGains(Kp, Ki, Kd);
-    }
-    /**
-     * @brief Kpを設定します。
-     *
-     * @param Kp
-     */
-    inline void Position_PID::setKp(const double Kp)
-    {
-        this->pid->setKp(Kp);
-    }
-    /**
-     * @brief Kiを設定します。
-     *
-     * @param Ki
-     */
-    inline void Position_PID::setKi(const double Ki)
-    {
-        this->pid->setKi(Ki);
-    }
-    /**
-     * @brief Kdを設定します。
-     *
-     * @param Kd
-     */
-    inline void Position_PID::setKd(const double Kd)
-    {
-        this->pid->setKd(Kd);
-    }
-    /**
-     * @brief 目標角度を取得します。
-     *
-     * @return double [rad]
-     */
-    inline double Position_PID::getTarget() const
-    {
-        return this->targetAngle;
-    }
-    /**
-     * @brief Duty比を取得します。内部で計算は行われないので、マルチスレッドでもない限り使用は想定していません。
-     *
-     * @return int
-     */
-    inline double Position_PID::getDuty() const
-    {
-        return this->dutyCycle;
-    }
-    /**
-     * @brief エンコーダの値を角度に変換します。
-     *
-     * @param encoder
-     * @return double angle[rad] -PI~PI
-     */
-    inline double Position_PID::encoderToAngle(const int32_t encoder) const
-    {
-        return Cubic_controller::encoderToAngle(encoder, CPR, -PI);
-    }
 
     // Definition
 
@@ -311,6 +188,10 @@ namespace Cubic_controller
     inline double Controller::getTarget() const
     {
         return this->pid.getTarget();
+    }
+    inline double Controller::getCurrent() const
+    {
+        return this->pid.getCurrent();
     }
     inline double Controller::getDutyCycle() const
     {

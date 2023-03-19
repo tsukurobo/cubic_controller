@@ -80,6 +80,13 @@ namespace PID
         double getTarget() const;
 
         /**
+         * @brief 現在値を取得する。
+         *
+         * @return double 現在値
+         */
+        double getCurrent() const;
+
+        /**
          * @brief Duty比の取得
          * @details この関数は、compute()によって計算されるduty比を取得するのに使用する。この関数内では、計算は行われない。基本的にこの関数を使用しなければならない場面は、マルチスレッドでもない限り想定されない。
          *
@@ -132,6 +139,10 @@ namespace PID
     inline double PID::getTarget() const
     {
         return this->target;
+    }
+    inline double PID::getCurrent() const
+    {
+        return this->current;
     }
     inline double PID::getDuty() const
     {
