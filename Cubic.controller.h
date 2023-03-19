@@ -138,7 +138,7 @@ namespace Cubic_controller
          * @param PPR エンコーダのPPR（CPRでないことに注意）
          *
          */
-        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true, uint16_t PPR = 1024);
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = true);
         double compute() override;
     };
 
@@ -281,7 +281,6 @@ namespace Cubic_controller
     {
         return Cubic_controller::encoderToAngle(encoder, CPR, -PI);
     }
-
 
     // Definition
 

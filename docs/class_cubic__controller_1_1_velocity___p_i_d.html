@@ -106,9 +106,9 @@ Inheritance diagram for Cubic_controller::Velocity_PID:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6cc2f668f63e1a6c9a65665b64e6034">Velocity_PID</a> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true, uint16_t PPR=1024)</td></tr>
-<tr class="memdesc:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6cc2f668f63e1a6c9a65665b64e6034">More...</a><br /></td></tr>
-<tr class="separator:ab6cc2f668f63e1a6c9a65665b64e6034"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1af9aa765f11ba8ea1cf735c83bceae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ad1af9aa765f11ba8ea1cf735c83bceae">Velocity_PID</a> (uint8_t motorNo, uint8_t encoderNo, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging=true)</td></tr>
+<tr class="memdesc:ad1af9aa765f11ba8ea1cf735c83bceae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="速度制御を行うためのクラスです。">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ad1af9aa765f11ba8ea1cf735c83bceae">More...</a><br /></td></tr>
+<tr class="separator:ad1af9aa765f11ba8ea1cf735c83bceae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d6ffa210e350522c03a30411ab7c566"><td class="memItemLeft" align="right" valign="top"><a id="a4d6ffa210e350522c03a30411ab7c566"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>compute</b> () override</td></tr>
 <tr class="separator:a4d6ffa210e350522c03a30411ab7c566"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,8 +175,8 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>速度制御を行うためのクラスです。 </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab6cc2f668f63e1a6c9a65665b64e6034"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab6cc2f668f63e1a6c9a65665b64e6034">&#9670;&nbsp;</a></span>Velocity_PID()</h2>
+<a id="ad1af9aa765f11ba8ea1cf735c83bceae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1af9aa765f11ba8ea1cf735c83bceae">&#9670;&nbsp;</a></span>Velocity_PID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -198,6 +198,12 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
           <td></td>
           <td class="paramtype">enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>&#160;</td>
           <td class="paramname"><em>encoderType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>PPR</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -239,13 +245,7 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>logging</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>PPR</em> = <code>1024</code>&#160;</td>
+          <td class="paramname"><em>logging</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

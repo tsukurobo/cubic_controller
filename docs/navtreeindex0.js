@@ -51,7 +51,7 @@ var NAVTREEINDEX0 =
 "class_cubic__controller_1_1_position___p_i_d.html#aeb300c811e0dfd824314a0e2bc411856":[1,0,0,1,7],
 "class_cubic__controller_1_1_velocity___p_i_d.html":[1,0,0,2],
 "class_cubic__controller_1_1_velocity___p_i_d.html#a4d6ffa210e350522c03a30411ab7c566":[1,0,0,2,1],
-"class_cubic__controller_1_1_velocity___p_i_d.html#ab6cc2f668f63e1a6c9a65665b64e6034":[1,0,0,2,0],
+"class_cubic__controller_1_1_velocity___p_i_d.html#ad1af9aa765f11ba8ea1cf735c83bceae":[1,0,0,2,0],
 "class_d_c__motor.html":[1,0,4],
 "class_inc__enc.html":[1,0,5],
 "class_p_i_d_1_1_p_i_d.html":[1,0,1,0],
