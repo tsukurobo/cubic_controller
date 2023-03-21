@@ -106,7 +106,28 @@ namespace Cubic_controller
         double actualAngle = currentAngle;
         static double prevAngle = currentAngle;
         static double dutyCycle = 0.0;
-        if (encoder <= 16384)
+        if (encoder == ABS_ENC_ERR_RP2040)
+        { // RP2040でエンコーダを正しく読めなかったとき e.g.)エンコーダが繋がっていない・線材の接触不良
+            if (logging)
+            {
+                Serial.println("ERROR: ABS_ENC_ERR_RP2040. Skipping this loop.");
+            }
+        }
+        else if (encoder == ABS_ENC_ERR)
+        { // ArduinoとRP2040間のSPI通信でバグがある，または引数が間違っている
+            if (logging)
+            {
+                Serial.println("ERROR: ABS_ENC_ERR. Skipping this loop.");
+            }
+        }
+        else if (encoder > ABS_ENC_MAX)
+        { // エンコーダの値が異常
+            if (logging)
+            {
+                Serial.println("ERROR: encoder > ABS_ENC_MAX. Skipping this loop.");
+            }
+        }
+        else
         {
             if (isGoingForward)
             {
@@ -144,13 +165,6 @@ namespace Cubic_controller
 
             dutyCycle = this->compute_PID(currentAngle);
             prevAngle = actualAngle;
-        }
-        else
-        {
-            if (logging)
-            {
-                Serial.println("ERROR: encoder > 16384. Skipping this loop.");
-            }
         }
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
