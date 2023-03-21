@@ -143,6 +143,7 @@ namespace Cubic_controller
             }
 
             dutyCycle = this->compute_PID(currentAngle);
+            prevAngle = actualAngle;
         }
         else
         {
