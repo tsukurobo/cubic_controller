@@ -10,10 +10,10 @@
 namespace Cubic_controller
 {
     /**
-     * @brief AMT22のPPRです
-     * @details PPR: Pulse Per Revolution
+     * @brief AMT22のCPRです
+     * @details CPR: Counts Per Revolution
      */
-    constexpr uint16_t AMT22_PPR = 16384 / 4;
+    constexpr uint16_t AMT22_CPR = 16384;
 
     /**
      * @brief 度数法から弧度法に変換します
@@ -117,7 +117,7 @@ namespace Cubic_controller
          * @param motorNo
          * @param encoderNo
          * @param encoderType
-         * @param PPR
+         * @param CPR
          * @param capableDutyCycle
          * @param Kp
          * @param Ki
@@ -127,7 +127,7 @@ namespace Cubic_controller
          * @param direction
          * @param logging
          */
-        Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging = false);
+        Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging = false);
 
         /**
          * @brief duty比を計算します。各ループで一回呼び出してください。このduty比は、DUTY_SPI_MAXに対する比です。計算された値は、この関数内部で、DC_motor::put()されます。
@@ -213,7 +213,7 @@ namespace Cubic_controller
          * @param motorNo モータ番号
          * @param encoderNo エンコーダ番号
          * @param encoderType エンコーダの種類
-         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         * @param CPR エンコーダのCPR（PPRでないことに注意。CPR=PPR*4）
          * @param capableDutyCycle 最大許容デューティ比。0.0~1.0
          * @param Kp
          * @param Ki
@@ -223,7 +223,7 @@ namespace Cubic_controller
          * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはfalse。
          *
          */
-        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
         double compute() override;
     };
 
@@ -244,7 +244,7 @@ namespace Cubic_controller
          * @param motorNo モータ番号
          * @param encoderNo エンコーダ番号
          * @param encoderType エンコーダの種類
-         * @param PPR エンコーダのPPR（CPRでないことに注意）
+         * @param CPR エンコーダのCPR（PPRでないことに注意。CPR=PPR*4）
          * @param capableDutyCycle 最大許容デューティ比。0.0~1.0
          * @param Kp
          * @param Ki
@@ -253,7 +253,7 @@ namespace Cubic_controller
          * @param direction モーターに正のdutyを与えたときに、エンコーダが正方向に回転するかどうか。trueなら正方向、falseなら負方向。
          * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはfalse。
          */
-        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
+        Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
 
         void setTarget(double target) override;
         double compute() override;

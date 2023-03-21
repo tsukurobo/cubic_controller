@@ -11,5 +11,5 @@ var _cubic_8controller_8h =
     [ "encoderToAngle", "_cubic_8controller_8h.html#a612fdd92321a6b5dde0d8b92039f9510", null ],
     [ "limitAngle", "_cubic_8controller_8h.html#aacff23dd194b2907fd9e6bac9c3b83d2", null ],
     [ "readEncoder", "_cubic_8controller_8h.html#a42397c414435fe73457f7a4b7454d466", null ],
-    [ "AMT22_PPR", "_cubic_8controller_8h.html#a73e0b36f48edd36b710cac5af48a5717", null ]
+    [ "AMT22_CPR", "_cubic_8controller_8h.html#a90e62825138363e960981b013b05e881", null ]
 ];
