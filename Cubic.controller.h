@@ -263,7 +263,7 @@ namespace Cubic_controller
 
     inline double Controller::compute_PID(const double current)
     {
-        return dutyCycle = this->pid.compute(current, logging);
+        return dutyCycle = this->pid.compute_PID(current, logging);
     }
     inline void Controller::setTarget(const double target)
     {

@@ -44,15 +44,6 @@ namespace PID
         PID(double capableDutyCycle, double Kp, double Ki, double Kd, double current, double target, bool direction);
 
         /**
-         * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
-         *
-         * @param current 制御量の現在値
-         * @param ifPrint 関数中で情報をSerial.print()するかどうか。省略可能（デフォルトはfalse）主にデバッグ時の使用を想定している。
-         * @return int 計算されたduty比を返す。
-         */
-        int compute(double current, bool ifPrint = false) {}
-
-        /**
          * @brief ゲインを変更する。
          *
          * @param Kp 比例ゲイン
@@ -115,10 +106,10 @@ namespace PID
          * @brief PID制御を行う関数
          *
          * @param current 現在値
-         * @param ifPrint ログを出力するかどうか
+         * @param logging ログを出力するかどうか。省略可能で、デフォルトではfalse。
          * @return int duty比
          */
-        double compute_PID(double current, bool ifPrint);
+        double compute_PID(double current, bool logging = false);
 
         /**
          * @brief Get the Dt object

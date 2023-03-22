@@ -79,23 +79,6 @@ namespace Cubic_controller
             Serial.print("current angle:");
             Serial.print(currentAngle);
             Serial.print(",");
-            Serial.print("isGoingForward:");
-        }
-        if (targetAngle - currentAngle >= 0)
-        {
-            if (logging)
-            {
-                Serial.println("true");
-            }
-            isGoingForward = true;
-        }
-        else
-        {
-            if (logging)
-            {
-                Serial.println("false");
-            }
-            isGoingForward = false;
         }
     }
 
@@ -110,45 +93,39 @@ namespace Cubic_controller
         { // RP2040でエンコーダを正しく読めなかったとき e.g.)エンコーダが繋がっていない・線材の接触不良
             if (logging)
             {
-                Serial.println("ERROR: ABS_ENC_ERR_RP2040. Skipping this loop.");
+                Serial.print("ERROR: ABS_ENC_ERR_RP2040. Skipping this loop.");
             }
         }
         else if (encoder == ABS_ENC_ERR)
         { // ArduinoとRP2040間のSPI通信でバグがある，または引数が間違っている
             if (logging)
             {
-                Serial.println("ERROR: ABS_ENC_ERR. Skipping this loop.");
+                Serial.print("ERROR: ABS_ENC_ERR. Skipping this loop.");
             }
         }
         else if (encoder > ABS_ENC_MAX)
         { // エンコーダの値が異常
             if (logging)
             {
-                Serial.println("ERROR: encoder > ABS_ENC_MAX. Skipping this loop.");
+                Serial.print("ERROR: encoder > ABS_ENC_MAX. Skipping this loop.");
             }
         }
         else
         {
-            if (isGoingForward)
+            if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
             {
-                if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
-                {
-                    loopCount++;
-                }
+                loopCount++;
             }
-            else
+            if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
             {
-                if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
-                {
-                    loopCount--;
-                }
+                loopCount--;
             }
             currentAngle += loopCount * TWO_PI;
 
             if (logging)
             {
-                Serial.print("current enc:");
-                Serial.print(encoder);
+                Serial.print("actual angle:");
+                Serial.print(actualAngle);
                 Serial.print(",");
                 Serial.print("current angle:");
                 Serial.print(currentAngle);
@@ -156,15 +133,18 @@ namespace Cubic_controller
                 Serial.print("target angle:");
                 Serial.print(this->getTarget());
                 Serial.print(",");
-                Serial.print("isGoingForward:");
-                Serial.print(isGoingForward);
-                Serial.print(",");
                 Serial.print("loopCount:");
-                Serial.println(loopCount);
+                Serial.print(loopCount);
+                Serial.print(",");
             }
 
             dutyCycle = this->compute_PID(currentAngle);
             prevAngle = actualAngle;
+        }
+        if (logging)
+        {
+            Serial.print("dutyCycle:");
+            Serial.println(dutyCycle);
         }
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
