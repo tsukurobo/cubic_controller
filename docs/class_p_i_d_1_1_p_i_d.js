@@ -1,8 +1,7 @@
 var class_p_i_d_1_1_p_i_d =
 [
     [ "PID", "class_p_i_d_1_1_p_i_d.html#a4ef4ef504e138a964242fc62be3eabcc", null ],
-    [ "compute", "class_p_i_d_1_1_p_i_d.html#a10fcff99e2dfb44054a013ac525797f5", null ],
-    [ "compute_PID", "class_p_i_d_1_1_p_i_d.html#ae2408f1ccc1cc1795c31645a6a87222b", null ],
+    [ "compute_PID", "class_p_i_d_1_1_p_i_d.html#aeda31487e68802eb49aa7792d2153075", null ],
     [ "getCurrent", "class_p_i_d_1_1_p_i_d.html#aaf8ea7b4861a11b9f93e7f0f040288f9", null ],
     [ "getDt", "class_p_i_d_1_1_p_i_d.html#a19503e945e078d0d6b6f973a9018a59b", null ],
     [ "getDuty", "class_p_i_d_1_1_p_i_d.html#ad8d04e1b2c93616f86c6afb575a77ca0", null ],
