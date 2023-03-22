@@ -137,7 +137,7 @@ $(document).ready(function(){initNavTree('_p_i_d_8h_source.html',''); initResiza
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        <span class="keywordtype">double</span> getCurrent() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordtype">double</span> getDuty() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordtype">double</span> getDutyCycle() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordtype">double</span> compute_PID(<span class="keywordtype">double</span> current, <span class="keywordtype">bool</span> logging = <span class="keyword">false</span>);</div>
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
@@ -177,7 +177,7 @@ $(document).ready(function(){initNavTree('_p_i_d_8h_source.html',''); initResiza
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        <span class="keywordflow">return</span> this-&gt;current;</div>
 <div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    }</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="class_p_i_d_1_1_p_i_d.html#ad8d04e1b2c93616f86c6afb575a77ca0">  153</a></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_p_i_d_1_1_p_i_d.html#ad8d04e1b2c93616f86c6afb575a77ca0">PID::getDuty</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="class_p_i_d_1_1_p_i_d.html#ae6d59668a76c701cc9d144a9bc2b469a">  153</a></span>    <span class="keyword">inline</span> <span class="keywordtype">double</span> <a class="code hl_function" href="class_p_i_d_1_1_p_i_d.html#ae6d59668a76c701cc9d144a9bc2b469a">PID::getDutyCycle</a>()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="keyword">    </span>{</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> this-&gt;dutyCycle;</div>
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    }</div>
@@ -193,7 +193,7 @@ $(document).ready(function(){initNavTree('_p_i_d_8h_source.html',''); initResiza
 <div class="ttc" id="aclass_p_i_d_1_1_p_i_d_html_a885661b37b26c26f87475a8c4f65b20a"><div class="ttname"><a href="class_p_i_d_1_1_p_i_d.html#a885661b37b26c26f87475a8c4f65b20a">PID::PID::getTarget</a></div><div class="ttdeci">double getTarget() const</div><div class="ttdoc">目標を取得する。</div><div class="ttdef"><b>Definition:</b> PID.h:145</div></div>
 <div class="ttc" id="aclass_p_i_d_1_1_p_i_d_html_aaf8ea7b4861a11b9f93e7f0f040288f9"><div class="ttname"><a href="class_p_i_d_1_1_p_i_d.html#aaf8ea7b4861a11b9f93e7f0f040288f9">PID::PID::getCurrent</a></div><div class="ttdeci">double getCurrent() const</div><div class="ttdoc">現在値を取得する。</div><div class="ttdef"><b>Definition:</b> PID.h:149</div></div>
 <div class="ttc" id="aclass_p_i_d_1_1_p_i_d_html_acffc053f914c175bc4be573a0f53b540"><div class="ttname"><a href="class_p_i_d_1_1_p_i_d.html#acffc053f914c175bc4be573a0f53b540">PID::PID::setGains</a></div><div class="ttdeci">void setGains(double Kp, double Ki, double Kd)</div><div class="ttdoc">ゲインを変更する。</div><div class="ttdef"><b>Definition:</b> PID.h:123</div></div>
-<div class="ttc" id="aclass_p_i_d_1_1_p_i_d_html_ad8d04e1b2c93616f86c6afb575a77ca0"><div class="ttname"><a href="class_p_i_d_1_1_p_i_d.html#ad8d04e1b2c93616f86c6afb575a77ca0">PID::PID::getDuty</a></div><div class="ttdeci">double getDuty() const</div><div class="ttdoc">Duty比の取得</div><div class="ttdef"><b>Definition:</b> PID.h:153</div></div>
+<div class="ttc" id="aclass_p_i_d_1_1_p_i_d_html_ae6d59668a76c701cc9d144a9bc2b469a"><div class="ttname"><a href="class_p_i_d_1_1_p_i_d.html#ae6d59668a76c701cc9d144a9bc2b469a">PID::PID::getDutyCycle</a></div><div class="ttdeci">double getDutyCycle() const</div><div class="ttdoc">Duty比の取得</div><div class="ttdef"><b>Definition:</b> PID.h:153</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

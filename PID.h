@@ -94,11 +94,11 @@ namespace PID
 
         /**
          * @brief Duty比の取得
-         * @details この関数は、compute()によって計算されるduty比を取得するのに使用する。この関数内では、計算は行われない。基本的にこの関数を使用しなければならない場面は、マルチスレッドでもない限り想定されない。
+         * @details この関数は、compute_PID()によって計算されるduty比を取得するのに使用する。この関数内では、計算は行われない。基本的にこの関数を使用しなければならない場面は、マルチスレッドでもない限り想定されない。
          *
          * @return int duty比
          */
-        double getDuty() const;
+        double getDutyCycle() const;
 
         /**
          * @brief PID制御を行う関数
@@ -150,7 +150,7 @@ namespace PID
     {
         return this->current;
     }
-    inline double PID::getDuty() const
+    inline double PID::getDutyCycle() const
     {
         return this->dutyCycle;
     }

@@ -108,7 +108,7 @@ namespace Cubic_controller
         const bool logging;
 
         /**
-         * @brief pid.compute()を呼ぶだけの関数です。
+         * @brief pid.compute_PID()を呼ぶだけの関数です。
          *
          * @param current
          * @return double
