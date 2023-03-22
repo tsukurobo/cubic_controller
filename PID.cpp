@@ -52,8 +52,7 @@ namespace PID
       Serial.print(target);
       Serial.print(",diff:");
       Serial.print(diff);
-      Serial.print(",dutyCycle:");
-      Serial.println(dutyCycle);
+      Serial.print(",");
     }
     return dutyCycle;
   }

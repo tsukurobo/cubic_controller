@@ -127,12 +127,6 @@ namespace Cubic_controller
                 Serial.print("actual angle:");
                 Serial.print(actualAngle);
                 Serial.print(",");
-                Serial.print("current angle:");
-                Serial.print(currentAngle);
-                Serial.print(",");
-                Serial.print("target angle:");
-                Serial.print(this->getTarget());
-                Serial.print(",");
                 Serial.print("loopCount:");
                 Serial.print(loopCount);
                 Serial.print(",");
