@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['readencoder_0',['readEncoder',['../_cubic_8controller_8cpp.html#a134724d8c8b9b727892c68036b77009f',1,'Cubic_controller::readEncoder(const uint8_t encoderNo, const enum encoderType encoderType)'],['../_cubic_8controller_8h.html#ad1b8bfe548ce76ba061757a597e5046e',1,'Cubic_controller::readEncoder(uint8_t encoderNo, enum encoderType encoderType)']]],
-  ['readme_1',['Readme',['../index.html',1,'']]]
+  ['pid_0',['PID',['../class_p_i_d_1_1_p_i_d.html#a4ef4ef504e138a964242fc62be3eabcc',1,'PID::PID::PID()'],['../class_p_i_d_1_1_p_i_d.html',1,'PID::PID']]],
+  ['position_5fpid_1',['Position_PID',['../class_cubic__controller_1_1_position___p_i_d.html',1,'Cubic_controller::Position_PID'],['../class_cubic__controller_1_1_position___p_i_d.html#adefe396448be4eb09599d32b902fba02',1,'Cubic_controller::Position_PID::Position_PID()']]]
 ];

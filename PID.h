@@ -22,11 +22,10 @@ namespace PID
         double dutyCycle = 0;
         double capableDutyCycle;
 
-        double dutyCycleLimiter(); /* Limit the dutyCycle and reset integral if limited. */
-
         bool direction;
 
     public:
+        /// @brief dt[s]
         double dt;
 
         /**
@@ -43,14 +42,6 @@ namespace PID
         PID(double capableDutyCycle, double Kp, double Ki, double Kd, double current, double target, bool direction);
 
         /**
-         * @brief 制御量（モーターのduty比）の計算を行う。loop内で呼び出すことを想定している。
-         *
-         * @param ifPrint 関数中で情報をSerial.print()するかどうか。省略可能（デフォルトはfalse）主にデバッグ時の使用を想定している。
-         * @return int 計算されたduty比を返す。
-         */
-        int compute(double current, bool ifPrint = false) {}
-
-        /**
          * @brief ゲインを変更する。
          *
          * @param Kp 比例ゲイン
@@ -59,10 +50,25 @@ namespace PID
          */
         void setGains(double Kp, double Ki, double Kd);
 
+        /**
+         * @brief Set the Kp object
+         *
+         * @param Kp
+         */
         void setKp(double Kp);
 
+        /**
+         * @brief Set the Ki object
+         *
+         * @param Ki
+         */
         void setKi(double Ki);
 
+        /**
+         * @brief Set the Kd object
+         *
+         * @param Kd
+         */
         void setKd(double Kd);
 
         /**
@@ -80,26 +86,33 @@ namespace PID
         double getTarget() const;
 
         /**
+         * @brief 現在値を取得する。
+         *
+         * @return double 現在値
+         */
+        double getCurrent() const;
+
+        /**
          * @brief Duty比の取得
-         * @details この関数は、compute()によって計算されるduty比を取得するのに使用する。この関数内では、計算は行われない。基本的にこの関数を使用しなければならない場面は、マルチスレッドでもない限り想定されない。
+         * @details この関数は、compute_PID()によって計算されるduty比を取得するのに使用する。この関数内では、計算は行われない。基本的にこの関数を使用しなければならない場面は、マルチスレッドでもない限り想定されない。
          *
          * @return int duty比
          */
-        double getDuty() const;
+        double getDutyCycle() const;
 
         /**
          * @brief PID制御を行う関数
          *
          * @param current 現在値
-         * @param ifPrint ログを出力するかどうか
+         * @param logging ログを出力するかどうか。省略可能で、デフォルトではfalse。
          * @return int duty比
          */
-        double compute_PID(double current, bool ifPrint);
+        double compute_PID(double current, bool logging = false);
 
         /**
          * @brief Get the Dt object
          *
-         * @return double dt
+         * @return double dt[s]
          */
         double getDt() const
         {
@@ -133,18 +146,13 @@ namespace PID
     {
         return this->target;
     }
-    inline double PID::getDuty() const
+    inline double PID::getCurrent() const
+    {
+        return this->current;
+    }
+    inline double PID::getDutyCycle() const
     {
         return this->dutyCycle;
-    }
-    inline double PID::dutyCycleLimiter()
-    {
-        if (abs(dutyCycle) > capableDutyCycle)
-            integral = 0; // Anti-windup
-        dutyCycle = dutyCycle > capableDutyCycle    ? capableDutyCycle
-                    : dutyCycle < -capableDutyCycle ? -capableDutyCycle
-                                                    : dutyCycle;
-        return dutyCycle;
     }
 
 }

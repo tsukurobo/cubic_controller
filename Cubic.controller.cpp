@@ -6,7 +6,7 @@
 
 namespace Cubic_controller
 {
-    int32_t readEncoder(const uint8_t encoderNo, const enum encoderType encoderType)
+    int32_t readEncoder(const uint8_t encoderNo, const enum class encoderType encoderType)
     {
         if (encoderType == encoderType::inc)
         {
@@ -18,28 +18,41 @@ namespace Cubic_controller
         }
     }
 
-    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging, uint16_t PPR) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), CPR(4 * PPR)
+    constexpr double limitAngle(double angle, const double min)
     {
-        constexpr double current = 0.0;
-        pid = new PID::PID(this->capableDutyCycle, Kp, Ki, Kd, current, target, direction);
+        while (angle < min)
+        {
+            angle += TWO_PI;
+        }
+        while (angle >= min + TWO_PI)
+        {
+            angle -= TWO_PI;
+        }
+        return angle;
+    }
 
+    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR, const double offset)
+    {
+        return limitAngle(offset + encoder * (TWO_PI / (double)CPR));
+    }
+
+    Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(CPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), pid(*(new PID::PID(capableDutyCycle, Kp, Ki, Kd, current, target, direction)))
+    {
+    }
+
+    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging) : Controller(motorNo, encoderNo, encoderType, CPR, capableDutyCycle, Kp, Ki, Kd, target, 0.0, direction, logging)
+    {
         if (encoderType == encoderType::abs)
         {
-            Serial.println("ERROR!! encoderType is abs");
+            Serial.println("ERROR!! Absolute encoder can't be used for velocity PID.");
         }
     }
 
     double Velocity_PID::compute()
     {
-        int32_t encoder = readEncoder(encoderNo, encoderType);
-        if (logging)
-        {
-            Serial.print("encoder:");
-            Serial.print(encoder);
-            Serial.print(",");
-        }
-        double angle = encoderToAngle(encoder, this->CPR);
-        double velocity = angle / this->pid->getDt();
+        int32_t encoder = this->readEncoder();
+        double angle = this->encoderToAngle(encoder);
+        double velocity = angle / this->getDt();
         if (logging)
         {
             Serial.print("angle:");
@@ -49,112 +62,83 @@ namespace Cubic_controller
             Serial.print(velocity);
             Serial.print(",");
         }
-        dutyCycle = pid->compute_PID(velocity, logging);
+        double dutyCycle = this->compute_PID(velocity);
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
     }
 
-    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t PPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(4 * PPR), capableDutyCycle(capableDutyCycle), targetAngle(targetAngle), direction(direction), logging(logging)
+    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging) : Controller(motorNo, encoderNo, encoderType, CPR, capableDutyCycle, Kp, Ki, Kd, targetAngle, this->encoderToAngle(this->readEncoder()), direction, logging)
     {
-        int32_t encoder = readEncoder(encoderNo, encoderType);
-        double currentAngle = this->encoderToAngle(encoder);
-        pid = new PID::PID(capableDutyCycle, Kp, Ki, Kd, currentAngle, targetAngle, direction);
+        if (encoderType == encoderType::inc)
+        {
+            Serial.println("ERROR!! Incremental encoder can't be used for position PID.");
+        }
+        double currentAngle = this->getCurrent();
         if (logging)
         {
             Serial.print("current angle:");
             Serial.print(currentAngle);
             Serial.print(",");
         }
-        if (targetAngle - currentAngle >= 0)
-        {
-            if (logging)
-            {
-                Serial.print("isGoingForward:");
-                Serial.println("true");
-            }
-            isGoingForward = true;
-        }
-        else
-        {
-            if (logging)
-            {
-                Serial.print("isGoingForward:");
-                Serial.println("false");
-            }
-            isGoingForward = false;
-        }
-        if (encoderType == encoderType::inc)
-        {
-            Serial.println("ERROR!! encoderType is inc");
-        }
     }
 
     double Position_PID::compute()
     {
-        int32_t encoder = readEncoder(encoderNo, encoderType);
-        if (encoder <= 16384)
+        int32_t encoder = this->readEncoder();
+        double currentAngle = this->encoderToAngle(encoder);
+        double actualAngle = currentAngle;
+        static double prevAngle = currentAngle;
+        static double dutyCycle = 0.0;
+        if (encoder == ABS_ENC_ERR_RP2040)
+        { // RP2040でエンコーダを正しく読めなかったとき e.g.)エンコーダが繋がっていない・線材の接触不良
+            if (logging)
+            {
+                Serial.print("ERROR: ABS_ENC_ERR_RP2040. Skipping this loop.");
+            }
+        }
+        else if (encoder == ABS_ENC_ERR)
+        { // ArduinoとRP2040間のSPI通信でバグがある，または引数が間違っている
+            if (logging)
+            {
+                Serial.print("ERROR: ABS_ENC_ERR. Skipping this loop.");
+            }
+        }
+        else if (encoder > ABS_ENC_MAX)
+        { // エンコーダの値が異常
+            if (logging)
+            {
+                Serial.print("ERROR: encoder > ABS_ENC_MAX. Skipping this loop.");
+            }
+        }
+        else
         {
-            double currentAngle = this->encoderToAngle(encoder);
-            double actualAngle = currentAngle;
-            static double prevAngle = currentAngle;
-            if (logging)
+            if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
             {
-                Serial.print("current enc:");
-                Serial.print(encoder);
-                Serial.print(",");
-                // Serial.print("current angle:");
-                // Serial.print(currentAngle);
-                // Serial.print(",");
-                // Serial.print("target angle:");
-                // Serial.print(this->targetAngle);
-                // Serial.print(",");
-                // Serial.print("isGoingForward:");
-                // Serial.print(isGoingForward);
-                // Serial.print(",");
+                loopCount++;
             }
+            if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
+            {
+                loopCount--;
+            }
+            currentAngle += loopCount * TWO_PI;
 
-            if (isGoingForward)
-            {
-                if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
-                {
-                    isOverMax = true;
-                }
-            }
-            else
-            {
-                if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
-                {
-                    isOverMin = true;
-                }
-            }
             if (logging)
             {
-                Serial.print("isOverMax:");
-                Serial.print(isOverMax);
+                Serial.print("actual angle:");
+                Serial.print(actualAngle);
                 Serial.print(",");
-                Serial.print("isOverMin:");
-                Serial.print(isOverMin);
+                Serial.print("loopCount:");
+                Serial.print(loopCount);
                 Serial.print(",");
             }
 
-            dutyCycle = pid->compute_PID(currentAngle, logging);
-            if (isOverMax)
-            {
-                if (currentAngle > 5 * PI / 6)
-                {
-                    isOverMax = false;
-                }
-                dutyCycle = capableDutyCycle * (direction ? -1.0 : 1.0);
-            }
-            else if (isOverMin)
-            {
-                if (currentAngle < -5 * PI / 6)
-                {
-                    isOverMin = false;
-                }
-                dutyCycle = capableDutyCycle * (direction ? 1.0 : -1.0);
-            }
+            dutyCycle = this->compute_PID(currentAngle);
             prevAngle = actualAngle;
+        }
+        if (logging)
+        {
+            Serial.print("dutyCycle:");
+            Serial.println(dutyCycle);
         }
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
