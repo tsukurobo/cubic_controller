@@ -22,8 +22,6 @@ namespace PID
         double dutyCycle = 0;
         double capableDutyCycle;
 
-        double dutyCycleLimiter(); /* Limit the dutyCycle and reset integral if limited. */
-
         bool direction;
 
     public:
@@ -155,15 +153,6 @@ namespace PID
     inline double PID::getDuty() const
     {
         return this->dutyCycle;
-    }
-    inline double PID::dutyCycleLimiter()
-    {
-        if (abs(dutyCycle) > capableDutyCycle)
-            integral = 0; // Anti-windup
-        dutyCycle = dutyCycle > capableDutyCycle    ? capableDutyCycle
-                    : dutyCycle < -capableDutyCycle ? -capableDutyCycle
-                                                    : dutyCycle;
-        return dutyCycle;
     }
 
 }
