@@ -1,6 +1,6 @@
 /* This is a sample program for Cubic Control Library. */
 #include <Arduino.h>
-#include "cubic_arduino_ver2.5.h"
+#include "cubic_arduino_ver2.6.h"
 #include "PID.h"
 #include "Cubic.controller.h"
 
