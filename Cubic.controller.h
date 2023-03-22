@@ -7,6 +7,28 @@
 #include "PID.h"
 #include "cubic_arduino_ver2.6.h"
 
+/**
+ * @brief 度数法から弧度法に変換します
+ *
+ * @param deg
+ * @return constexpr double
+ */
+constexpr double degToRad(double deg)
+{
+    return deg * DEG_TO_RAD;
+}
+
+/**
+ * @brief 弧度法から度数法に変換します
+ *
+ * @param rad
+ * @return constexpr double
+ */
+constexpr double radToDeg(double rad)
+{
+    return rad * RAD_TO_DEG;
+}
+
 namespace Cubic_controller
 {
     /**
@@ -14,17 +36,6 @@ namespace Cubic_controller
      * @details CPR: Counts Per Revolution
      */
     constexpr uint16_t AMT22_CPR = 16384;
-
-    /**
-     * @brief 度数法から弧度法に変換します
-     *
-     * @param deg
-     * @return constexpr double
-     */
-    constexpr double degToRad(double deg)
-    {
-        return deg * DEG_TO_RAD;
-    }
 
     /**
      * @brief エンコーダの種類を示します
