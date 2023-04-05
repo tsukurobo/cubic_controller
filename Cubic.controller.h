@@ -5,7 +5,7 @@
 #pragma once
 #include <Arduino.h>
 #include "PID.h"
-#include "cubic_arduino_ver2.6.h"
+#include "cubic_arduino.h"
 
 /**
  * @brief 度数法から弧度法に変換します

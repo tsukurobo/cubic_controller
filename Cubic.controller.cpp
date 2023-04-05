@@ -63,6 +63,11 @@ namespace Cubic_controller
             Serial.print(",");
         }
         double dutyCycle = this->compute_PID(velocity);
+        if (logging)
+        {
+            Serial.print("dutyCycle:");
+            Serial.println(dutyCycle);
+        }
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
     }
