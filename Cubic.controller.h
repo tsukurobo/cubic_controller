@@ -245,7 +245,6 @@ namespace Cubic_controller
     class Position_PID : public Controller
     {
     private:
-        bool isGoingForward;
         int8_t loopCount = 0;
 
     public:
@@ -282,7 +281,6 @@ namespace Cubic_controller
     }
     inline void Position_PID::setTarget(const double target)
     {
-        this->isGoingForward = (target - this->getCurrent()) >= 0;
         Controller::setTarget(target);
     }
     inline void Controller::setGains(const double Kp, const double Ki, const double Kd)
