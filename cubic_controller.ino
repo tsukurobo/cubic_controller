@@ -8,10 +8,6 @@ void setup()
 {
   Cubic::begin();
   Serial.begin(115200);
-  /* ↓魔術（消すと最初の数回エンコーダの値が読めないので消すな！！） */
-  Cubic::update();
-  Cubic::update();
-  Cubic::update();
 }
 
 void loop()
