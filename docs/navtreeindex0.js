@@ -64,7 +64,7 @@ var NAVTREEINDEX0 =
 "class_p_i_d_1_1_p_i_d.html#aeda31487e68802eb49aa7792d2153075":[1,0,1,0,1],
 "class_solenoid.html":[1,0,6],
 "classes.html":[1,1],
-"cubic__arduino__ver2_86_8h_source.html":[2,0,2],
+"cubic__arduino_8h_source.html":[2,0,2],
 "files.html":[2,0],
 "functions.html":[1,3,0],
 "functions_func.html":[1,3,1],
