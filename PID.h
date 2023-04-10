@@ -16,7 +16,7 @@ namespace PID
         double target;
         double diff;
         double preDiff;
-        long double integral;
+        double integral;
         unsigned long preMicros;
 
         double dutyCycle = 0;

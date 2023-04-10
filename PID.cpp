@@ -37,6 +37,10 @@ namespace PID
     integral += (diff + preDiff) * dt / 2.0;
     dutyCycle = Kp * diff + Ki * integral + Kd * (diff - preDiff) / dt;
 
+    Serial.print("integral:");
+    Serial.print(integral);
+    Serial.print(",");
+
     if (dutyCycle > capableDutyCycle)
     {
       integral -= (diff + preDiff) * dt / 2.0;
