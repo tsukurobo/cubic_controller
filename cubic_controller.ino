@@ -1,6 +1,6 @@
 /* This is a sample program for Cubic Control Library. */
 #include <Arduino.h>
-#include "cubic_arduino_ver2.6.h"
+#include "cubic_arduino.h"
 #include "PID.h"
 #include "Cubic.controller.h"
 
@@ -8,16 +8,12 @@ void setup()
 {
   Cubic::begin();
   Serial.begin(115200);
-  /* ↓魔術（消すと最初の数回エンコーダの値が読めないので消すな！！） */
-  Cubic::update();
-  Cubic::update();
-  Cubic::update();
 }
 
 void loop()
 {
   using namespace Cubic_controller;
-  static Velocity_PID velocityPID(6, 5, encoderType::inc, 512*4, 0.5, 0.04, 0, 0, 15.0, true, true);
+  static Velocity_PID velocityPID(0, 0, encoderType::inc, 2048 * 4, 0.5, 0.5, 0.5, 0.1, 0.4, false, true);
   static Position_PID positionPID(1, 0, encoderType::abs, AMT22_CPR, 0.5, 0.4, 0.1, 0.0, degToRad(90.0), true, true);
   static bool stopFlag = false;
   if (Serial.available() > 0)
@@ -59,8 +55,8 @@ void loop()
   }
   else
   {
-    // velocityPID.compute();
-    positionPID.compute();
+    velocityPID.compute();
+    // positionPID.compute();
   }
   Cubic::update();
   delay(1);

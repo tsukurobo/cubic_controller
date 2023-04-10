@@ -95,10 +95,13 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="textblock"><p ><a class="anchor" id="md_Readme"></a> このライブラリは、Cubic用の制御ライブラリです。</p>
 <p ><a class="el" href="class_cubic.html">Cubic</a> 2系に依存しています。</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-Usage</h1>
+About</h1>
 <p ><code><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス">Cubic_controller::Velocity_PID</a></code> により速度制御を行います。<code>target</code>は、目標速度[rad/s]です。</p>
-<p ><code><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html" title="アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス">Cubic_controller::Position_PID</a></code> により位置制御を行います。<code>target</code>は、目標位置です。（コンストラクタ呼び出し時を0とした角度[rad]）</p>
-<p >それぞれ、内部で<code>DC_motor::put()</code>しています。 </p>
+<p ><code><a class="el" href="class_cubic__controller_1_1_position___p_i_d.html" title="アブソリュートエンコーダを用いた、DCモータの位置制御を行うためのクラス">Cubic_controller::Position_PID</a></code> により位置制御を行います。<code>target</code>は、目標位置（角度[rad]）です。</p>
+<p >それぞれ、内部で<code>DC_motor::put()</code>しています。</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Usage</h1>
+<p >初めに、各クラスのオブジェクト（例えば速度制御なら<code><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス">Cubic_controller::Velocity_PID</a></code>）を、コンストラクタにより作成します。 各ループにおいて、<code>compute()</code>を実行します。 これにより、自動的に、適当なduty比が<code>DC_motor::put()</code>されます。 </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
