@@ -4,7 +4,10 @@
 
 namespace PID
 {
+    constexpr bool EXCEED_MICROS_LIMIT = false;
+
     constexpr unsigned long MAX_MICROSECONDS = ULONG_MAX;
+    constexpr double MICROSECONDS_TO_SECONDS = 1.0 / 1000000.0;
 
     class PID
     {
