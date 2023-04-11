@@ -114,11 +114,11 @@ namespace Cubic_controller
         }
         else
         {
-            if (currentAngle < -5 * PI / 6 && prevAngle > 5 * PI / 6)
+            if (currentAngle < -LOOP_THRESHOLD && prevAngle > LOOP_THRESHOLD)
             {
                 loopCount++;
             }
-            if (currentAngle > 5 * PI / 6 && prevAngle < -5 * PI / 6)
+            if (currentAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD)
             {
                 loopCount--;
             }

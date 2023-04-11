@@ -37,6 +37,9 @@ namespace Cubic_controller
      */
     constexpr uint16_t AMT22_CPR = 16384;
 
+    /// @brief アブソリュートエンコーダのループ閾値
+    constexpr double LOOP_THRESHOLD = 5.0 * PI / 6.0;
+
     /**
      * @brief エンコーダの種類を示します
      *
