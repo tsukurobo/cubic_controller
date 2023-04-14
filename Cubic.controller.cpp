@@ -118,7 +118,7 @@ namespace Cubic_controller
             {
                 loopCount++;
             }
-            if (currentAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD)
+            else if (currentAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD)
             {
                 loopCount--;
             }
