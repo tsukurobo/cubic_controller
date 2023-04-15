@@ -217,6 +217,9 @@ namespace Cubic_controller
      */
     class Velocity_PID : public Controller
     {
+    private:
+        double p;
+
     public:
         /**
          * @brief Construct a new Velocity_PID object
@@ -226,6 +229,7 @@ namespace Cubic_controller
          * @param encoderType エンコーダの種類
          * @param CPR エンコーダのCPR（PPRでないことに注意。CPR=PPR*4）
          * @param capableDutyCycle 最大許容デューティ比。0.0~1.0
+         * @param p ローパスフィルタの係数。0.0~1.0
          * @param Kp
          * @param Ki
          * @param Kd
@@ -234,7 +238,13 @@ namespace Cubic_controller
          * @param logging ログをSerial.printで出力するかどうか。省略可能で、デフォルトはfalse。
          *
          */
-        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
+        Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double p, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
+        /**
+         * @brief ローパスフィルタの係数pを設定します。
+         *
+         * @param p
+        */
+        void setLPF(double p);
         double compute() override;
     };
 
@@ -321,7 +331,7 @@ namespace Cubic_controller
     }
     inline int32_t Controller::readEncoder() const
     {
-        int32_t value = encoderType == encoderType::inc ? Inc_enc::get(encoderNo) : Abs_enc::get(encoderNo);
+        int32_t value = encoderType == encoderType::inc ? Inc_enc::get_diff(encoderNo) : Abs_enc::get(encoderNo);
         if (logging)
         {
             Serial.print("encoder:");
@@ -329,5 +339,9 @@ namespace Cubic_controller
             Serial.print(",");
         }
         return value;
+    }
+    inline void Velocity_PID::setLPF(const double p)
+    {
+        this->p = p;
     }
 }

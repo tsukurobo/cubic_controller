@@ -13,7 +13,7 @@ void setup()
 void loop()
 {
   using namespace Cubic_controller;
-  static Velocity_PID velocityPID(0, 0, encoderType::inc, 2048 * 4, 0.5, 0.5, 0.5, 0.1, 0.4, false, true);
+  static Velocity_PID velocityPID(0, 0, encoderType::inc, 2048 * 4, 0.5, 0.8, 1.0, 0.1, 0.1, 4.0, false, true);
   static Position_PID positionPID(1, 0, encoderType::abs, AMT22_CPR, 0.5, 0.4, 0.1, 0.0, degToRad(90.0), true, true);
   static bool stopFlag = false;
   if (Serial.available() > 0)
@@ -39,6 +39,9 @@ void loop()
     {
       velocityPID.setTarget(value);
       positionPID.setTarget(degToRad(value));
+    }
+    else if (c == 'l'){
+      velocityPID.setLPF(value);
     }
     else
     {
