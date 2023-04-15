@@ -112,9 +112,12 @@ Inheritance diagram for Cubic_controller::Velocity_PID:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:adf78f052c7951e8aec0f4fa0ff022de8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#adf78f052c7951e8aec0f4fa0ff022de8">Velocity_PID</a> (uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#a434b71b0de5ca29d6701377bb8e6b292">motorNo</a>, uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32">encoderNo</a>, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t <a class="el" href="class_cubic__controller_1_1_controller.html#a8bea1f631b239f7639ef2822a8e2935b">CPR</a>, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a3f1ebb7ca05a63f853c0ba05dfa5d014">direction</a>, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a1e8c4d2f85c09ff4241e8230b4df4dd1">logging</a>=false)</td></tr>
-<tr class="memdesc:adf78f052c7951e8aec0f4fa0ff022de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#adf78f052c7951e8aec0f4fa0ff022de8">More...</a><br /></td></tr>
-<tr class="separator:adf78f052c7951e8aec0f4fa0ff022de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6795c8b52e0e5ba4f99676936f1d790"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6795c8b52e0e5ba4f99676936f1d790">Velocity_PID</a> (uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#a434b71b0de5ca29d6701377bb8e6b292">motorNo</a>, uint8_t <a class="el" href="class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32">encoderNo</a>, enum class <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a> <a class="el" href="_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e">encoderType</a>, uint16_t <a class="el" href="class_cubic__controller_1_1_controller.html#a8bea1f631b239f7639ef2822a8e2935b">CPR</a>, double capableDutyCycle, double p, double Kp, double Ki, double Kd, double target, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a3f1ebb7ca05a63f853c0ba05dfa5d014">direction</a>, bool <a class="el" href="class_cubic__controller_1_1_controller.html#a1e8c4d2f85c09ff4241e8230b4df4dd1">logging</a>=false)</td></tr>
+<tr class="memdesc:ab6795c8b52e0e5ba4f99676936f1d790"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html" title="インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス">Velocity_PID</a> object.  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ab6795c8b52e0e5ba4f99676936f1d790">More...</a><br /></td></tr>
+<tr class="separator:ab6795c8b52e0e5ba4f99676936f1d790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac89881d3491a79a41151344ab0ac2d90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#ac89881d3491a79a41151344ab0ac2d90">setLPF</a> (double p)</td></tr>
+<tr class="memdesc:ac89881d3491a79a41151344ab0ac2d90"><td class="mdescLeft">&#160;</td><td class="mdescRight">ローパスフィルタの係数pを設定します。  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#ac89881d3491a79a41151344ab0ac2d90">More...</a><br /></td></tr>
+<tr class="separator:ac89881d3491a79a41151344ab0ac2d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d6ffa210e350522c03a30411ab7c566"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#a4d6ffa210e350522c03a30411ab7c566">compute</a> () override</td></tr>
 <tr class="memdesc:a4d6ffa210e350522c03a30411ab7c566"><td class="mdescLeft">&#160;</td><td class="mdescRight">duty比を計算します。各ループで一回呼び出してください。このduty比は、DUTY_SPI_MAXに対する比です。計算された値は、この関数内部で、DC_motor::put()されます。  <a href="class_cubic__controller_1_1_velocity___p_i_d.html#a4d6ffa210e350522c03a30411ab7c566">More...</a><br /></td></tr>
 <tr class="separator:a4d6ffa210e350522c03a30411ab7c566"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,8 +197,8 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
 <div class="textblock"><p >インクリメンタルエンコーダを用いた、DCモータの速度制御を行うためのクラス </p>
 <p >このクラスでは、エンコーダの角速度[rad/s]を制御量とします。 </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="adf78f052c7951e8aec0f4fa0ff022de8" name="adf78f052c7951e8aec0f4fa0ff022de8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf78f052c7951e8aec0f4fa0ff022de8">&#9670;&#160;</a></span>Velocity_PID()</h2>
+<a id="ab6795c8b52e0e5ba4f99676936f1d790" name="ab6795c8b52e0e5ba4f99676936f1d790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6795c8b52e0e5ba4f99676936f1d790">&#9670;&#160;</a></span>Velocity_PID()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -229,6 +232,12 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
           <td></td>
           <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>capableDutyCycle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -282,6 +291,7 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
     <tr><td class="paramname">encoderType</td><td>エンコーダの種類 </td></tr>
     <tr><td class="paramname">CPR</td><td>エンコーダのCPR（PPRでないことに注意。CPR=PPR*4） </td></tr>
     <tr><td class="paramname">capableDutyCycle</td><td>最大許容デューティ比。0.0~1.0 </td></tr>
+    <tr><td class="paramname">p</td><td>ローパスフィルタの係数。0.0~1.0 </td></tr>
     <tr><td class="paramname">Kp</td><td></td></tr>
     <tr><td class="paramname">Ki</td><td></td></tr>
     <tr><td class="paramname">Kd</td><td></td></tr>
@@ -322,6 +332,40 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
 <dl class="section return"><dt>Returns</dt><dd>double dutyCycle </dd></dl>
 
 <p>Implements <a class="el" href="class_cubic__controller_1_1_controller.html#a3bb16c0221017a29aba820deb0bc0413">Cubic_controller::Controller</a>.</p>
+
+</div>
+</div>
+<a id="ac89881d3491a79a41151344ab0ac2d90" name="ac89881d3491a79a41151344ab0ac2d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac89881d3491a79a41151344ab0ac2d90">&#9670;&#160;</a></span>setLPF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Cubic_controller::Velocity_PID::setLPF </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ローパスフィルタの係数pを設定します。 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
