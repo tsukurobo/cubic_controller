@@ -321,7 +321,7 @@ namespace Cubic_controller
     }
     inline int32_t Controller::readEncoder() const
     {
-        int32_t value = encoderType == encoderType::inc ? Inc_enc::get(encoderNo) : Abs_enc::get(encoderNo);
+        int32_t value = encoderType == encoderType::inc ? Inc_enc::get_diff(encoderNo) : Abs_enc::get(encoderNo);
         if (logging)
         {
             Serial.print("encoder:");
