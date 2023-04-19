@@ -61,5 +61,5 @@ void loop()
     velocityPID.compute();
     // positionPID.compute();
   }
-  Cubic::update(2000);
+  Cubic::update();
 }
