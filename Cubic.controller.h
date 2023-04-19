@@ -122,12 +122,6 @@ namespace Cubic_controller
          * @return double
          */
         double compute_PID(double current);
-        /**
-         * @brief 直前に読んだ制御量を返します。
-         *
-         * @return double
-         */
-        double getCurrent() const;
 
     public:
         /**
@@ -210,6 +204,12 @@ namespace Cubic_controller
          * @return double dt[s]
          */
         double getDt() const;
+        /**
+         * @brief 直前に読んだ制御量を返します。
+         *
+         * @return double
+         */
+        double getCurrent() const;
         /**
          * @brief エンコーダの値から角度を計算します。設定したCPR(Count Per Revolution)に依存します。
          *
