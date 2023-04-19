@@ -6,18 +6,6 @@
 
 namespace Cubic_controller
 {
-    int32_t readEncoder(const uint8_t encoderNo, const enum class encoderType encoderType)
-    {
-        if (encoderType == encoderType::inc)
-        {
-            return Inc_enc::get(encoderNo);
-        }
-        else if (encoderType == encoderType::abs)
-        {
-            return Abs_enc::get(encoderNo);
-        }
-    }
-
     constexpr double limitAngle(double angle, const double min)
     {
         while (angle < min)

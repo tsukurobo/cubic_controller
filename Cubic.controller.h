@@ -54,15 +54,6 @@ namespace Cubic_controller
     };
 
     /**
-     * @brief エンコーダを読みます
-     *
-     * @param encoderNo
-     * @param encoderType
-     * @return int32_t 値
-     */
-    int32_t readEncoder(uint8_t encoderNo, const enum class encoderType encoderType);
-
-    /**
      * @brief 与えられた角度を一定範囲（min<=angle<min+2pi）に収めます
      *
      * @param angle 角度[rad]
