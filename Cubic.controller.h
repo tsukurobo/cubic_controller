@@ -60,7 +60,18 @@ namespace Cubic_controller
      * @param min 最低値[rad]。省略可能で、デフォルトは-PI
      * @return constexpr double 角度[rad](-PI<= angle < PI)
      */
-    constexpr double limitAngle(double angle, double min = -PI);
+    constexpr double limitAngle(double angle, const double min = -PI)
+    {
+        while (angle < min)
+        {
+            angle += TWO_PI;
+        }
+        while (angle >= min + TWO_PI)
+        {
+            angle -= TWO_PI;
+        }
+        return angle;
+    }
 
     /**
      * @brief 与えられたCPRのもと、エンコーダの値から角度を計算します
@@ -70,7 +81,10 @@ namespace Cubic_controller
      * @param offset オフセット[rad]。省略可能で、デフォルトは0.0
      * @return constexpr double angle[rad](-PI<= angle < PI)
      */
-    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0);
+    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR, const double offset = 0.0)
+    {
+        return limitAngle(offset + encoder * (TWO_PI / (double)CPR));
+    }
 
     /**
      * @brief Cubic制御器の抽象クラス
@@ -237,7 +251,7 @@ namespace Cubic_controller
          * @brief ローパスフィルタの係数pを設定します。
          *
          * @param p
-        */
+         */
         void setLPF(double p);
         double compute() override;
     };
