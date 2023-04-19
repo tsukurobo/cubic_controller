@@ -40,7 +40,7 @@ namespace Cubic_controller
     {
     }
 
-    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging) : Controller(motorNo, encoderNo, encoderType, CPR, capableDutyCycle, Kp, Ki, Kd, target, 0.0, direction, logging)
+    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double p, double Kp, double Ki, double Kd, double target, bool direction, bool logging) : Controller(motorNo, encoderNo, encoderType, CPR, capableDutyCycle, Kp, Ki, Kd, target, 0.0, direction, logging), p(p)
     {
         if (encoderType == encoderType::abs)
         {
@@ -53,13 +53,16 @@ namespace Cubic_controller
         int32_t encoder = this->readEncoder();
         double angle = this->encoderToAngle(encoder);
         double velocity = angle / this->getDt();
+        // low-pass filter
+        static double vLPF = 0.0;
+        vLPF = vLPF * (1.0 - p) + velocity * p;
         if (logging)
         {
             Serial.print("angle:");
             Serial.print(angle, 4);
             Serial.print(",");
         }
-        double dutyCycle = this->compute_PID(velocity);
+        double dutyCycle = this->compute_PID(vLPF);
         if (logging)
         {
             Serial.print("dutyCycle:");
