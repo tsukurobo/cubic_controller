@@ -134,9 +134,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a94b555c07c797cfc359d2897237e2e37"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">Cubic_controller::limitAngle</a> (double angle, const double min=-PI)</td></tr>
 <tr class="memdesc:a94b555c07c797cfc359d2897237e2e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます  <a href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">More...</a><br /></td></tr>
 <tr class="separator:a94b555c07c797cfc359d2897237e2e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57a47af26c9c3078d9ebed38458c124d"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a57a47af26c9c3078d9ebed38458c124d">Cubic_controller::encoderToAngle</a> (const int32_t encoder, const uint16_t CPR, const double offset=0.0)</td></tr>
-<tr class="memdesc:a57a47af26c9c3078d9ebed38458c124d"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8h.html#a57a47af26c9c3078d9ebed38458c124d">More...</a><br /></td></tr>
-<tr class="separator:a57a47af26c9c3078d9ebed38458c124d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6ef91d8809b03ea7cbc16a0bc71fc06"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#af6ef91d8809b03ea7cbc16a0bc71fc06">Cubic_controller::encoderToAngle</a> (const int32_t encoder, const uint16_t CPR, const double offset=-PI)</td></tr>
+<tr class="memdesc:af6ef91d8809b03ea7cbc16a0bc71fc06"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8h.html#af6ef91d8809b03ea7cbc16a0bc71fc06">More...</a><br /></td></tr>
+<tr class="separator:af6ef91d8809b03ea7cbc16a0bc71fc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -216,8 +216,8 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
 
 </div>
 </div>
-<a id="a57a47af26c9c3078d9ebed38458c124d" name="a57a47af26c9c3078d9ebed38458c124d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57a47af26c9c3078d9ebed38458c124d">&#9670;&#160;</a></span>encoderToAngle()</h2>
+<a id="af6ef91d8809b03ea7cbc16a0bc71fc06" name="af6ef91d8809b03ea7cbc16a0bc71fc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6ef91d8809b03ea7cbc16a0bc71fc06">&#9670;&#160;</a></span>encoderToAngle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,7 +241,7 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>offset</em> = <code>0.0</code>&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>-PI</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -261,7 +261,7 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
   <table class="params">
     <tr><td class="paramname">encoder</td><td>エンコーダの値 </td></tr>
     <tr><td class="paramname">CPR</td><td>counts per revolution(PPRの4倍) </td></tr>
-    <tr><td class="paramname">offset</td><td>オフセット[rad]。省略可能で、デフォルトは0.0 </td></tr>
+    <tr><td class="paramname">offset</td><td>オフセット[rad]。省略可能で、デフォルトは-PI </td></tr>
   </table>
   </dd>
 </dl>
