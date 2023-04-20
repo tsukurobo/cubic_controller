@@ -14,15 +14,23 @@ namespace PID
   {
     /* Update dt */
     unsigned long nowMicros = micros();
-    if (nowMicros < preMicros)
+    if constexpr (EXCEED_MICROS_LIMIT)
     {
-      dt = MAX_MICROSECONDS - preMicros + nowMicros;
+      if (nowMicros < preMicros)
+      {
+        dt = MAX_MICROSECONDS - preMicros + nowMicros;
+      }
+      else
+      {
+        dt = nowMicros - preMicros;
+      }
     }
     else
     {
       dt = nowMicros - preMicros;
     }
-    dt /= 1000000.0;
+
+    dt *= MICROSECONDS_TO_SECONDS;
     preMicros = nowMicros;
 
     this->current = current;
@@ -34,21 +42,24 @@ namespace PID
     }
 
     /* Compute dutyCycle */
-    integral += (diff + preDiff) * dt / 2.0;
+    integral += (diff + preDiff) * dt * 0.50;
     dutyCycle = Kp * diff + Ki * integral + Kd * (diff - preDiff) / dt;
 
-    Serial.print("integral:");
-    Serial.print(integral);
-    Serial.print(",");
+    if (logging)
+    {
+      Serial.print("integral:");
+      Serial.print(integral);
+      Serial.print(",");
+    }
 
     if (dutyCycle > capableDutyCycle)
     {
-      integral -= (diff + preDiff) * dt / 2.0;
+      integral -= (diff + preDiff) * dt * 0.50;
       dutyCycle = capableDutyCycle;
     }
     else if (dutyCycle < -capableDutyCycle)
     {
-      integral -= (diff + preDiff) * dt / 2.0;
+      integral -= (diff + preDiff) * dt * 0.50;
       dutyCycle = -capableDutyCycle;
     }
 

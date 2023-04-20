@@ -37,6 +37,9 @@ namespace Cubic_controller
      */
     constexpr uint16_t AMT22_CPR = 16384;
 
+    /// @brief アブソリュートエンコーダのループ閾値
+    constexpr double LOOP_THRESHOLD = 5.0 * PI / 6.0;
+
     /**
      * @brief エンコーダの種類を示します
      *
@@ -51,32 +54,37 @@ namespace Cubic_controller
     };
 
     /**
-     * @brief エンコーダを読みます
-     *
-     * @param encoderNo
-     * @param encoderType
-     * @return int32_t 値
-     */
-    int32_t readEncoder(uint8_t encoderNo, const enum class encoderType encoderType);
-
-    /**
      * @brief 与えられた角度を一定範囲（min<=angle<min+2pi）に収めます
      *
      * @param angle 角度[rad]
      * @param min 最低値[rad]。省略可能で、デフォルトは-PI
      * @return constexpr double 角度[rad](-PI<= angle < PI)
      */
-    constexpr double limitAngle(double angle, double min = -PI);
+    constexpr double limitAngle(double angle, const double min = -PI)
+    {
+        while (angle < min)
+        {
+            angle += TWO_PI;
+        }
+        while (angle >= min + TWO_PI)
+        {
+            angle -= TWO_PI;
+        }
+        return angle;
+    }
 
     /**
      * @brief 与えられたCPRのもと、エンコーダの値から角度を計算します
      *
      * @param encoder エンコーダの値
      * @param CPR counts per revolution(PPRの4倍)
-     * @param offset オフセット[rad]。省略可能で、デフォルトは0.0
+     * @param offset オフセット[rad]。省略可能で、デフォルトは-PI
      * @return constexpr double angle[rad](-PI<= angle < PI)
      */
-    constexpr double encoderToAngle(int32_t encoder, uint16_t CPR, double offset = 0.0);
+    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR, const double offset = -PI)
+    {
+        return limitAngle(offset + encoder * (TWO_PI / (double)CPR));
+    }
 
     /**
      * @brief Cubic制御器の抽象クラス
@@ -114,12 +122,6 @@ namespace Cubic_controller
          * @return double
          */
         double compute_PID(double current);
-        /**
-         * @brief 直前に読んだ制御量を返します。
-         *
-         * @return double
-         */
-        double getCurrent() const;
 
     public:
         /**
@@ -203,6 +205,12 @@ namespace Cubic_controller
          */
         double getDt() const;
         /**
+         * @brief 直前に読んだ制御量を返します。
+         *
+         * @return double
+         */
+        double getCurrent() const;
+        /**
          * @brief エンコーダの値から角度を計算します。設定したCPR(Count Per Revolution)に依存します。
          *
          * @param encoder
@@ -243,7 +251,7 @@ namespace Cubic_controller
          * @brief ローパスフィルタの係数pを設定します。
          *
          * @param p
-        */
+         */
         void setLPF(double p);
         double compute() override;
     };

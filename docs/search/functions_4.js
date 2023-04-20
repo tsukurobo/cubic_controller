@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['limitangle_0',['limitAngle',['../_cubic_8controller_8cpp.html#aacff23dd194b2907fd9e6bac9c3b83d2',1,'Cubic_controller']]]
+  ['limitangle_0',['limitAngle',['../_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37',1,'Cubic_controller']]]
 ];
