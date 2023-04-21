@@ -161,7 +161,7 @@ namespace Cubic_controller
          */
         virtual void setTarget(double target);
         /**
-         * @brief PIDゲインを設定します。
+         * @brief PIDゲインを設定します。負の値は-1倍されます。
          *
          * @param Kp
          * @param Ki
@@ -169,19 +169,19 @@ namespace Cubic_controller
          */
         void setGains(double Kp, double Ki, double Kd);
         /**
-         * @brief Pゲインを設定します。
+         * @brief Pゲインを設定します。負の値は-1倍されます。
          *
          * @param Kp
          */
         void setKp(double Kp);
         /**
-         * @brief Iゲインを設定します。
+         * @brief Iゲインを設定します。負の値は-1倍されます。
          *
          * @param Ki
          */
         void setKi(double Ki);
         /**
-         * @brief Dゲインを設定します。
+         * @brief Dゲインを設定します。負の値は-1倍されます。
          *
          * @param Kd
          */
@@ -306,19 +306,19 @@ namespace Cubic_controller
     }
     inline void Controller::setGains(const double Kp, const double Ki, const double Kd)
     {
-        this->pid.setGains(Kp, Ki, Kd);
+        this->pid.setGains(abs(Kp), abs(Ki), abs(Kd));
     }
     inline void Controller::setKp(const double Kp)
     {
-        this->pid.setKp(Kp);
+        this->pid.setKp(abs(Kp));
     }
     inline void Controller::setKi(const double Ki)
     {
-        this->pid.setKi(Ki);
+        this->pid.setKi(abs(Ki));
     }
     inline void Controller::setKd(const double Kd)
     {
-        this->pid.setKd(Kd);
+        this->pid.setKd(abs(Kd));
     }
     inline double Controller::getTarget() const
     {
