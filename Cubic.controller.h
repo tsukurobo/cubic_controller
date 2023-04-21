@@ -44,7 +44,7 @@ namespace Cubic_controller
      * @brief アブソリュートエンコーダーの回転をどこまで許容するか。
      * @details [-ALLOWED_ROTATION_RANGE, ALLOWED_ROTATION_RANGE]の範囲で許容する。
      */
-    constexpr double ALLOWED_ROTATION_RANGE = 3.0 * PI;
+    constexpr double ALLOWED_ROTATION_RANGE = 2.0 * PI;
 
     /**
      * @brief エンコーダの種類を示します
