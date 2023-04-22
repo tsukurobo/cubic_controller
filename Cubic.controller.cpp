@@ -24,7 +24,6 @@ namespace Cubic_controller
         double angle = this->encoderToAngle(encoder);
         double velocity = angle / this->getDt();
         // low-pass filter
-        static double vLPF = 0.0;
         vLPF = vLPF * (1.0 - p) + velocity * p;
         if (logging)
         {

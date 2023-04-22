@@ -43,6 +43,10 @@ void loop()
     else if (c == 'l'){
       velocityPID.setLPF(value);
     }
+    else if (c == 'r'){
+      velocityPID.reset();
+      positionPID.reset();
+    }
     else
     {
       stopFlag = true;
@@ -58,8 +62,8 @@ void loop()
   }
   else
   {
-    // velocityPID.compute();
-    positionPID.compute();
+    velocityPID.compute();
+    // positionPID.compute();
   }
   Cubic::update();
 }
