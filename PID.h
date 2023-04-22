@@ -104,6 +104,39 @@ namespace PID
         double getDutyCycle() const;
 
         /**
+         * @brief 制御器のリセット
+         *
+         * @details  PID制御器のリセットを行う。
+         */
+        void reset();
+
+        /**
+         * @brief 制御器のリセット
+         *
+         * @param target
+         */
+        void reset(double target);
+
+        /**
+         * @brief 制御器のリセット
+         *
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         */
+        void reset(double Kp, double Ki, double Kd);
+
+        /**
+         * @brief 制御器のリセット
+         *
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param target
+         */
+        void reset(double Kp, double Ki, double Kd, double target);
+
+        /**
          * @brief PID制御を行う関数
          *
          * @param current 現在値
@@ -156,6 +189,34 @@ namespace PID
     inline double PID::getDutyCycle() const
     {
         return this->dutyCycle;
+    }
+    inline void PID::reset()
+    {
+        preMicros = micros();
+        preDiff = 0;
+        integral = 0;
+    }
+    inline void PID::reset(const double target)
+    {
+        this->target = target;
+        this->reset();
+    }
+
+    inline void PID::reset(const double Kp, const double Ki, const double Kd)
+    {
+        this->Kp = Kp;
+        this->Ki = Ki;
+        this->Kd = Kd;
+        this->reset();
+    }
+
+    inline void PID::reset(const double Kp, const double Ki, const double Kd, const double target)
+    {
+        this->Kp = Kp;
+        this->Ki = Ki;
+        this->Kd = Kd;
+        this->target = target;
+        this->reset();
     }
 
 }

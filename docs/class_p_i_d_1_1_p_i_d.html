@@ -126,6 +126,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae6d59668a76c701cc9d144a9bc2b469a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#ae6d59668a76c701cc9d144a9bc2b469a">getDutyCycle</a> () const</td></tr>
 <tr class="memdesc:ae6d59668a76c701cc9d144a9bc2b469a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duty比の取得  <a href="class_p_i_d_1_1_p_i_d.html#ae6d59668a76c701cc9d144a9bc2b469a">More...</a><br /></td></tr>
 <tr class="separator:ae6d59668a76c701cc9d144a9bc2b469a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa030deda7c67f58a0ff755b3c6e2bafb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#aa030deda7c67f58a0ff755b3c6e2bafb">reset</a> ()</td></tr>
+<tr class="memdesc:aa030deda7c67f58a0ff755b3c6e2bafb"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_p_i_d_1_1_p_i_d.html#aa030deda7c67f58a0ff755b3c6e2bafb">More...</a><br /></td></tr>
+<tr class="separator:aa030deda7c67f58a0ff755b3c6e2bafb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12fadbfe2c2a82e965210f30842cbddb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a12fadbfe2c2a82e965210f30842cbddb">reset</a> (double target)</td></tr>
+<tr class="memdesc:a12fadbfe2c2a82e965210f30842cbddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_p_i_d_1_1_p_i_d.html#a12fadbfe2c2a82e965210f30842cbddb">More...</a><br /></td></tr>
+<tr class="separator:a12fadbfe2c2a82e965210f30842cbddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fe37d49c4922faf8cb23ed79ebe5c2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#a9fe37d49c4922faf8cb23ed79ebe5c2c">reset</a> (double Kp, double Ki, double Kd)</td></tr>
+<tr class="memdesc:a9fe37d49c4922faf8cb23ed79ebe5c2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_p_i_d_1_1_p_i_d.html#a9fe37d49c4922faf8cb23ed79ebe5c2c">More...</a><br /></td></tr>
+<tr class="separator:a9fe37d49c4922faf8cb23ed79ebe5c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6e8d8a91d09777d7d7993fcb37b4547"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#ac6e8d8a91d09777d7d7993fcb37b4547">reset</a> (double Kp, double Ki, double Kd, double target)</td></tr>
+<tr class="memdesc:ac6e8d8a91d09777d7d7993fcb37b4547"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_p_i_d_1_1_p_i_d.html#ac6e8d8a91d09777d7d7993fcb37b4547">More...</a><br /></td></tr>
+<tr class="separator:ac6e8d8a91d09777d7d7993fcb37b4547"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeda31487e68802eb49aa7792d2153075"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_p_i_d_1_1_p_i_d.html#aeda31487e68802eb49aa7792d2153075">compute_PID</a> (double current, bool logging=false)</td></tr>
 <tr class="memdesc:aeda31487e68802eb49aa7792d2153075"><td class="mdescLeft">&#160;</td><td class="mdescRight">PID制御を行う関数  <a href="class_p_i_d_1_1_p_i_d.html#aeda31487e68802eb49aa7792d2153075">More...</a><br /></td></tr>
 <tr class="separator:aeda31487e68802eb49aa7792d2153075"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,6 +374,179 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>dt</b></td></tr>
 
 <p>目標を取得する。 </p>
 <dl class="section return"><dt>Returns</dt><dd>double 目標 </dd></dl>
+
+</div>
+</div>
+<a id="aa030deda7c67f58a0ff755b3c6e2bafb" name="aa030deda7c67f58a0ff755b3c6e2bafb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa030deda7c67f58a0ff755b3c6e2bafb">&#9670;&#160;</a></span>reset() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PID::PID::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<p >PID制御器のリセットを行う。 </p>
+
+</div>
+</div>
+<a id="a9fe37d49c4922faf8cb23ed79ebe5c2c" name="a9fe37d49c4922faf8cb23ed79ebe5c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fe37d49c4922faf8cb23ed79ebe5c2c">&#9670;&#160;</a></span>reset() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PID::PID::reset </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ki</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Kp</td><td></td></tr>
+    <tr><td class="paramname">Ki</td><td></td></tr>
+    <tr><td class="paramname">Kd</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac6e8d8a91d09777d7d7993fcb37b4547" name="ac6e8d8a91d09777d7d7993fcb37b4547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6e8d8a91d09777d7d7993fcb37b4547">&#9670;&#160;</a></span>reset() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PID::PID::reset </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ki</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Kp</td><td></td></tr>
+    <tr><td class="paramname">Ki</td><td></td></tr>
+    <tr><td class="paramname">Kd</td><td></td></tr>
+    <tr><td class="paramname">target</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a12fadbfe2c2a82e965210f30842cbddb" name="a12fadbfe2c2a82e965210f30842cbddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12fadbfe2c2a82e965210f30842cbddb">&#9670;&#160;</a></span>reset() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PID::PID::reset </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

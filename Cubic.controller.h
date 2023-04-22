@@ -223,6 +223,40 @@ namespace Cubic_controller
          * @return double
          */
         double getCurrent() const;
+
+        /**
+         * @brief 制御器のリセット
+         *
+         * @details  PID制御器のリセットを行う。
+         */
+        virtual void reset();
+
+        /**
+         * @brief 制御器のリセット
+         *
+         * @param target
+         */
+        virtual void reset(double target);
+
+        /**
+         * @brief 制御器のリセット
+         *
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         */
+        virtual void reset(double Kp, double Ki, double Kd);
+
+        /**
+         * @brief 制御器のリセット
+         *
+         * @param Kp
+         * @param Ki
+         * @param Kd
+         * @param target
+         */
+        virtual void reset(double Kp, double Ki, double Kd, double target);
+
         /**
          * @brief エンコーダの値から角度を計算します。設定したCPR(Count Per Revolution)に依存します。
          *
@@ -240,6 +274,7 @@ namespace Cubic_controller
     {
     private:
         double p;
+        double vLPF = 0.0;
 
     public:
         /**
@@ -268,6 +303,15 @@ namespace Cubic_controller
         void setLPF(double p);
         double encoderToAngle(int32_t encoder) override;
         double compute() override;
+        /**
+         * @brief 制御器のリセット
+         *
+         * @details low-pass filterの値`vLPF`も0にリセットします。
+         */
+        void reset() override;
+        void reset(double target) override;
+        void reset(double Kp, double Ki, double Kd) override;
+        void reset(double Kp, double Ki, double Kd, double target) override;
     };
 
     /**
@@ -380,5 +424,41 @@ namespace Cubic_controller
     inline void Velocity_PID::setLPF(const double p)
     {
         this->p = p;
+    }
+    inline void Controller::reset()
+    {
+        this->pid.reset();
+    }
+    inline void Controller::reset(const double target)
+    {
+        this->pid.reset(target);
+    }
+    inline void Controller::reset(const double Kp, const double Ki, const double Kd)
+    {
+        this->pid.reset(Kp, Ki, Kd);
+    }
+    inline void Controller::reset(const double Kp, const double Ki, const double Kd, const double target)
+    {
+        this->pid.reset(Kp, Ki, Kd, target);
+    }
+    inline void Velocity_PID::reset()
+    {
+        Controller::reset();
+        this->vLPF = 0;
+    }
+    inline void Velocity_PID::reset(const double target)
+    {
+        Controller::reset(target);
+        this->vLPF = 0;
+    }
+    inline void Velocity_PID::reset(const double Kp, const double Ki, const double Kd)
+    {
+        Controller::reset(Kp, Ki, Kd);
+        this->vLPF = 0;
+    }
+    inline void Velocity_PID::reset(const double Kp, const double Ki, const double Kd, const double target)
+    {
+        Controller::reset(Kp, Ki, Kd, target);
+        this->vLPF = 0;
     }
 }

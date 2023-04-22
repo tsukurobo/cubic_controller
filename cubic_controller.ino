@@ -29,6 +29,8 @@ void loop()
     {
       velocityPID.setKi(value);
       positionPID.setKi(value);
+      velocityPID.reset();
+      positionPID.reset();
     }
     else if (c == 'd')
     {
@@ -42,6 +44,10 @@ void loop()
     }
     else if (c == 'l'){
       velocityPID.setLPF(value);
+    }
+    else if (c == 'r'){
+      velocityPID.reset();
+      positionPID.reset();
     }
     else
     {
