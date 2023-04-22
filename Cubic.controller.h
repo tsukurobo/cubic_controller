@@ -41,6 +41,12 @@ namespace Cubic_controller
     constexpr double LOOP_THRESHOLD = 5.0 * PI / 6.0;
 
     /**
+     * @brief アブソリュートエンコーダーの回転をどこまで許容するか。
+     * @details [-ALLOWED_ROTATION_RANGE, ALLOWED_ROTATION_RANGE]の範囲で許容する。
+     */
+    constexpr double ALLOWED_ROTATION_RANGE = 2.0 * PI;
+
+    /**
      * @brief エンコーダの種類を示します
      *
      * @param inc incremental encoder
@@ -155,7 +161,7 @@ namespace Cubic_controller
          */
         virtual void setTarget(double target);
         /**
-         * @brief PIDゲインを設定します。
+         * @brief PIDゲインを設定します。負の値は-1倍されます。
          *
          * @param Kp
          * @param Ki
@@ -163,19 +169,19 @@ namespace Cubic_controller
          */
         void setGains(double Kp, double Ki, double Kd);
         /**
-         * @brief Pゲインを設定します。
+         * @brief Pゲインを設定します。負の値は-1倍されます。
          *
          * @param Kp
          */
         void setKp(double Kp);
         /**
-         * @brief Iゲインを設定します。
+         * @brief Iゲインを設定します。負の値は-1倍されます。
          *
          * @param Ki
          */
         void setKi(double Ki);
         /**
-         * @brief Dゲインを設定します。
+         * @brief Dゲインを設定します。負の値は-1倍されます。
          *
          * @param Kd
          */
@@ -216,7 +222,7 @@ namespace Cubic_controller
          * @param encoder
          * @return double angle[rad](-PI<= angle < PI)
          */
-        double encoderToAngle(int32_t encoder) const;
+        virtual double encoderToAngle(int32_t encoder);
     };
 
     /**
@@ -284,6 +290,7 @@ namespace Cubic_controller
         Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, bool direction, bool logging = false);
 
         void setTarget(double target) override;
+        double encoderToAngle(int32_t encoder) override;
         double compute() override;
     };
 
@@ -297,25 +304,21 @@ namespace Cubic_controller
     {
         this->pid.setTarget(target);
     }
-    inline void Position_PID::setTarget(const double target)
-    {
-        Controller::setTarget(target);
-    }
     inline void Controller::setGains(const double Kp, const double Ki, const double Kd)
     {
-        this->pid.setGains(Kp, Ki, Kd);
+        this->pid.setGains(abs(Kp), abs(Ki), abs(Kd));
     }
     inline void Controller::setKp(const double Kp)
     {
-        this->pid.setKp(Kp);
+        this->pid.setKp(abs(Kp));
     }
     inline void Controller::setKi(const double Ki)
     {
-        this->pid.setKi(Ki);
+        this->pid.setKi(abs(Ki));
     }
     inline void Controller::setKd(const double Kd)
     {
-        this->pid.setKd(Kd);
+        this->pid.setKd(abs(Kd));
     }
     inline double Controller::getTarget() const
     {
@@ -333,9 +336,26 @@ namespace Cubic_controller
     {
         return this->pid.getDt();
     }
-    inline double Controller::encoderToAngle(const int32_t encoder) const
+    inline double Controller::encoderToAngle(const int32_t encoder)
     {
         return Cubic_controller::encoderToAngle(encoder, this->CPR);
+    }
+    inline double Position_PID::encoderToAngle(const int32_t encoder)
+    {
+        double angle =Controller::encoderToAngle(encoder);
+        static double prevAngle = angle;
+        double actualAngle = angle;
+
+        if (actualAngle < -LOOP_THRESHOLD && prevAngle > LOOP_THRESHOLD){
+            this->loopCount++;
+        }
+        else if (actualAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD){
+            this->loopCount--;
+        }
+        prevAngle = actualAngle;
+
+
+        return angle + TWO_PI * this->loopCount;
     }
     inline int32_t Controller::readEncoder() const
     {

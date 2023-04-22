@@ -60,9 +60,6 @@ namespace Cubic_controller
     double Position_PID::compute()
     {
         int32_t encoder = this->readEncoder();
-        double currentAngle = this->encoderToAngle(encoder);
-        double actualAngle = currentAngle;
-        static double prevAngle = currentAngle;
         static double dutyCycle = 0.0;
         if (encoder == ABS_ENC_ERR_RP2040)
         { // RP2040でエンコーダを正しく読めなかったとき e.g.)エンコーダが繋がっていない・線材の接触不良
@@ -87,28 +84,18 @@ namespace Cubic_controller
         }
         else
         {
-            if (currentAngle < -LOOP_THRESHOLD && prevAngle > LOOP_THRESHOLD)
-            {
-                loopCount++;
-            }
-            else if (currentAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD)
-            {
-                loopCount--;
-            }
-            currentAngle += loopCount * TWO_PI;
-
+            double currentAngle = this->encoderToAngle(encoder);
             if (logging)
             {
-                Serial.print("actual angle:");
-                Serial.print(actualAngle);
-                Serial.print(",");
+                // Serial.print("actual angle:");
+                // Serial.print(actualAngle);
+                // Serial.print(",");
                 Serial.print("loopCount:");
                 Serial.print(loopCount);
                 Serial.print(",");
             }
 
             dutyCycle = this->compute_PID(currentAngle);
-            prevAngle = actualAngle;
         }
         if (logging)
         {
@@ -117,5 +104,27 @@ namespace Cubic_controller
         }
         DC_motor::put(motorNo, dutyCycle * DUTY_SPI_MAX, DUTY_SPI_MAX);
         return dutyCycle;
+    }
+
+    void Position_PID::setTarget(double target)
+    {
+        double currentAngle = this->getCurrent();
+        if (currentAngle > ALLOWED_ROTATION_RANGE)
+        {
+            target += TWO_PI * (int)((ALLOWED_ROTATION_RANGE - target) / TWO_PI);
+        }
+        else if (currentAngle < -ALLOWED_ROTATION_RANGE)
+        {
+            target -= TWO_PI * (int)((target + ALLOWED_ROTATION_RANGE) / TWO_PI);
+        }
+        else
+        {
+            target += TWO_PI * (int)((currentAngle - target) / TWO_PI);
+            if (target - currentAngle > PI && target - TWO_PI >= -ALLOWED_ROTATION_RANGE)
+                target -= TWO_PI;
+            else if (currentAngle - target > PI && target + TWO_PI <= ALLOWED_ROTATION_RANGE)
+                target += TWO_PI;
+        }
+        Controller::setTarget(target);
     }
 }
