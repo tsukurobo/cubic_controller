@@ -49,8 +49,7 @@ namespace Cubic_controller
     /**
      * @brief エンコーダの種類を示します
      *
-     * @param inc incremental encoder
-     * @param abs absolute encoder
+     * @details inc: incremental encoder, abs: absolute encoder
      *
      */
     enum class encoderType
