@@ -29,6 +29,8 @@ void loop()
     {
       velocityPID.setKi(value);
       positionPID.setKi(value);
+      velocityPID.reset();
+      positionPID.reset();
     }
     else if (c == 'd')
     {
@@ -62,8 +64,8 @@ void loop()
   }
   else
   {
-    velocityPID.compute();
-    // positionPID.compute();
+    // velocityPID.compute();
+    positionPID.compute();
   }
   Cubic::update();
 }
