@@ -8,9 +8,10 @@ var _cubic_8controller_8h =
       [ "abs", "_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4eaf9ac6b05beccb0fc5837b6a7fef4c1d3", null ]
     ] ],
     [ "degToRad", "_cubic_8controller_8h.html#ab71864e8276ceab5631ce364197fddd7", null ],
-    [ "encoderToAngle", "_cubic_8controller_8h.html#af6ef91d8809b03ea7cbc16a0bc71fc06", null ],
+    [ "encoderToAngle", "_cubic_8controller_8h.html#acf0f20437952cab65e5762c612251dbb", null ],
     [ "limitAngle", "_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37", null ],
     [ "radToDeg", "_cubic_8controller_8h.html#a52b8c7c35923cb1400e2d55ce9870104", null ],
+    [ "ALLOWED_ROTATION_RANGE", "_cubic_8controller_8h.html#a217fd698e21da452f84035916b53e687", null ],
     [ "AMT22_CPR", "_cubic_8controller_8h.html#a90e62825138363e960981b013b05e881", null ],
     [ "LOOP_THRESHOLD", "_cubic_8controller_8h.html#a5ac8a51764ce44eb4724d9bc0989f97a", null ]
 ];
