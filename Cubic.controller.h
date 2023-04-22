@@ -93,7 +93,8 @@ namespace Cubic_controller
         if (limit)
         {
             return limitAngle(offset + encoder * (TWO_PI / (double)CPR));
-        } else
+        }
+        else
         {
             return offset + encoder * (TWO_PI / (double)CPR);
         }
@@ -350,18 +351,19 @@ namespace Cubic_controller
     }
     inline double Position_PID::encoderToAngle(const int32_t encoder)
     {
-        double angle =Cubic_controller::encoderToAngle(encoder, this->CPR, -PI, true);
+        double angle = Cubic_controller::encoderToAngle(encoder, this->CPR, -PI, true);
         static double prevAngle = angle;
         double actualAngle = angle;
 
-        if (actualAngle < -LOOP_THRESHOLD && prevAngle > LOOP_THRESHOLD){
+        if (actualAngle < -LOOP_THRESHOLD && prevAngle > LOOP_THRESHOLD)
+        {
             this->loopCount++;
         }
-        else if (actualAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD){
+        else if (actualAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD)
+        {
             this->loopCount--;
         }
         prevAngle = actualAngle;
-
 
         return angle + TWO_PI * this->loopCount;
     }
