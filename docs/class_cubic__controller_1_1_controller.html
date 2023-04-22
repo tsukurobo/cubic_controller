@@ -151,6 +151,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a44f49cb671fc6c23d940f55800630802"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a44f49cb671fc6c23d940f55800630802">getCurrent</a> () const</td></tr>
 <tr class="memdesc:a44f49cb671fc6c23d940f55800630802"><td class="mdescLeft">&#160;</td><td class="mdescRight">直前に読んだ制御量を返します。  <a href="class_cubic__controller_1_1_controller.html#a44f49cb671fc6c23d940f55800630802">More...</a><br /></td></tr>
 <tr class="separator:a44f49cb671fc6c23d940f55800630802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08b44d75ff04a1686dfb793e97a4636d"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a08b44d75ff04a1686dfb793e97a4636d">reset</a> ()</td></tr>
+<tr class="memdesc:a08b44d75ff04a1686dfb793e97a4636d"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_cubic__controller_1_1_controller.html#a08b44d75ff04a1686dfb793e97a4636d">More...</a><br /></td></tr>
+<tr class="separator:a08b44d75ff04a1686dfb793e97a4636d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31e9193ca8f2c093e3d061a5a53def25"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a31e9193ca8f2c093e3d061a5a53def25">reset</a> (double target)</td></tr>
+<tr class="memdesc:a31e9193ca8f2c093e3d061a5a53def25"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_cubic__controller_1_1_controller.html#a31e9193ca8f2c093e3d061a5a53def25">More...</a><br /></td></tr>
+<tr class="separator:a31e9193ca8f2c093e3d061a5a53def25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b78e687fbdaf4d24723ff8b9c28ae36"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a5b78e687fbdaf4d24723ff8b9c28ae36">reset</a> (double Kp, double Ki, double Kd)</td></tr>
+<tr class="memdesc:a5b78e687fbdaf4d24723ff8b9c28ae36"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_cubic__controller_1_1_controller.html#a5b78e687fbdaf4d24723ff8b9c28ae36">More...</a><br /></td></tr>
+<tr class="separator:a5b78e687fbdaf4d24723ff8b9c28ae36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdb648a987a359816aa9470fa496f6f1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#acdb648a987a359816aa9470fa496f6f1">reset</a> (double Kp, double Ki, double Kd, double target)</td></tr>
+<tr class="memdesc:acdb648a987a359816aa9470fa496f6f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">制御器のリセット  <a href="class_cubic__controller_1_1_controller.html#acdb648a987a359816aa9470fa496f6f1">More...</a><br /></td></tr>
+<tr class="separator:acdb648a987a359816aa9470fa496f6f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64dc9bc03afa2fa17adc7a75382df044"><td class="memItemLeft" align="right" valign="top">virtual double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_cubic__controller_1_1_controller.html#a64dc9bc03afa2fa17adc7a75382df044">encoderToAngle</a> (int32_t encoder)=0</td></tr>
 <tr class="memdesc:a64dc9bc03afa2fa17adc7a75382df044"><td class="mdescLeft">&#160;</td><td class="mdescRight">エンコーダの値から角度を計算します。設定したCPR(Count Per Revolution)に依存します。  <a href="class_cubic__controller_1_1_controller.html#a64dc9bc03afa2fa17adc7a75382df044">More...</a><br /></td></tr>
 <tr class="separator:a64dc9bc03afa2fa17adc7a75382df044"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -537,6 +549,187 @@ const bool&#160;</td><td class="memItemRight" valign="bottom"><b>logging</b></td
 
 <p>エンコーダを読みだします。 </p>
 <dl class="section return"><dt>Returns</dt><dd>int32_t encoder </dd></dl>
+
+</div>
+</div>
+<a id="a08b44d75ff04a1686dfb793e97a4636d" name="a08b44d75ff04a1686dfb793e97a4636d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08b44d75ff04a1686dfb793e97a4636d">&#9670;&#160;</a></span>reset() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Cubic_controller::Controller::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<p >PID制御器のリセットを行う。 </p>
+
+<p>Reimplemented in <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#a2305f52e0edeed99cbb2e61a8026a480">Cubic_controller::Velocity_PID</a>.</p>
+
+</div>
+</div>
+<a id="a5b78e687fbdaf4d24723ff8b9c28ae36" name="a5b78e687fbdaf4d24723ff8b9c28ae36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b78e687fbdaf4d24723ff8b9c28ae36">&#9670;&#160;</a></span>reset() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Cubic_controller::Controller::reset </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ki</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Kp</td><td></td></tr>
+    <tr><td class="paramname">Ki</td><td></td></tr>
+    <tr><td class="paramname">Kd</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#a201781c50a41718d02c193afd03165bd">Cubic_controller::Velocity_PID</a>.</p>
+
+</div>
+</div>
+<a id="acdb648a987a359816aa9470fa496f6f1" name="acdb648a987a359816aa9470fa496f6f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdb648a987a359816aa9470fa496f6f1">&#9670;&#160;</a></span>reset() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Cubic_controller::Controller::reset </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Ki</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>Kd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Kp</td><td></td></tr>
+    <tr><td class="paramname">Ki</td><td></td></tr>
+    <tr><td class="paramname">Kd</td><td></td></tr>
+    <tr><td class="paramname">target</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#a4e1a6a04650ae53958f701538d44d8f7">Cubic_controller::Velocity_PID</a>.</p>
+
+</div>
+</div>
+<a id="a31e9193ca8f2c093e3d061a5a53def25" name="a31e9193ca8f2c093e3d061a5a53def25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31e9193ca8f2c093e3d061a5a53def25">&#9670;&#160;</a></span>reset() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Cubic_controller::Controller::reset </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>target</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>制御器のリセット </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented in <a class="el" href="class_cubic__controller_1_1_velocity___p_i_d.html#aa5fef9d027b957506a849b23a2a13365">Cubic_controller::Velocity_PID</a>.</p>
 
 </div>
 </div>
