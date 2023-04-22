@@ -49,8 +49,7 @@ namespace Cubic_controller
     /**
      * @brief エンコーダの種類を示します
      *
-     * @param inc incremental encoder
-     * @param abs absolute encoder
+     * @details inc: incremental encoder, abs: absolute encoder
      *
      */
     enum class encoderType
@@ -85,11 +84,19 @@ namespace Cubic_controller
      * @param encoder エンコーダの値
      * @param CPR counts per revolution(PPRの4倍)
      * @param offset オフセット[rad]。省略可能で、デフォルトは-PI
+     * @param limit 角度を一定範囲に収めるかどうか。省略可能で、デフォルトはtrue
      * @return constexpr double angle[rad](-PI<= angle < PI)
      */
-    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR, const double offset = -PI)
+    constexpr double encoderToAngle(const int32_t encoder, const uint16_t CPR, const double offset = -PI, const bool limit = true)
     {
-        return limitAngle(offset + encoder * (TWO_PI / (double)CPR));
+        if (limit)
+        {
+            return limitAngle(offset + encoder * (TWO_PI / (double)CPR));
+        }
+        else
+        {
+            return offset + encoder * (TWO_PI / (double)CPR);
+        }
     }
 
     /**
@@ -222,7 +229,7 @@ namespace Cubic_controller
          * @param encoder
          * @return double angle[rad](-PI<= angle < PI)
          */
-        virtual double encoderToAngle(int32_t encoder);
+        virtual double encoderToAngle(int32_t encoder) = 0;
     };
 
     /**
@@ -259,6 +266,7 @@ namespace Cubic_controller
          * @param p
          */
         void setLPF(double p);
+        double encoderToAngle(int32_t encoder) override;
         double compute() override;
     };
 
@@ -336,24 +344,25 @@ namespace Cubic_controller
     {
         return this->pid.getDt();
     }
-    inline double Controller::encoderToAngle(const int32_t encoder)
+    inline double Velocity_PID::encoderToAngle(const int32_t encoder)
     {
-        return Cubic_controller::encoderToAngle(encoder, this->CPR);
+        return Cubic_controller::encoderToAngle(encoder, this->CPR, 0, false);
     }
     inline double Position_PID::encoderToAngle(const int32_t encoder)
     {
-        double angle =Controller::encoderToAngle(encoder);
+        double angle = Cubic_controller::encoderToAngle(encoder, this->CPR, -PI, true);
         static double prevAngle = angle;
         double actualAngle = angle;
 
-        if (actualAngle < -LOOP_THRESHOLD && prevAngle > LOOP_THRESHOLD){
+        if (actualAngle < -LOOP_THRESHOLD && prevAngle > LOOP_THRESHOLD)
+        {
             this->loopCount++;
         }
-        else if (actualAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD){
+        else if (actualAngle > LOOP_THRESHOLD && prevAngle < -LOOP_THRESHOLD)
+        {
             this->loopCount--;
         }
         prevAngle = actualAngle;
-
 
         return angle + TWO_PI * this->loopCount;
     }

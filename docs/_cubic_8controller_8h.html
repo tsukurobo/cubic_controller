@@ -134,9 +134,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a94b555c07c797cfc359d2897237e2e37"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">Cubic_controller::limitAngle</a> (double angle, const double min=-PI)</td></tr>
 <tr class="memdesc:a94b555c07c797cfc359d2897237e2e37"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられた角度を一定範囲（min&lt;=angle&lt;min+2pi）に収めます  <a href="_cubic_8controller_8h.html#a94b555c07c797cfc359d2897237e2e37">More...</a><br /></td></tr>
 <tr class="separator:a94b555c07c797cfc359d2897237e2e37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6ef91d8809b03ea7cbc16a0bc71fc06"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#af6ef91d8809b03ea7cbc16a0bc71fc06">Cubic_controller::encoderToAngle</a> (const int32_t encoder, const uint16_t CPR, const double offset=-PI)</td></tr>
-<tr class="memdesc:af6ef91d8809b03ea7cbc16a0bc71fc06"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8h.html#af6ef91d8809b03ea7cbc16a0bc71fc06">More...</a><br /></td></tr>
-<tr class="separator:af6ef91d8809b03ea7cbc16a0bc71fc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf0f20437952cab65e5762c612251dbb"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#acf0f20437952cab65e5762c612251dbb">Cubic_controller::encoderToAngle</a> (const int32_t encoder, const uint16_t CPR, const double offset=-PI, const bool limit=true)</td></tr>
+<tr class="memdesc:acf0f20437952cab65e5762c612251dbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">与えられたCPRのもと、エンコーダの値から角度を計算します  <a href="_cubic_8controller_8h.html#acf0f20437952cab65e5762c612251dbb">More...</a><br /></td></tr>
+<tr class="separator:acf0f20437952cab65e5762c612251dbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -147,6 +147,9 @@ Variables</h2></td></tr>
 constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_controller::LOOP_THRESHOLD</b> = 5.0 * PI / 6.0</td></tr>
 <tr class="memdesc:a5ac8a51764ce44eb4724d9bc0989f97a"><td class="mdescLeft">&#160;</td><td class="mdescRight">アブソリュートエンコーダのループ閾値 <br /></td></tr>
 <tr class="separator:a5ac8a51764ce44eb4724d9bc0989f97a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a217fd698e21da452f84035916b53e687"><td class="memItemLeft" align="right" valign="top">constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_cubic_8controller_8h.html#a217fd698e21da452f84035916b53e687">Cubic_controller::ALLOWED_ROTATION_RANGE</a> = 2.0 * PI</td></tr>
+<tr class="memdesc:a217fd698e21da452f84035916b53e687"><td class="mdescLeft">&#160;</td><td class="mdescRight">アブソリュートエンコーダーの回転をどこまで許容するか。  <a href="_cubic_8controller_8h.html#a217fd698e21da452f84035916b53e687">More...</a><br /></td></tr>
+<tr class="separator:a217fd698e21da452f84035916b53e687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a0288153c61a993b014e7f40bb1b28a4e" name="a0288153c61a993b014e7f40bb1b28a4e"></a>
@@ -170,13 +173,7 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
 </div><div class="memdoc">
 
 <p>エンコーダの種類を示します </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">inc</td><td>incremental encoder </td></tr>
-    <tr><td class="paramname">abs</td><td>absolute encoder </td></tr>
-  </table>
-  </dd>
-</dl>
+<p >inc: incremental encoder, abs: absolute encoder </p>
 
 </div>
 </div>
@@ -216,8 +213,8 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
 
 </div>
 </div>
-<a id="af6ef91d8809b03ea7cbc16a0bc71fc06" name="af6ef91d8809b03ea7cbc16a0bc71fc06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6ef91d8809b03ea7cbc16a0bc71fc06">&#9670;&#160;</a></span>encoderToAngle()</h2>
+<a id="acf0f20437952cab65e5762c612251dbb" name="acf0f20437952cab65e5762c612251dbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf0f20437952cab65e5762c612251dbb">&#9670;&#160;</a></span>encoderToAngle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,7 +238,13 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>offset</em> = <code>-PI</code>&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>-PI</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>limit</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -262,6 +265,7 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
     <tr><td class="paramname">encoder</td><td>エンコーダの値 </td></tr>
     <tr><td class="paramname">CPR</td><td>counts per revolution(PPRの4倍) </td></tr>
     <tr><td class="paramname">offset</td><td>オフセット[rad]。省略可能で、デフォルトは-PI </td></tr>
+    <tr><td class="paramname">limit</td><td>角度を一定範囲に収めるかどうか。省略可能で、デフォルトはtrue </td></tr>
   </table>
   </dd>
 </dl>
@@ -351,6 +355,31 @@ constexpr double&#160;</td><td class="memItemRight" valign="bottom"><b>Cubic_con
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="a217fd698e21da452f84035916b53e687" name="a217fd698e21da452f84035916b53e687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a217fd698e21da452f84035916b53e687">&#9670;&#160;</a></span>ALLOWED_ROTATION_RANGE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double Cubic_controller::ALLOWED_ROTATION_RANGE = 2.0 * PI</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>アブソリュートエンコーダーの回転をどこまで許容するか。 </p>
+<p >[-ALLOWED_ROTATION_RANGE, ALLOWED_ROTATION_RANGE]の範囲で許容する。 </p>
+
+</div>
+</div>
 <a id="a90e62825138363e960981b013b05e881" name="a90e62825138363e960981b013b05e881"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90e62825138363e960981b013b05e881">&#9670;&#160;</a></span>AMT22_CPR</h2>
 
