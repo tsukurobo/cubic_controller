@@ -6,11 +6,13 @@
 
 namespace Cubic_controller
 {
-    Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double target, double current, bool direction, bool logging) : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(CPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), pid(*(new PID::PID(capableDutyCycle, Kp, Ki, Kd, current, target, direction)))
+    Controller::Controller(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double Kp, double Ki, double Kd, double target, bool direction, double capableDutyCycle, double current, bool logging)
+	 : motorNo(motorNo), encoderNo(encoderNo), encoderType(encoderType), CPR(CPR), capableDutyCycle(capableDutyCycle), direction(direction), logging(logging), pid(*(new PID::PID(capableDutyCycle, Kp, Ki, Kd, current, target, direction)))
     {
     }
 
-    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double p, double Kp, double Ki, double Kd, double target, bool direction, bool logging) : Controller(motorNo, encoderNo, encoderType, CPR, capableDutyCycle, Kp, Ki, Kd, target, 0.0, direction, logging), p(p)
+    Velocity_PID::Velocity_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double Kp, double Ki, double Kd, double target, bool direction, double capableDutyCycle, double p, bool logging)
+	 : Controller(motorNo, encoderNo, encoderType, CPR, Kp, Ki, Kd, target, direction, capableDutyCycle, 0.0, logging), p(p)
     {
         if (encoderType == encoderType::abs)
         {
@@ -41,7 +43,8 @@ namespace Cubic_controller
         return dutyCycle;
     }
 
-    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double capableDutyCycle, double Kp, double Ki, double Kd, double targetAngle, bool direction, bool logging) : Controller(motorNo, encoderNo, encoderType, CPR, capableDutyCycle, Kp, Ki, Kd, targetAngle, this->encoderToAngle(this->readEncoder()), direction, logging)
+    Position_PID::Position_PID(uint8_t motorNo, uint8_t encoderNo, enum class encoderType encoderType, uint16_t CPR, double Kp, double Ki, double Kd, double targetAngle, bool direction, double capableDutyCycle, bool logging)
+	 : Controller(motorNo, encoderNo, encoderType, CPR, Kp, Ki, Kd, targetAngle, direction, capableDutyCycle, this->encoderToAngle(this->readEncoder()), logging)
     {
         if (encoderType == encoderType::inc)
         {
