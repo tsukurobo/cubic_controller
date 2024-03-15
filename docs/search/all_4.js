@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['getcurrent_0',['getCurrent',['../class_cubic__controller_1_1_controller.html#a44f49cb671fc6c23d940f55800630802',1,'Cubic_controller::Controller::getCurrent()'],['../class_p_i_d_1_1_p_i_d.html#aaf8ea7b4861a11b9f93e7f0f040288f9',1,'PID::PID::getCurrent()']]],
-  ['getdt_1',['getDt',['../class_cubic__controller_1_1_controller.html#afdb490dd8450f56a07d2481f9b5a691b',1,'Cubic_controller::Controller::getDt()'],['../class_p_i_d_1_1_p_i_d.html#a19503e945e078d0d6b6f973a9018a59b',1,'PID::PID::getDt()']]],
-  ['getdutycycle_2',['getDutyCycle',['../class_cubic__controller_1_1_controller.html#ae2374603afcb31f62cd2449ec3bdd4bb',1,'Cubic_controller::Controller::getDutyCycle()'],['../class_p_i_d_1_1_p_i_d.html#ae6d59668a76c701cc9d144a9bc2b469a',1,'PID::PID::getDutyCycle()']]],
-  ['gettarget_3',['getTarget',['../class_cubic__controller_1_1_controller.html#abb2e415eff27ba19476981487e8a7576',1,'Cubic_controller::Controller::getTarget()'],['../class_p_i_d_1_1_p_i_d.html#a885661b37b26c26f87475a8c4f65b20a',1,'PID::PID::getTarget()']]]
+  ['encoderno_0',['encoderNo',['../class_cubic__controller_1_1_controller.html#ab95a325face8b012a325a5aced52db32',1,'Cubic_controller::Controller']]],
+  ['encodertoangle_1',['encoderToAngle',['../class_cubic__controller_1_1_controller.html#a64dc9bc03afa2fa17adc7a75382df044',1,'Cubic_controller::Controller::encoderToAngle()'],['../class_cubic__controller_1_1_velocity___p_i_d.html#ac03c33386886f95cf22dd0bda38dfbfa',1,'Cubic_controller::Velocity_PID::encoderToAngle()'],['../class_cubic__controller_1_1_position___p_i_d.html#a9c355c96f2349f3eb53bec2979cc4b77',1,'Cubic_controller::Position_PID::encoderToAngle()'],['../_cubic_8controller_8h.html#acf0f20437952cab65e5762c612251dbb',1,'Cubic_controller::encoderToAngle()']]],
+  ['encodertype_2',['encoderType',['../class_cubic__controller_1_1_controller.html#a56d3b30c9d89f6a42c6cfa7d3a119735',1,'Cubic_controller::Controller::encoderType'],['../_cubic_8controller_8h.html#a0288153c61a993b014e7f40bb1b28a4e',1,'Cubic_controller::encoderType']]]
 ];

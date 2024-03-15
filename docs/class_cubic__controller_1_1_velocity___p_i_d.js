@@ -1,6 +1,6 @@
 var class_cubic__controller_1_1_velocity___p_i_d =
 [
-    [ "Velocity_PID", "class_cubic__controller_1_1_velocity___p_i_d.html#ab6795c8b52e0e5ba4f99676936f1d790", null ],
+    [ "Velocity_PID", "class_cubic__controller_1_1_velocity___p_i_d.html#a20ba13aa7a75314cb9cebcb0e1e4b3db", null ],
     [ "compute", "class_cubic__controller_1_1_velocity___p_i_d.html#a4d6ffa210e350522c03a30411ab7c566", null ],
     [ "encoderToAngle", "class_cubic__controller_1_1_velocity___p_i_d.html#ac03c33386886f95cf22dd0bda38dfbfa", null ],
     [ "reset", "class_cubic__controller_1_1_velocity___p_i_d.html#a2305f52e0edeed99cbb2e61a8026a480", null ],

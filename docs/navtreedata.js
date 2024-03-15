@@ -25,10 +25,7 @@
 var NAVTREE =
 [
   [ "Easy Control Library for Cubic", "index.html", [
-    [ "Readme", "index.html", [
-      [ "About", "index.html#autotoc_md1", null ],
-      [ "Usage", "index.html#autotoc_md2", null ]
-    ] ],
+    [ "Readme", "index.html", "index" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
