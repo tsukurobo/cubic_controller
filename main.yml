@@ -1,7 +1,0 @@
-name : Doxygen Deploy
-
-on:
-  push:
-    branches:
-      - master
-
